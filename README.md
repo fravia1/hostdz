@@ -1,4 +1,2 @@
-Hostdz
-#
-543016cc1c
+Host Dzire seedbox install script
 ==========
