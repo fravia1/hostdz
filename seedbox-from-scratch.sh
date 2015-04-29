@@ -353,31 +353,31 @@ bash /etc/seedbox-from-scratch/createOpenSSLCACertificate
 mkdir -p /etc/ssl/private/
 openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout /etc/ssl/private/vsftpd.pem -out /etc/ssl/private/vsftpd.pem -config /etc/seedbox-from-scratch/ssl/CA/caconfig.cnf
 
-if [ "$OS1" = "Debian" ]; then
-  apt-get --yes install vsftpd
-else
-  apt-get --yes install libcap-dev libpam0g-dev libwrap0-dev
-  dpkg -i /etc/seedbox-from-scratch/vsftpd_2.3.2-3ubuntu5.1_`uname -m`.deb
-fi
+######if [ "$OS1" = "Debian" ]; then
+######  apt-get --yes install vsftpd
+######else
+######  apt-get --yes install libcap-dev libpam0g-dev libwrap0-dev
+######  dpkg -i /etc/seedbox-from-scratch/vsftpd_2.3.2-3ubuntu5.1_`uname -m`.deb
+######fi
 
-perl -pi -e "s/anonymous_enable\=YES/\#anonymous_enable\=YES/g" /etc/vsftpd.conf
-perl -pi -e "s/connect_from_port_20\=YES/#connect_from_port_20\=YES/g" /etc/vsftpd.conf
-echo "listen_port=$NEWFTPPORT1" | tee -a /etc/vsftpd.conf >> /dev/null
-echo "ssl_enable=YES" | tee -a /etc/vsftpd.conf >> /dev/null
-echo "allow_anon_ssl=YES" | tee -a /etc/vsftpd.conf >> /dev/null
-echo "force_local_data_ssl=YES" | tee -a /etc/vsftpd.conf >> /dev/null
-echo "force_local_logins_ssl=YES" | tee -a /etc/vsftpd.conf >> /dev/null
-echo "ssl_tlsv1=YES" | tee -a /etc/vsftpd.conf >> /dev/null
-echo "ssl_sslv2=NO" | tee -a /etc/vsftpd.conf >> /dev/null
-echo "ssl_sslv3=NO" | tee -a /etc/vsftpd.conf >> /dev/null
-echo "require_ssl_reuse=NO" | tee -a /etc/vsftpd.conf >> /dev/null
-echo "ssl_ciphers=HIGH" | tee -a /etc/vsftpd.conf >> /dev/null
-echo "rsa_cert_file=/etc/ssl/private/vsftpd.pem" | tee -a /etc/vsftpd.conf >> /dev/null
-echo "local_enable=YES" | tee -a /etc/vsftpd.conf >> /dev/null
-echo "write_enable=YES" | tee -a /etc/vsftpd.conf >> /dev/null
-echo "local_umask=022" | tee -a /etc/vsftpd.conf >> /dev/null
-echo "chroot_local_user=YES" | tee -a /etc/vsftpd.conf >> /dev/null
-echo "chroot_list_file=/etc/vsftpd.chroot_list" | tee -a /etc/vsftpd.conf >> /dev/null
+######perl -pi -e "s/anonymous_enable\=YES/\#anonymous_enable\=YES/g" /etc/vsftpd.conf
+######perl -pi -e "s/connect_from_port_20\=YES/#connect_from_port_20\=YES/g" /etc/vsftpd.conf
+######echo "listen_port=$NEWFTPPORT1" | tee -a /etc/vsftpd.conf >> /dev/null
+######echo "ssl_enable=YES" | tee -a /etc/vsftpd.conf >> /dev/null
+######echo "allow_anon_ssl=YES" | tee -a /etc/vsftpd.conf >> /dev/null
+######echo "force_local_data_ssl=YES" | tee -a /etc/vsftpd.conf >> /dev/null
+######echo "force_local_logins_ssl=YES" | tee -a /etc/vsftpd.conf >> /dev/null
+######echo "ssl_tlsv1=YES" | tee -a /etc/vsftpd.conf >> /dev/null
+######echo "ssl_sslv2=NO" | tee -a /etc/vsftpd.conf >> /dev/null
+######echo "ssl_sslv3=NO" | tee -a /etc/vsftpd.conf >> /dev/null
+######echo "require_ssl_reuse=NO" | tee -a /etc/vsftpd.conf >> /dev/null
+######echo "ssl_ciphers=HIGH" | tee -a /etc/vsftpd.conf >> /dev/null
+######echo "rsa_cert_file=/etc/ssl/private/vsftpd.pem" | tee -a /etc/vsftpd.conf >> /dev/null
+######echo "local_enable=YES" | tee -a /etc/vsftpd.conf >> /dev/null
+############echo "write_enable=YES" | tee -a /etc/vsftpd.conf >> /dev/null
+############echo "local_umask=022" | tee -a /etc/vsftpd.conf >> /dev/null
+######echo "chroot_local_user=YES" | tee -a /etc/vsftpd.conf >> /dev/null
+######echo "chroot_list_file=/etc/vsftpd.chroot_list" | tee -a /etc/vsftpd.conf >> /dev/null
 
 # 13.
 mv /etc/apache2/sites-available/default /etc/apache2/sites-available/default.ORI
