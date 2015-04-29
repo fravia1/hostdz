@@ -866,8 +866,8 @@
   ServerName <servername>
   NameVirtualHost *:443
   SSLEngine on
-  SSLCertificateFile /etc/apache2/bestbox_all_ssl.crt
-  SSLCertificateKeyFile /etc/apache2/bestbox_all_ssl.key
+  SSLCertificateFile /etc/seedbox-from-scratch/ssl/cert.pem
+  SSLCertificateKeyFile /etc/seedbox-from-scratch/ssl/key.pem
 
   DocumentRoot /var/www/
 

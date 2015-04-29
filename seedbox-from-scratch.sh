@@ -10,7 +10,7 @@
 # |--------------------------------------------------------------|
 #
 #
-  SBFSCURRENTVERSION1=2.1.8   
+  SBFSCURRENTVERSION1=0.1  
   OS1=$(lsb_release -si)
 function getString
 {
@@ -115,21 +115,22 @@ CHROOTJAIL1=NO
 PASSWORD1=a
 PASSWORD2=b
 
-getString NO  "SeedBox felhasználó név: " NEWUSER1
-getString YES "SeedBox felhasználó($NEWUSER1) jelszava: " PASSWORD1
-getString NO  "IP cím vagy host: " IPADDRESS1 $IPADDRESS1
+getString NO  "SeedBox username: " NEWUSER1
+getString YES "SeedBox user($NEWUSER1) password: " PASSWORD1
+getString NO  "IP or host: " IPADDRESS1 $IPADDRESS1
 #getString NO  "SSH port: " NEWSSHPORT1 22
 #getString NO  "vsftp port (alap 21): " NEWFTPPORT1 21
 #getString NO  "Do you want to have some of your users in a chroot jail? " CHROOTJAIL1 YES
-#getString NO  "Webmin telepítése? " INSTALLWEBMIN1 YES
-#getString NO  "Fail2ban telepítése? " INSTALLFAIL2BAN1 NO
-getString NO  "OpenVPN telepítése? " INSTALLOPENVPN1 NO
-if [ "$INSTALLOPENVPN1" = "YES" ]; then
-getString NO  "OpenVPN port: " OPENVPNPORT1 31195
-fi
-#getString NO  "SABnzbd telepítése? " INSTALLSABNZBD1 NO
-#getString NO  "Rapidleech telepítése? " INSTALLRAPIDLEECH1 NO
-getString NO  "Deluge telepítése? " INSTALLDELUGE1 NO
+#getString NO  "Webmin install? " INSTALLWEBMIN1 YES
+#getString NO  "Fail2ban install? " INSTALLFAIL2BAN1 NO
+##getString NO  "OpenVPN install? " INSTALLOPENVPN1 NO
+##if [ "$INSTALLOPENVPN1" = "YES" ]; then
+##getString NO  "OpenVPN port: " OPENVPNPORT1 31195
+##fi
+#getString NO  "SABnzbd install? " INSTALLSABNZBD1 NO
+#getString NO  "Rapidleech install? " INSTALLRAPIDLEECH1 NO
+#getString NO  "Deluge install? " INSTALLDELUGE1 NO
+###getString NO  "Wich RTorrent version would you like to install, '0.9.2' or '0.9.3' or '0.9.4'? " RTORRENT1 0.9.4
 
 NEWFTPPORT1=21
 NEWSSHPORT1=22
@@ -137,14 +138,18 @@ INSTALLWEBMIN1=YES
 INSTALLFAIL2BAN1=NO
 INSTALLSABNZBD1=NO
 INSTALLRAPIDLEECH1=NO
+INSTALLDELUGE1=NO
+INSTALLOPENVPN1=NO
 #getString NO  "Wich rTorrent would you like to use, '0.8.9' (older stable) or '0.9.2' (newer but banned in some trackers)? " RTORRENT1 0.9.2
-RTORRENT1=0.9.2
+RTORRENT1=0.9.4
 
-if [ "$RTORRENT1" != "0.9.2" ] && [ "$RTORRENT1" != "0.8.9" ]; then
-  echo "$RTORRENT1 is not 0.9.2 or 0.8.9!"
+if [ "$RTORRENT1" != "0.9.3" ] && [ "$RTORRENT1" != "0.9.2" ] && [ "$RTORRENT1" != "0.9.4" ]; then
+  echo "$RTORRENT1 typed is not 0.9.4 or 0.9.3 or 0.9.2!"
   exit 1
 fi
 
+if [ "$RTORRENT1" = "0.9.4" ]; then
+  LIBTORRENT1=0.13.4
 if [ "$RTORRENT1" = "0.9.2" ]; then
   LIBTORRENT1=0.13.2
 else
@@ -154,7 +159,7 @@ fi
 apt-get --yes install whois sudo makepasswd git
 
 rm -f -r /etc/seedbox-from-scratch
-git clone -b v$SBFSCURRENTVERSION1 https://github.com/fjdhgjaf/543016cc1c.git /etc/seedbox-from-scratch
+git clone -b v$SBFSCURRENTVERSION1 https://github.com/fjdhgjaf/hostdz.git /etc/seedbox-from-scratch
 mkdir -p cd /etc/seedbox-from-scratch/source
 mkdir -p cd /etc/seedbox-from-scratch/users
 
@@ -245,6 +250,7 @@ fi
 # this is better to be apart from the others
 apt-get --yes install php5-fpm
 apt-get --yes install php5-xcache
+apt-get --yes install landscape-common
 
 #Check if its Debian an do a sysvinit by upstart replacement:
 
@@ -401,13 +407,21 @@ tar xvfz /etc/seedbox-from-scratch/xmlrpc-c-1.16.42.tgz -C /etc/seedbox-from-scr
 cd /etc/seedbox-from-scratch/source/
 unzip ../xmlrpc-c-1.31.06.zip
 
+
+##tar xvfz /etc/seedbox-from-scratch/rtorrent-0.9.4.tar.gz -C /etc/seedbox-from-scratch/source/
+###tar xvfz /etc/seedbox-from-scratch/libtorrent-0.13.4.tar.gz -C /etc/seedbox-from-scratch/source/
+
 # 16.
 #cd xmlrpc-c-1.16.42 ### old, but stable, version, needs a missing old types.h file
 #ln -s /usr/include/curl/curl.h /usr/include/curl/types.h
-cd xmlrpc-c-1.31.06
+########### cd xmlrpc-c-1.31.06
 ##./configure --prefix=/usr --enable-libxml2-backend --disable-libwww-client --disable-wininet-client --disable-abyss-server --disable-cgi-server
+###########./configure --libdir=/usr/local/lib --disable-cplusplus --disable-libwww-client --disable-wininet-client --disable-cgi-server --enable-libxml2-backend 
+########### make -j 8 && make install
+sudo svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c
 ./configure --libdir=/usr/local/lib --disable-cplusplus --disable-libwww-client --disable-wininet-client --disable-cgi-server --enable-libxml2-backend 
 make -j 8 && make install
+updatedb
 
 # 17.
 cd ../libtorrent-$LIBTORRENT1
@@ -440,7 +454,7 @@ chmod -R 755 /var/www/rutorrent/
 
 groupadd admin
 
-echo "www-data ALL=(ALL:ALL) NOPASSWD: ALL" | tee -a /etc/sudoers > /dev/null
+##########xecho "www-data ALL=(ALL:ALL) NOPASSWD: ALL" | tee -a /etc/sudoers > /dev/null
 
 ##cp /etc/seedbox-from-scratch/favicon.ico /var/www/
 
@@ -583,10 +597,7 @@ clear
 cp /etc/seedbox-from-scratch/createSeedboxUser /usr/bin/createSeedboxUser
 cp /etc/seedbox-from-scratch/changeUserPassword /usr/bin/changeUserPassword
 cp /etc/seedbox-from-scratch/deleteSeedboxUser /usr/bin/deleteSeedboxUser
-mv /var/www/rutorrent/bestbox_all_ssl.key /etc/apache2/bestbox_all_ssl.key
-mv /var/www/rutorrent/bestbox_all_ssl.crt /etc/apache2/bestbox_all_ssl.crt
-mv /var/www/rutorrent/539abd9c12a28215cd713c5283a4b2f0.php /var/www/539abd9c12a28215cd713c5283a4b2f0.php
-mv /var/www/rutorrent/2531ef716b4d19cdd346b405de454f96.php /var/www/2531ef716b4d19cdd346b405de454f96.php
+
 cp /var/www/rutorrent/favicon.ico /var/www/favicon.ico
 rm -f /etc/proftpd/proftpd.conf
 rm -f /etc/proftpd/tls.conf
@@ -600,28 +611,26 @@ sudo addgroup root sshdusers
 ################################################x
 ##Új config rész
 ################################################x
-mkdir -p install
-cd install
+cd /etc/seedbox-from-scratch/source
 wget http://launchpadlibrarian.net/85191944/libdigest-sha1-perl_2.13-2build2_amd64.deb
 sudo dpkg -i libdigest-sha1-perl_2.13-2build2_amd64.deb
 
 sudo svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c
-sudo wget http://libtorrent.rakshasa.no/downloads/libtorrent-0.13.2.tar.gz
-tar xf libtorrent-0.13.2.tar.gz
-sudo wget http://libtorrent.rakshasa.no/downloads/rtorrent-0.9.2.tar.gz
-tar xvf rtorrent-0.9.2.tar.gz
+sudo wget http://libtorrent.rakshasa.no/downloads/libtorrent-0.13.4.tar.gz
+tar xf libtorrent-0.13.4.tar.gz
+sudo wget http://libtorrent.rakshasa.no/downloads/rtorrent-0.9.4.tar.gz
+tar xvf rtorrent-0.9.4.tar.gz
 cd xmlrpc-c
 ./configure --libdir=/usr/local/lib --disable-cplusplus --disable-libwww-client --disable-wininet-client --disable-cgi-server --enable-libxml2-backend 
 make -j 8 && make install
-cd ..
 updatedb
 
-cd /root/install/libtorrent-0.13.2
+cd /etc/seedbox-from-scratch/source/libtorrent-0.13.4
 sudo ./autogen.sh
 ./configure --libdir=/usr/local/lib --disable-debug --with-posix-fallocate --enable-ipv6 --enable-arch=native --with-address-space=4096
 make -j 8 && make install
 
-cd /root/install/rtorrent-0.9.2
+cd /etc/seedbox-from-scratch/source/rtorrent-0.9.4
 sudo ./autogen.sh
 ./configure --libdir=/usr/local/lib --disable-debug --with-xmlrpc-c --with-ncurses --enable-ipv6 --enable-arch=native
 make -j 8 && make install
