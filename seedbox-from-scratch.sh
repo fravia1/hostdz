@@ -442,11 +442,22 @@ apt-get --yes install iotop
 apt-get --yes install htop
 
 # 22. rutorrent csere
-cd /var/www
+###cd /var/www
+###rm -f -r rutorrent
+###rm -r -f rutorrent/plugins
+###wget -N http://bestbox.be/motor/konfig/rutorrent.tar.gz --no-check-certificate
+###tar xvfz rutorrent.tar.gz -C /var/www/
+
+cd /var/www/
 rm -f -r rutorrent
-rm -r -f rutorrent/plugins
-wget -N http://bestbox.be/motor/konfig/rutorrent.tar.gz --no-check-certificate
-tar xvfz rutorrent.tar.gz -C /var/www/
+svn checkout https://github.com/Novik/ruTorrent/trunk rutorrent
+#svn checkout http://rutorrent.googlecode.com/svn/trunk/plugins
+#rm -r -f rutorrent/plugins
+#mv plugins rutorrent/
+
+cp /etc/seedbox-from-scratch/action.php.template /var/www/rutorrent/plugins/diskspace/action.php
+
+
 chown -R www-data:www-data /var/www/rutorrent/
 chmod -R 755 /var/www/rutorrent/
 
