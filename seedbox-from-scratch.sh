@@ -399,14 +399,14 @@ a2ensite default-ssl
 #apt-get --yes install libxmlrpc-core-c3-dev
 
 # 15.
-tar xvfz /etc/seedbox-from-scratch/rtorrent-0.8.9.tar.gz -C /etc/seedbox-from-scratch/source/
-tar xvfz /etc/seedbox-from-scratch/rtorrent-0.9.2.tar.gz -C /etc/seedbox-from-scratch/source/
-tar xvfz /etc/seedbox-from-scratch/libtorrent-0.12.9.tar.gz -C /etc/seedbox-from-scratch/source/
-tar xvfz /etc/seedbox-from-scratch/libtorrent-0.13.2.tar.gz -C /etc/seedbox-from-scratch/source/
-tar xvfz /etc/seedbox-from-scratch/xmlrpc-c-1.16.42.tgz -C /etc/seedbox-from-scratch/source/
+#############tar xvfz /etc/seedbox-from-scratch/rtorrent-0.8.9.tar.gz -C /etc/seedbox-from-scratch/source/
+#############tar xvfz /etc/seedbox-from-scratch/rtorrent-0.9.2.tar.gz -C /etc/seedbox-from-scratch/source/
+#############tar xvfz /etc/seedbox-from-scratch/libtorrent-0.12.9.tar.gz -C /etc/seedbox-from-scratch/source/
+#############tar xvfz /etc/seedbox-from-scratch/libtorrent-0.13.2.tar.gz -C /etc/seedbox-from-scratch/source/
+#############tar xvfz /etc/seedbox-from-scratch/xmlrpc-c-1.16.42.tgz -C /etc/seedbox-from-scratch/source/
+#############cd /etc/seedbox-from-scratch/source/
+#############unzip ../xmlrpc-c-1.31.06.zip
 cd /etc/seedbox-from-scratch/source/
-unzip ../xmlrpc-c-1.31.06.zip
-
 
 ##tar xvfz /etc/seedbox-from-scratch/rtorrent-0.9.4.tar.gz -C /etc/seedbox-from-scratch/source/
 ###tar xvfz /etc/seedbox-from-scratch/libtorrent-0.13.4.tar.gz -C /etc/seedbox-from-scratch/source/
@@ -418,24 +418,24 @@ unzip ../xmlrpc-c-1.31.06.zip
 ##./configure --prefix=/usr --enable-libxml2-backend --disable-libwww-client --disable-wininet-client --disable-abyss-server --disable-cgi-server
 ###########./configure --libdir=/usr/local/lib --disable-cplusplus --disable-libwww-client --disable-wininet-client --disable-cgi-server --enable-libxml2-backend 
 ########### make -j 8 && make install
-sudo svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c
-./configure --libdir=/usr/local/lib --disable-cplusplus --disable-libwww-client --disable-wininet-client --disable-cgi-server --enable-libxml2-backend 
-make -j 8 && make install
-updatedb
+#############sudo svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c
+#############./configure --libdir=/usr/local/lib --disable-cplusplus --disable-libwww-client --disable-wininet-client --disable-cgi-server --enable-libxml2-backend 
+#############make -j 8 && make install
+#############updatedb
 
 # 17.
-cd ../libtorrent-$LIBTORRENT1
-./autogen.sh
+#############cd ../libtorrent-$LIBTORRENT1
+#############./autogen.sh
 ##./configure --prefix=/usr
-./configure --libdir=/usr/local/lib --disable-debug --with-posix-fallocate --enable-ipv6 --enable-arch=native --with-address-space=4096
-make -j 8 && make install
+#############./configure --libdir=/usr/local/lib --disable-debug --with-posix-fallocate --enable-ipv6 --enable-arch=native --with-address-space=4096
+#############make -j 8 && make install
 
-cd ../rtorrent-$RTORRENT1
-./autogen.sh
+#############cd ../rtorrent-$RTORRENT1
+#############./autogen.sh
 ##./configure --prefix=/usr --with-xmlrpc-c
-/configure --libdir=/usr/local/lib --disable-debug --with-xmlrpc-c --with-ncurses --enable-ipv6 --enable-arch=native
-make -j 8 && make install
-ldconfig
+#############/configure --libdir=/usr/local/lib --disable-debug --with-xmlrpc-c --with-ncurses --enable-ipv6 --enable-arch=native
+#############make -j 8 && make install
+#############ldconfig
 
 ##hozzaadva
 apt-get --yes install iotop
