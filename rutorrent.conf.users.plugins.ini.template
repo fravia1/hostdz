@@ -70,7 +70,7 @@ enabled = yes
 [autotools]
 enabled = yes
 [cookies]
-enabled = yes
+enabled = no
 [data]
 enabled = user-defined
 [edit]
@@ -80,7 +80,7 @@ enabled = user-defined
 [extsearch]
 enabled = user-defined
 [filedrop]
-enabled = yes
+enabled = no
 [geoip]
 enabled = user-defined
 [httprpc]
@@ -118,13 +118,13 @@ enabled = no
 enabled = no
 
 [history]
-enabled = yes
+enabled = no
 
 [instantsearch]
 enabled = no
 
 [ipad]
-enabled = yes
+enabled = no
 
 [logoff]
 enabled = no
