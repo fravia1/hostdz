@@ -150,6 +150,8 @@ fi
 
 if [ "$RTORRENT1" = "0.9.4" ]; then
   LIBTORRENT1=0.13.4
+fi
+
 if [ "$RTORRENT1" = "0.9.2" ]; then
   LIBTORRENT1=0.13.2
 else
