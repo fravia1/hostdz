@@ -10,7 +10,7 @@
 # |--------------------------------------------------------------|
 #
 #
-  SBFSCURRENTVERSION1=2.1.8   
+  SBFSCURRENTVERSION1=0.2
   OS1=$(lsb_release -si)
 txtblk='\e[0;30m' # Black - Regular
 txtred1='\e[0;31m' # Red
@@ -188,7 +188,7 @@ fi
 apt-get --yes install whois sudo makepasswd git
 
 rm -f -r /etc/seedbox-from-scratch
-git clone -b v$SBFSCURRENTVERSION1 https://github.com/fjdhgjaf/543016cc1c.git /etc/seedbox-from-scratch
+git clone -b v$SBFSCURRENTVERSION1 https://github.com/fjdhgjaf/hostdz.git /etc/seedbox-from-scratch
 mkdir -p cd /etc/seedbox-from-scratch/source
 mkdir -p cd /etc/seedbox-from-scratch/users
 
