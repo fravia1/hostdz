@@ -12,6 +12,24 @@
 #
   SBFSCURRENTVERSION1=0.1  
   OS1=$(lsb_release -si)
+txtblk='\e[0;30m' # Black - Regular
+txtred1='\e[0;31m' # Red
+txtred='\e[1;31m' # Red
+txtgrn='\e[0;32m' # Green
+txtylw='\e[1;33m' # Yellow
+txtblu='\e[0;34m' # Blue
+txtpur='\e[0;35m' # Purple
+txtcyn='\e[0;36m' # Cyan
+txtwht='\e[0;37m' # White
+bldblk='\e[1;30m' # Black - Bold
+bldred='\e[1;31m' # Red
+bldgrn='\e[1;32m' # Green
+bldylw='\e[1;33m' # Yellow
+bldblu='\e[1;34m' # Blue
+bldpur='\e[1;35m' # Purple
+bldcyn='\e[1;36m' # Cyan
+bldwht='\e[1;37m' # White
+txtrst='\e[0m'    # Text Reset
 function getString
 {
   local ISPASSWORD=$1
@@ -27,13 +45,13 @@ function getString
   while [ ! $NEWVAR1 = $NEWVAR2 ] || [ -z "$NEWVAR1" ];
   do
     clear
-    echo "#"
-	echo "# |--------------------------------------------------------------|"
-	echo "# | The script thank you for Notos (notos.korsan@gmail.com)      |"
-	echo "# |--------------------------------------------------------------|"
-	echo "# | The script was further developed Tiby08 (tiby0108@gmail.com) |"
-	echo "# |--------------------------------------------------------------|"
-    echo "#"
+    echo -e "${txtylw}#${txtrst}"
+	echo -e "${txtylw}# |--------------------------------------------------------------|${txtrst}"
+	echo -e "${txtylw}# | The script thank you for Notos (notos.korsan@gmail.com)      |${txtrst}"
+	echo -e "${txtylw}# |--------------------------------------------------------------|${txtrst}"
+	echo -e "${txtylw}# | The script was further developed Tiby08 (tiby0108@gmail.com) |${txtrst}"
+	echo -e "${txtylw}# |--------------------------------------------------------------|${txtrst}"
+    echo -e "${txtylw}#${txtrst}"
     echo
 
     if [ "$ISPASSWORD" == "YES" ]; then
@@ -213,6 +231,13 @@ apt-get --yes upgrade
 apt-get --yes install apache2 apache2-utils autoconf build-essential ca-certificates comerr-dev curl cfv quota mktorrent dtach htop irssi libapache2-mod-php5 libcloog-ppl-dev libcppunit-dev libcurl3 libcurl4-openssl-dev libncurses5-dev libterm-readline-gnu-perl libsigc++-2.0-dev libperl-dev openvpn libssl-dev libtool libxml2-dev ncurses-base ncurses-term ntp openssl patch libc-ares-dev pkg-config php5 php5-cli php5-dev php5-curl php5-geoip php5-mcrypt php5-gd php5-xmlrpc pkg-config python-scgi screen ssl-cert subversion texinfo unzip zlib1g-dev expect joe automake1.9 flex bison debhelper binutils-gold libav-tools libarchive-zip-perl libnet-ssleay-perl libhtml-parser-perl libxml-libxml-perl libjson-perl libjson-xs-perl libxml-libxslt-perl libxml-libxml-perl libjson-rpc-perl libarchive-zip-perl znc tcpdump
 if [ $? -gt 0 ]; then
   set +x verbose
+  echo -e "${bldred}#${txtrst}"
+  echo -e "${bldred}# |--------------------------------------------------------------|${txtrst}"
+  echo -e "${bldred}# | The script thank you for Notos (notos.korsan@gmail.com)      |${txtrst}"
+  echo -e "${bldred}# |--------------------------------------------------------------|${txtrst}"
+  echo -e "${bldred}# | The script was further developed Tiby08 (tiby0108@gmail.com) |${txtrst}"
+  echo -e "${bldred}# |--------------------------------------------------------------|${txtrst}"
+  echo -e "${bldred}#"
   echo
   echo
   echo *** ERROR ***
@@ -673,20 +698,19 @@ echo "session required pam_limits.so" | tee -a /etc/pam.d/common-session > /dev/
 clear
 
 
+bldgrn='\e[1;32m' # Green
+txtrst='\e[0m'    # Text Reset
 
-
-
-
-echo "#"
-echo "# |--------------------------------------------------------------|"
-echo "# | The script thank you for Notos (notos.korsan@gmail.com)      |"
-echo "# |--------------------------------------------------------------|"
-echo "# | The script was further developed Tiby08 (tiby0108@gmail.com) |"
-echo "# |--------------------------------------------------------------|"
-echo "#"
+echo -e "${bldgrn}#${txtrst}"
+echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
+echo -e "${bldgrn}# | The script thank you for Notos (notos.korsan@gmail.com)      |${txtrst}"
+echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
+echo -e "${bldgrn}# | The script was further developed Tiby08 (tiby0108@gmail.com) |${txtrst}"
+echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
+echo -e "${bldgrn}#"
 echo ""
 echo "System will reboot now, but don't close this window until you take note of the port number: $NEWSSHPORT1"
-echo ""
+echo "${txtrst}"
 
 reboot
 
