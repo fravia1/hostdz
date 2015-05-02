@@ -11,16 +11,21 @@
   ServerAdmin webmaster@localhost
   ServerName <servername>
   DocumentRoot /var/www/
+  RewriteEngine On
+  RewriteCond %{LA-U:remote_user} !^$
+  RewriteRule ^/downloads(.*) /home/%{LA-U:remote_user}/downloads/manual/$1
 
-#  <Directory />
-#    Options FollowSymLinks
-#    AllowOverride All
-#    AuthType Digest
-#    AuthName "documentroot"
-#    AuthDigestProvider file
-#    AuthUserFile /etc/apache2/htpasswd
-#    Require user <username>
-#  </Directory>
+  <Location /downloads>
+    Options Indexes FollowSymLinks MultiViews
+    IndexOptions +FancyIndexing +SuppressDescription
+    AuthType Digest
+    AuthName "HTTP Downloads"
+    AuthDigestDomain /var/www/private
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </Location>
+
 
   <Directory /var/www/>
     Options -Indexes FollowSymLinks MultiViews
@@ -868,7 +873,20 @@
   SSLEngine on
   SSLCertificateFile /etc/seedbox-from-scratch/ssl/cert.pem
   SSLCertificateKeyFile /etc/seedbox-from-scratch/ssl/key.pem
+  RewriteEngine On
+  RewriteCond %{LA-U:remote_user} !^$
+  RewriteRule ^/downloads(.*) /home/%{LA-U:remote_user}/downloads/manual/$1
 
+  <Location /downloads>
+    Options Indexes FollowSymLinks MultiViews
+    IndexOptions +FancyIndexing +SuppressDescription
+    AuthType Digest
+    AuthName "HTTP Downloads"
+    AuthDigestDomain /var/www/private
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </Location>
   DocumentRoot /var/www/
 
 #  <Directory />
