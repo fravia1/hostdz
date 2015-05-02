@@ -551,6 +551,7 @@ bash /etc/seedbox-from-scratch/updatejkinit
 ##cp /etc/seedbox-from-scratch/rutorrent.plugins.filemanager.conf.php.template /var/www/rutorrent/plugins/filemanager/conf.php
 
 mkdir -p /var/www/stream/
+mkdir -p /var/www/private/
 ln -s /var/www/rutorrent/plugins/mediastream/view.php /var/www/stream/view.php
 chown www-data: /var/www/stream
 chown www-data: /var/www/stream/view.php
@@ -567,7 +568,7 @@ echo "<?php \$streampath = 'http://$IPADDRESS1/stream/view.php'; ?>" | tee /var/
 
 # 32.2
 chown -R www-data:www-data /var/www/rutorrent
-chmod -R 755 /var/www/rutorrent
+chmod -R 755 /var/www/
 
 #32.3
 
