@@ -343,6 +343,8 @@ fi
 a2enmod ssl
 a2enmod auth_digest
 a2enmod reqtimeout
+a2enmod rewrite
+
 #a2enmod scgi ############### if we cant make python-scgi works
 
 # 10.
