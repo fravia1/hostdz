@@ -13,19 +13,14 @@
   DocumentRoot /var/www/
   RewriteEngine On
   RewriteCond %{LA-U:remote_user} !^$
-  RewriteRule ^/downloads(.*) /home/%{LA-U:remote_user}/downloads/manual/$1
+  RewriteRule ^/rutorrent/downloads(.*) /home/%{LA-U:remote_user}/downloads/manual/$1
 
-  <Location /downloads>
-    Options Indexes FollowSymLinks MultiViews
-    IndexOptions +FancyIndexing +SuppressDescription
-    AuthType Digest
-    AuthName "HTTP Downloads"
+  <Location /var/www/rutorrent/downloads/>
+    Order Deny,Allow
+    Allow from all
+    Satisfy any
     AuthDigestDomain /var/www/private
-    AuthDigestProvider file
-    AuthUserFile /etc/apache2/htpasswd
-    Require valid-user
   </Location>
-
 
   <Directory /var/www/>
     Options -Indexes FollowSymLinks MultiViews
@@ -875,17 +870,13 @@
   SSLCertificateKeyFile /etc/seedbox-from-scratch/ssl/key.pem
   RewriteEngine On
   RewriteCond %{LA-U:remote_user} !^$
-  RewriteRule ^/downloads(.*) /home/%{LA-U:remote_user}/downloads/manual/$1
+  RewriteRule ^/rutorrent/downloads(.*) /home/%{LA-U:remote_user}/downloads/manual/$1
 
-  <Location /downloads>
-    Options Indexes FollowSymLinks MultiViews
-    IndexOptions +FancyIndexing +SuppressDescription
-    AuthType Digest
-    AuthName "HTTP Downloads"
+  <Location /var/www/rutorrent/downloads/>
+    Order Deny,Allow
+    Allow from all
+    Satisfy any
     AuthDigestDomain /var/www/private
-    AuthDigestProvider file
-    AuthUserFile /etc/apache2/htpasswd
-    Require valid-user
   </Location>
   DocumentRoot /var/www/
 
