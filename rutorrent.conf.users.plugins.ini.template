@@ -39,38 +39,38 @@ canBeShutdowned = yes
 enabled = yes
 
 [cpuload]
-enabled = no
+enabled = yes
 
 [create]
-enabled = no
+enabled = yes
 
 [datadir]
 enabled = yes
 
 [diskspace]
-enabled = yes
+enabled = user-defined
 
 [erasedata]
-enabled = yes
+enabled = user-defined
 
 [show_peers_like_wtorrent]
-enabled = yes
+enabled = user-defined
 
 [theme]
 enabled = yes
 
 [tracklabels]
-enabled = yes
+enabled = user-defined
 
 [trafic]
-enabled = yes
+enabled = user-defined
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Enabled
 
 [autotools]
-enabled = yes
+enabled = user-defined
 [cookies]
-enabled = yes
+enabled = user-defined
 [data]
 enabled = user-defined
 [edit]
@@ -80,14 +80,14 @@ enabled = user-defined
 [extsearch]
 enabled = user-defined
 [filedrop]
-enabled = yes
+enabled = user-defined
 [geoip]
 enabled = user-defined
 [httprpc]
 enabled = yes
 canBeShutdowned = no
 [pausewebui]
-enabled = no
+enabled = yes
 [ratio]
 enabled = user-defined
 [ratiocolor]
@@ -101,60 +101,60 @@ enabled = user-defined
 [titlebar]
 enabled = user-defined
 [unpack]
-enabled = no
+enabled = yes
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Disabled
 
 [chat]
-enabled = no
+enabled = yes
 
 [chunks]
-enabled = no
+enabled = yes
 
 [feeds]
-enabled = no
+enabled = yes
 
 [fileshare]
-enabled = no
+enabled = yes
 
 [history]
 enabled = yes
 
 [instantsearch]
-enabled = no
+enabled = yes
 
 [ipad]
 enabled = yes
 
 [logoff]
-enabled = no
+enabled = yes
 
 [loginmgr]
-enabled = no
+enabled = yes
 
 [mediainfo]
-enabled = no
+enabled = yes
 
 [check_port]
-enabled = no
+enabled = yes
 
 [retrackers]
-enabled = no
+enabled = yes
 
 [rpc]
-enabled = no
+enabled = yes
 
 [rssurlrewrite]
-enabled = no
+enabled = yes
 
 [rutracker_check]
-enabled = no
+enabled = yes
 
 [scheduler]
-enabled = no
+enabled = yes
 
 [screenshots]
-enabled = no
+enabled = yes
 
 [seedingtime]
 enabled = yes
@@ -170,5 +170,15 @@ enabled = yes
 ;;enabled = yes
 
 
+
 [autodl-irssi]
-enabled = no
+enabled = yes
+
+[fileupload]
+enabled = yes
+
+[mediastream]
+enabled = yes
+
+[filemanager]
+enabled = yes
