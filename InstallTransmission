@@ -10,6 +10,9 @@
 # |--------------------------------------------------------------|
 #
 clear
+bldgrn='\e[1;32m' # Green
+bldylw='\e[1;33m' # Yellow
+txtrst='\e[0m'    # Text Reset
 
 TransUser=$1
 IPADDRESS1=`ifconfig | sed -n 's/.*inet addr:\([0-9.]\+\)\s.*/\1/p' | grep -v 127 | head -n 1`
@@ -39,6 +42,5 @@ perl -pi -e "s/USER=debian-transmission/USER=$TransUser/g" /etc/init.d/transmiss
 
 /etc/init.d/transmission-daemon start
 echo
-echo
-echo "Transmission installed! Web: http://$IPADDRESS1:9091/transmission/web/"
+echo "${bldgrn}Transmission installed! ${bldylw}Web: http://$IPADDRESS1:9091/transmission/web/${txtrst}"
 echo

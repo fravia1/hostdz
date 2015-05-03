@@ -1,0 +1,40 @@
+##################### FIRST LINE
+# ---------------------------
+#!/bin/bash
+# ---------------------------
+#
+# |--------------------------------------------------------------|
+# | The script thank you for Notos (notos.korsan@gmail.com)      |
+# |--------------------------------------------------------------|
+# | The script was further developed Tiby08 (tiby0108@gmail.com) |
+# |--------------------------------------------------------------|
+#
+clear
+bldgrn='\e[1;32m' # Green
+bldylw='\e[1;33m' # Yellow
+txtrst='\e[0m'    # Text Reset
+UtorrentUser=$1
+IPADDRESS1=`ifconfig | sed -n 's/.*inet addr:\([0-9.]\+\)\s.*/\1/p' | grep -v 127 | head -n 1`
+
+ if [ ! $UtorrentUser ]; then
+    echo -n "Username: "
+      read UtorrentUser
+    fi
+ if [ ! $UtorrentUser ]; then
+     echo "Error no Username!"
+       exit 0
+    fi
+
+apt-get --yes update
+apt-get --yes install openjdk-7-jre
+wget -N http://cznic.dl.sourceforge.net/project/subsonic/subsonic/5.2.1/subsonic-5.2.1.deb
+dpkg -i subsonic-5.2.1.deb
+perl -pi -e "s/SUBSONIC_USER=root/SUBSONIC_USER=$UtorrentUser/g" /etc/default/subsonic
+service subsonic restart
+
+
+echo
+echo -e "${bldgrn}Subsonic installed! ${bldylw}Web: http://$IPADDRESS1:4040${txtrst}"
+echo -e "${bldgrn}Username: ${bldylw}admin${txtrst}"
+echo -e "${bldgrn}Password: ${bldylw}admin${txtrst}"
+echo
