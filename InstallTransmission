@@ -1,0 +1,39 @@
+##################### FIRST LINE
+# ---------------------------
+#!/bin/bash
+# ---------------------------
+#
+# |--------------------------------------------------------------|
+# | The script thank you for Notos (notos.korsan@gmail.com)      |
+# |--------------------------------------------------------------|
+# | The script was further developed Tiby08 (tiby0108@gmail.com) |
+# |--------------------------------------------------------------|
+#
+clear
+
+TransUser=$1
+
+ if [ ! $TransUser ]; then
+    echo -n "Username: "
+      read TransUser
+    fi
+ if [ ! $TransUser ]; then
+     echo "Error no Username!"
+       exit 0
+    fi
+
+add-apt-repository --yes ppa:transmissionbt/ppa
+apt-get --yes install python-software-properties
+apt-get --yes update
+apt-get --yes install transmission-cli transmission-common transmission-daemon
+usermod -a -G debian-transmission $TransUser
+sudo chown -R $TransUser:$TransUser /etc/transmission-daemon/
+sudo chmod -R 755 /etc/transmission-daemon/
+
+/etc/init.d/transmission-daemon stop
+
+perl -pi -e "s/\"rpc-authentication-required\": true/\"rpc-authentication-required\": false/g" /etc/transmission-daemon/settings.json
+perl -pi -e "s/\"rpc-whitelist-enabled\": true,/\"rpc-whitelist-enabled\": false,/g" /etc/transmission-daemon/settings.json
+perl -pi -e "s/USER=debian-transmission/USER=$TransUser/g" /etc/init.d/transmission-daemon
+
+/etc/init.d/transmission-daemon start

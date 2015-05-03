@@ -12,7 +12,7 @@
 ;; For setting individual plugin permissions you must write something like that:
 ;;
 ;; [ratio]
-;; enabled = yes ;; also may be "user-defined", in this case user can control plugins state from UI
+;; enabled = yes ;; also may be "yes", in this case user can control plugins state from UI
 ;; canChangeToolbar = yes
 ;; canChangeMenu = yes
 ;; canChangeOptions = no
@@ -23,7 +23,7 @@
 ;; canBeShutdowned = yes
 
 [default]
-enabled = user-defined
+enabled = yes
 canChangeToolbar = yes
 canChangeMenu = yes
 canChangeOptions = yes
@@ -48,58 +48,58 @@ enabled = yes
 enabled = yes
 
 [diskspace]
-enabled = user-defined
+enabled = yes
 
 [erasedata]
-enabled = user-defined
+enabled = yes
 
 [show_peers_like_wtorrent]
-enabled = user-defined
+enabled = yes
 
 [theme]
 enabled = yes
 
 [tracklabels]
-enabled = user-defined
+enabled = yes
 
 [trafic]
-enabled = user-defined
+enabled = yes
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Enabled
 
 [autotools]
-enabled = user-defined
+enabled = yes
 [cookies]
-enabled = user-defined
+enabled = yes
 [data]
-enabled = user-defined
+enabled = yes
 [edit]
-enabled = user-defined
+enabled = yes
 [extratio]
-enabled = user-defined
+enabled = yes
 [extsearch]
-enabled = user-defined
+enabled = yes
 [filedrop]
-enabled = user-defined
+enabled = yes
 [geoip]
-enabled = user-defined
+enabled = yes
 [httprpc]
 enabled = yes
 canBeShutdowned = no
 [pausewebui]
 enabled = yes
 [ratio]
-enabled = user-defined
+enabled = yes
 [ratiocolor]
-enabled = user-defined
+enabled = yes
 [rss]
-enabled = user-defined
+enabled = yes
 [_task]
 enabled = yes
 [throttle]
-enabled = user-defined
+enabled = yes
 [titlebar]
-enabled = user-defined
+enabled = yes
 [unpack]
 enabled = yes
 
@@ -163,7 +163,7 @@ enabled = yes
 enabled = yes
 
 ;;[filemanager]
-;;enabled = user-defined ;;; disabled in chroot jail
+;;enabled = yes ;;; disabled in chroot jail
 ;;[fileupload]
 ;;enabled = yes
 ;;[mediastream]
