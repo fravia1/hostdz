@@ -466,10 +466,6 @@ cd /etc/seedbox-from-scratch/source/
 #############make -j 8 && make install
 #############ldconfig
 
-##hozzaadva
-apt-get --yes install iotop
-apt-get --yes install htop
-
 # 22. rutorrent csere
 ###cd /var/www
 ###rm -f -r rutorrent
@@ -526,6 +522,10 @@ cd /var/www/rutorrent/plugins/
 svn co http://svn.rutorrent.org/svn/filemanager/trunk/filemanager
 
 cp /etc/seedbox-from-scratch/rutorrent.plugins.filemanager.conf.php.template /var/www/rutorrent/plugins/filemanager/conf.php
+
+# Mobile apps
+cd /var/www/rutorrent/plugins/
+git clone https://github.com/xombiemp/rutorrentMobile.git mobile
 
 # 32.2 # FILEUPLOAD
 cd /var/www/rutorrent/plugins/
@@ -606,7 +606,7 @@ echo "<?php \$streampath = 'http://$IPADDRESS1/stream/view.php'; ?>" | tee /var/
 ###apt-get --yes -f install
 
 # 32.2
-chown -R www-data:www-data /var/www/rutorrent
+chown -R www-data:www-data /var/www/
 chmod -R 755 /var/www/
 
 #32.3
@@ -673,6 +673,11 @@ fi
 
 # 99.
 apt-get --yes install proftpd
+apt-get --yes install iotop
+apt-get --yes install htop
+apt-get --yes install irssi mediainfo
+apt-get --yes install mc
+apt-get --yes install nano
 clear
 
 cp /etc/seedbox-from-scratch/createSeedboxUser /usr/bin/createSeedboxUser
@@ -685,9 +690,7 @@ rm -f /etc/proftpd/tls.conf
 cp /etc/seedbox-from-scratch/proftpd_proftpd.conf /etc/proftpd/proftpd.conf
 cp /etc/seedbox-from-scratch/proftpd_tls.conf /etc/proftpd/tls.conf
 
-apt-get --yes install irssi mediainfo
-apt-get install mc --yes
-apt-get install nano --yes
+
 sudo addgroup root sshdusers
 
 ################################################x
@@ -733,7 +736,7 @@ sudo createSeedboxUser $NEWUSER1 $PASSWORD1 YES NO YES
 # 98.
 
 clear
-
+cd ~
 echo " * soft nofile 999999" | tee -a /etc/security/limits.conf > /dev/null
 echo " * hard nofile 999999" | tee -a /etc/security/limits.conf > /dev/null
 echo "session required pam_limits.so" | tee -a /etc/pam.d/common-session* > /dev/null
