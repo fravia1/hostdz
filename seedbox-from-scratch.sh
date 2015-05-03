@@ -512,6 +512,45 @@ cd /var/www/rutorrent/plugins
 svn co https://autodl-irssi.svn.sourceforge.net/svnroot/autodl-irssi/trunk/rutorrent/autodl-irssi
 cd autodl-irssi
 
+# Installing Filemanager and MediaStream
+
+rm -f -R /var/www/rutorrent/plugins/filemanager
+rm -f -R /var/www/rutorrent/plugins/fileupload
+rm -f -R /var/www/rutorrent/plugins/mediastream
+rm -f -R /var/www/stream
+
+cd /var/www/rutorrent/plugins/
+svn co http://svn.rutorrent.org/svn/filemanager/trunk/mediastream
+
+cd /var/www/rutorrent/plugins/
+svn co http://svn.rutorrent.org/svn/filemanager/trunk/filemanager
+
+cp /etc/seedbox-from-scratch/rutorrent.plugins.filemanager.conf.php.template /var/www/rutorrent/plugins/filemanager/conf.php
+
+# 32.2 # FILEUPLOAD
+cd /var/www/rutorrent/plugins/
+svn co http://svn.rutorrent.org/svn/filemanager/trunk/fileupload
+chmod 775 /var/www/rutorrent/plugins/fileupload/scripts/upload
+wget -O /tmp/plowshare.deb http://plowshare.googlecode.com/files/plowshare_1~git20120930-1_all.deb
+dpkg -i /tmp/plowshare.deb
+apt-get --yes -f install
+
+
+perl -pi -e "s/\\\$topDirectory\, \\\$fm/\\\$homeDirectory\, \\\$topDirectory\, \\\$fm/g" /var/www/rutorrent/plugins/filemanager/flm.class.php
+perl -pi -e "s/\\\$this\-\>userdir \= addslash\(\\\$topDirectory\)\;/\\\$this\-\>userdir \= \\\$homeDirectory \? addslash\(\\\$homeDirectory\) \: addslash\(\\\$topDirectory\)\;/g" /var/www/rutorrent/plugins/filemanager/flm.class.php
+perl -pi -e "s/\\\$topDirectory/\\\$homeDirectory/g" /var/www/rutorrent/plugins/filemanager/settings.js.php
+
+cd /var/www/rutorrent/plugins/
+rm -r /var/www/rutorrent/plugins/fileshare
+rm -r /var/www/share
+svn co http://svn.rutorrent.org/svn/filemanager/trunk/fileshare
+mkdir /var/www/share
+ln -s /var/www/rutorrent/plugins/fileshare/share.php /var/www/share/share.php
+ln -s /var/www/rutorrent/plugins/fileshare/share.php /var/www/share/index.php
+chown -R www-data:www-data /var/www/share
+cp /etc/seedbox-from-scratch/rutorrent.plugins.fileshare.conf.php.template /var/www/rutorrent/plugins/fileshare/conf.php
+perl -pi -e "s/<servername>/$IPADDRESS1/g" /var/www/rutorrent/plugins/fileshare/conf.php
+
 # 30.
 
 cp /etc/jailkit/jk_init.ini /etc/jailkit/jk_init.ini.original
