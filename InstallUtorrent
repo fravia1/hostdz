@@ -1,0 +1,42 @@
+##################### FIRST LINE
+# ---------------------------
+#!/bin/bash
+# ---------------------------
+#
+# |--------------------------------------------------------------|
+# | The script thank you for Notos (notos.korsan@gmail.com)      |
+# |--------------------------------------------------------------|
+# | The script was further developed Tiby08 (tiby0108@gmail.com) |
+# |--------------------------------------------------------------|
+#
+clear
+
+UtorrentUser=$1
+IPADDRESS1=`ifconfig | sed -n 's/.*inet addr:\([0-9.]\+\)\s.*/\1/p' | grep -v 127 | head -n 1`
+
+ if [ ! $UtorrentUser ]; then
+    echo -n "Username: "
+      read UtorrentUser
+    fi
+ if [ ! $UtorrentUser ]; then
+     echo "Error no Username!"
+       exit 0
+    fi
+
+apt-get --yes update
+apt-get --yes install libssl0.9.8:i386
+wget http://download.utorrent.com/linux/utorrent-server-3.0-25053.tar.gz
+sudo cp utorrent-server-3.0-25053.tar.gz /opt/
+cd /opt/
+tar -xvf utorrent-server-3.0-25053.tar.gz
+rm -rf utorrent-server-3.0-25053.tar.gz
+chmod 777 -R utorrent-server-v3_0/
+ln -s /opt/utorrent-server-v3_0/utserver /usr/bin/utserver
+utserver -settingspath /opt/utorrent-server-v3_0/ &
+
+
+echo
+echo "Utorrent installed! Web: http://$IPADDRESS1:8080/gui"
+echo "Username: admin"
+echo "Password: none password, empty"
+echo

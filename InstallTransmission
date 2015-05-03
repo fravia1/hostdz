@@ -40,5 +40,5 @@ perl -pi -e "s/USER=debian-transmission/USER=$TransUser/g" /etc/init.d/transmiss
 /etc/init.d/transmission-daemon start
 echo
 echo
-echo "Transmission installed! Web http://$IPADDRESS1::9091/transmission/web/"
+echo "Transmission installed! Web: http://$IPADDRESS1:9091/transmission/web/"
 echo

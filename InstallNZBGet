@@ -1,0 +1,64 @@
+##################### FIRST LINE
+# ---------------------------
+#!/bin/bash
+# ---------------------------
+#
+# |--------------------------------------------------------------|
+# | The script thank you for Notos (notos.korsan@gmail.com)      |
+# |--------------------------------------------------------------|
+# | The script was further developed Tiby08 (tiby0108@gmail.com) |
+# |--------------------------------------------------------------|
+#
+clear
+
+NZBGetUser=$1
+IPADDRESS1=`ifconfig | sed -n 's/.*inet addr:\([0-9.]\+\)\s.*/\1/p' | grep -v 127 | head -n 1`
+
+ if [ ! $NZBGetUser ]; then
+    echo -n "Username: "
+      read NZBGetUser
+    fi
+ if [ ! $NZBGetUser ]; then
+     echo "Error no Username!"
+       exit 0
+    fi
+
+add-apt-repository --yes ppa:modriscoll/nzbget
+apt-get --yes update
+apt-get --yes install unrar
+apt-get --yes libncurses5-dev libsigc++-dev sigc++ libpar2-0-dev libssl-dev libgnutls-dev libxml2-dev build-essential unrar unzip p7zip-full
+
+cd /home/$NZBGetUser/
+wget http://sourceforge.net/projects/nzbget/files/nzbget-12.0.tar.gz
+tar -xvf nzbget-12.0.tar.gz && cd nzbget-12.0
+wget http://sourceforge.net/projects/parchive/files/libpar2/0.2/libpar2-0.2.tar.gz
+tar -xvf libpar2-0.2.tar.gz && cd libpar2-0.2 && cp ../libpar2-0.2-*.patch .
+patch < libpar2-0.2-bugfixes.patch
+patch < libpar2-0.2-cancel.patch
+./configure
+make
+sudo make install
+cd ..
+./configure
+make
+sudo make install
+sudo make install-conf
+mv ppscripts /home/$NZBGetUser/downloads/
+wget http://sourceforge.net/projects/nzbget/files/ppscripts/videosort/videosort-ppscript-4.0.zip
+unzip videosort-ppscript-4.0.zip -d /home/$NZBGetUser/downloads/ppscripts/
+nzbget -D
+
+
+
+cp /usr/share/nzbget/nzbget.conf /home/$NZBGetUser/.nzbget
+chown -R $NZBGetUser:$NZBGetUser /home/$NZBGetUser/.nzbget
+cp /etc/seedbox-from-scratch/nzbget.conf /etc/init/nzbget.conf
+perl -pi -e "s/setuid username/setuid $NZBGetUser/g" /etc/init/nzbget.conf
+perl -pi -e "s/setgid username/setgid $NZBGetUser/g" /etc/init/nzbget.conf
+
+echo
+echo
+echo "NZBGet installed! Web: http://$IPADDRESS1:6789/"
+echo "User: nzbget"
+echo "Password: tegbzn6789"
+echo
