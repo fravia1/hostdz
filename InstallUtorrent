@@ -32,8 +32,11 @@ tar -xvf utorrent-server-3.0-25053.tar.gz
 rm -rf utorrent-server-3.0-25053.tar.gz
 chmod 777 -R utorrent-server-v3_0/
 ln -s /opt/utorrent-server-v3_0/utserver /usr/bin/utserver
-utserver -settingspath /opt/utorrent-server-v3_0/ &
+mkdir -p /home/$UtorrentUser/.utserver/
+sudo su --login --command "utserver -settingspath /home/$UtorrentUser/.utserver/ -configfile /home/$UtorrentUser/.utserver/utserver.conf -logfile /home/$UtorrentUser/.utserver/utserver.log -pidfile /home/$UtorrentUser/.utserver/utserver.pid -daemon" $UtorrentUser
 
+sudo cp /etc/seedbox-from-scratch/utserver.conf /home/$UtorrentUser/.utserver/utserver.conf
+perl -pi -e "s/<username>/$UtorrentUser/g" /home/$UtorrentUser/.utserver/utserver.conf
 
 echo
 echo "Utorrent installed! Web: http://$IPADDRESS1:8080/gui"
