@@ -648,6 +648,7 @@ cp /etc/seedbox-from-scratch/proftpd_tls.conf /etc/proftpd/tls.conf
 
 apt-get --yes install irssi mediainfo
 apt-get install mc --yes
+apt-get install nano --yes
 sudo addgroup root sshdusers
 
 ################################################x
@@ -688,7 +689,7 @@ updatedb
 
 #first user will not be jailed
 #  createSeedboxUser <username> <password> <user jailed?> <ssh access?> <?>
-bash /etc/seedbox-from-scratch/createSeedboxUser $NEWUSER1 $PASSWORD1 YES NO YES
+sudo createSeedboxUser $NEWUSER1 $PASSWORD1 YES NO YES
 
 # 98.
 
@@ -699,7 +700,6 @@ echo " * hard nofile 999999" | tee -a /etc/security/limits.conf > /dev/null
 echo "session required pam_limits.so" | tee -a /etc/pam.d/common-session* > /dev/null
 echo "session required pam_limits.so" | tee -a /etc/pam.d/common-session > /dev/null
 clear
-
 
 bldgrn='\e[1;32m' # Green
 txtrst='\e[0m'    # Text Reset
