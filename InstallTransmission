@@ -12,6 +12,7 @@
 clear
 
 TransUser=$1
+IPADDRESS1=`ifconfig | sed -n 's/.*inet addr:\([0-9.]\+\)\s.*/\1/p' | grep -v 127 | head -n 1`
 
  if [ ! $TransUser ]; then
     echo -n "Username: "
@@ -37,3 +38,7 @@ perl -pi -e "s/\"rpc-whitelist-enabled\": true,/\"rpc-whitelist-enabled\": false
 perl -pi -e "s/USER=debian-transmission/USER=$TransUser/g" /etc/init.d/transmission-daemon
 
 /etc/init.d/transmission-daemon start
+echo
+echo
+echo "Transmission installed! Web http://$IPADDRESS1::9091/transmission/web/"
+echo
