@@ -10,7 +10,7 @@
 # |--------------------------------------------------------------|
 #
 #
-  SBFSCURRENTVERSION1=0.1  
+  SBFSCURRENTVERSION1=0.2  
   OS1=$(lsb_release -si)
 txtblk='\e[0;30m' # Black - Regular
 txtred1='\e[0;31m' # Red
