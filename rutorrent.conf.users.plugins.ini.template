@@ -1,0 +1,184 @@
+;;
+;; |--------------------------------------------------------------|
+;; | The script thank you for Notos (notos.korsan@gmail.com)      |
+;; |--------------------------------------------------------------|
+;; | The script was further developed Tiby08 (tiby0108@gmail.com) |
+;; |--------------------------------------------------------------|
+;;
+;; Plugins permissions.
+;; If flag is not found in plugin section, corresponding flag from "default" section is used.
+;; If flag is not found in "default" section, it is assumed to be "yes".
+;;
+;; For setting individual plugin permissions you must write something like that:
+;;
+;; [ratio]
+;; enabled = yes ;; also may be "yes", in this case user can control plugins state from UI
+;; canChangeToolbar = yes
+;; canChangeMenu = yes
+;; canChangeOptions = no
+;; canChangeTabs = yes
+;; canChangeColumns = yes
+;; canChangeStatusBar = yes
+;; canChangeCategory = yes
+;; canBeShutdowned = yes
+
+[default]
+enabled = yes
+canChangeToolbar = yes
+canChangeMenu = yes
+canChangeOptions = yes
+canChangeTabs = yes
+canChangeColumns = yes
+canChangeStatusBar = yes
+canChangeCategory = yes
+canBeShutdowned = yes
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Default
+
+[_getdir]
+enabled = yes
+
+[cpuload]
+enabled = yes
+
+[create]
+enabled = yes
+
+[datadir]
+enabled = yes
+
+[diskspace]
+enabled = yes
+
+[erasedata]
+enabled = yes
+
+[show_peers_like_wtorrent]
+enabled = yes
+
+[theme]
+enabled = yes
+
+[tracklabels]
+enabled = yes
+
+[trafic]
+enabled = yes
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Enabled
+
+[autotools]
+enabled = yes
+[cookies]
+enabled = yes
+[data]
+enabled = yes
+[edit]
+enabled = yes
+[extratio]
+enabled = yes
+[extsearch]
+enabled = yes
+[filedrop]
+enabled = yes
+[geoip]
+enabled = yes
+[httprpc]
+enabled = yes
+canBeShutdowned = no
+[pausewebui]
+enabled = yes
+[ratio]
+enabled = yes
+[ratiocolor]
+enabled = yes
+[rss]
+enabled = yes
+[_task]
+enabled = yes
+[throttle]
+enabled = yes
+[titlebar]
+enabled = yes
+[unpack]
+enabled = yes
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Disabled
+
+[chat]
+enabled = yes
+
+[chunks]
+enabled = yes
+
+[feeds]
+enabled = yes
+
+[fileshare]
+enabled = yes
+
+[history]
+enabled = yes
+
+[instantsearch]
+enabled = yes
+
+[ipad]
+enabled = yes
+
+[logoff]
+enabled = yes
+
+[loginmgr]
+enabled = yes
+
+[mediainfo]
+enabled = yes
+
+[check_port]
+enabled = yes
+
+[retrackers]
+enabled = yes
+
+[rpc]
+enabled = yes
+
+[rssurlrewrite]
+enabled = yes
+
+[rutracker_check]
+enabled = yes
+
+[scheduler]
+enabled = yes
+
+[screenshots]
+enabled = yes
+
+[seedingtime]
+enabled = yes
+
+[source]
+enabled = yes
+
+;;[filemanager]
+;;enabled = yes ;;; disabled in chroot jail
+;;[fileupload]
+;;enabled = yes
+;;[mediastream]
+;;enabled = yes
+
+
+
+[autodl-irssi]
+enabled = yes
+
+[fileupload]
+enabled = yes
+
+[mediastream]
+enabled = yes
+
+[filemanager]
+enabled = yes

@@ -1,0 +1,18 @@
+##################### FIRST LINE
+# ---------------------------
+#!/bin/bash
+# ---------------------------
+#
+# |--------------------------------------------------------------|
+# | The script thank you for Notos (notos.korsan@gmail.com)      |
+# |--------------------------------------------------------------|
+# | The script was further developed Tiby08 (tiby0108@gmail.com) |
+# |--------------------------------------------------------------|
+#
+                        
+cd /etc/hostdz/
+sudo git stash
+sudo git pull
+sudo bash /etc/hostdz/updateExecutables
+
+##################### LAST LINE ###########

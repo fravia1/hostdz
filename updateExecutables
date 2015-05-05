@@ -1,0 +1,30 @@
+##################### FIRST LINE
+# ---------------------------
+#!/bin/bash
+# ---------------------------
+#
+# |--------------------------------------------------------------|
+# | The script thank you for Notos (notos.korsan@gmail.com)      |
+# |--------------------------------------------------------------|
+# | The script was further developed Tiby08 (tiby0108@gmail.com) |
+# |--------------------------------------------------------------|
+#
+
+sudo chmod +x /etc/hostdz/updateExecutables
+sudo chmod +x /etc/hostdz/createSeedboxUser
+sudo chmod +x /etc/hostdz/deleteSeedboxUser
+sudo chmod +x /etc/hostdz/installOpenVPN
+sudo chmod +x /etc/hostdz/removeWebmin
+sudo chmod +x /etc/hostdz/installWebmin
+sudo chmod +x /etc/hostdz/downgradeRTorrent
+sudo chmod +x /etc/hostdz/upgradeRTorrent
+sudo chmod +x /etc/hostdz/ovpni
+sudo chmod +x /etc/hostdz/installSABnzbd
+sudo chmod +x /etc/hostdz/updategitRepository
+sudo chmod +x /etc/hostdz/createOpenSSLServiceCertificate
+sudo chmod +x /etc/hostdz/createOpenSSLCACertificate
+sudo chmod +x /etc/hostdz/upgradeSeedbox
+sudo chmod +x /etc/hostdz/installRapidleech
+sudo chmod +x /etc/hostdz/changeUserPassword
+
+##################### LAST LINE ###########

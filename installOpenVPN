@@ -1,0 +1,18 @@
+##################### FIRST LINE
+# ---------------------------
+#!/bin/bash
+# ---------------------------
+#
+# |--------------------------------------------------------------|
+# | The script thank you for Notos (notos.korsan@gmail.com)      |
+# |--------------------------------------------------------------|
+# | The script was further developed Tiby08 (tiby0108@gmail.com) |
+# |--------------------------------------------------------------|
+#
+# OpenVPN in beta --- Tested on Ubuntu 12.04 64Bit
+  sudo bash /etc/hostdz/ovpni
+#
+#
+#
+#
+#  This is just to run correctly the right script

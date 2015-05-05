@@ -1,0 +1,42 @@
+##################### FIRST LINE
+# ---------------------------
+#!/bin/bash
+# ---------------------------
+#
+# |--------------------------------------------------------------|
+# | The script thank you for Notos (notos.korsan@gmail.com)      |
+# |--------------------------------------------------------------|
+# | The script was further developed Tiby08 (tiby0108@gmail.com) |
+# |--------------------------------------------------------------|
+#
+clear
+bldgrn='\e[1;32m' # Green
+bldylw='\e[1;33m' # Yellow
+txtrst='\e[0m'    # Text Reset
+UtorrentUser=$1
+IPADDRESS1=`ifconfig | sed -n 's/.*inet addr:\([0-9.]\+\)\s.*/\1/p' | grep -v 127 | head -n 1`
+
+ if [ ! $UtorrentUser ]; then
+    echo -n "Username: "
+      read UtorrentUser
+    fi
+ if [ ! $UtorrentUser ]; then
+     echo "Error no Username!"
+       exit 0
+    fi
+
+apt-get --yes update
+apt-get --yes install python-software-properties
+add-apt-repository --yes ppa:tuxpoldo/btsync
+apt-get --yes update
+mkdir -p /etc/btsync
+wget -N https://download-cdn.getsyncapp.com/stable/linux-i386/BitTorrent-Sync_i386.tar.gz
+tar xvfz BitTorrent-Sync_i386.tar.gz -C /etc/btsync
+./btsync
+##apt-get --yes install btsync
+##dpkg-reconfigure btsync
+
+
+echo
+echo -e "${bldgrn}BitTorrent-Sync installed! ${bldylw}Web: https://$IPADDRESS1:8888/gui/${txtrst}"
+echo

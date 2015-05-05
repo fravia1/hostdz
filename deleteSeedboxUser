@@ -1,0 +1,41 @@
+##################### FIRST LINE
+# ---------------------------
+#!/bin/bash
+# ---------------------------
+#
+# |--------------------------------------------------------------|
+# | The script thank you for Notos (notos.korsan@gmail.com)      |
+# |--------------------------------------------------------------|
+# | The script was further developed Tiby08 (tiby0108@gmail.com) |
+# |--------------------------------------------------------------|
+#
+#
+# 3.1
+
+clear
+
+NEWUSER1=$1
+NEWUSER2=$1
+
+ if [ ! $NEWUSER1 ]; then
+    echo -n "Felhasználónév: "
+      read NEWUSER1
+    fi
+ if [ ! $NEWUSER1 ]; then
+     echo "Hiba, nincs név!"
+       exit 0
+    fi
+
+# 3.1.1
+#kill all processes related to that user
+sudo pkill -U $NEWUSER1
+
+# 3.2
+sudo userdel --remove --force $NEWUSER1 
+sudo perl -pi -e "s/^$NEWUSER1\:.*\n$//g" /etc/apache2/htpasswd
+
+sudo rm -r /etc/init/rtorrent.$NEWUSER1.conf
+sudo rm -r /var/www/rutorrent/conf/users/$NEWUSER1
+sudo rm -r /etc/hostdz/users/$NEWUSER1.info
+sudo rm -r /var/www/rutorrent/share/users/$NEWUSER1
+sudo rm -r /var/run/screen/S-$NEWUSER1

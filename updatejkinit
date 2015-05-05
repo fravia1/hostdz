@@ -1,0 +1,17 @@
+##################### FIRST LINE
+# ---------------------------
+#!/bin/bash
+# ---------------------------
+#
+# |--------------------------------------------------------------|
+# | The script thank you for Notos (notos.korsan@gmail.com)      |
+# |--------------------------------------------------------------|
+# | The script was further developed Tiby08 (tiby0108@gmail.com) |
+# |--------------------------------------------------------------|
+#
+
+sudo cp /etc/jailkit/jk_init.ini.original /etc/jailkit/jk_init.ini
+echo "" | sudo tee -a /etc/jailkit/jk_init.ini >> /dev/null
+cat /etc/hostdz/etc.jailkit.jk_init.ini.template | sudo tee -a /etc/jailkit/jk_init.ini >> /dev/null
+
+##################### LAST LINE ###########

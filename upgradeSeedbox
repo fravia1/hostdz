@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+#
+# |--------------------------------------------------------------|
+# | The script thank you for Notos (notos.korsan@gmail.com)      |
+# |--------------------------------------------------------------|
+# | The script was further developed Tiby08 (tiby0108@gmail.com) |
+# |--------------------------------------------------------------|
+#
+
+if [ "$1" = "" ]; then
+  echo "usage: upgradeSeedbox <version>"
+  exit
+fi
+
+TSFSV=$1
+
+cd /etc/hostdz/
+sudo git fetch --all
+sudo git stash
+sudo git checkout -b $TSFSV origin/$TSFSV
+sudo git pull
+
+sudo bash /etc/hostdz/updateExecutables

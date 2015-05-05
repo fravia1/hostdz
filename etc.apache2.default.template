@@ -1,0 +1,1727 @@
+#
+# |--------------------------------------------------------------|
+# | The script thank you for Notos (notos.korsan@gmail.com)      |
+# |--------------------------------------------------------------|
+# | The script was further developed Tiby08 (tiby0108@gmail.com) |
+# |--------------------------------------------------------------|
+#
+#
+
+<VirtualHost *:80>
+  ServerAdmin webmaster@localhost
+  ServerName <servername>
+  DocumentRoot /var/www/
+  RewriteEngine On
+  RewriteCond %{LA-U:remote_user} !^$
+  RewriteRule ^/rutorrent/downloads(.*) /home/%{LA-U:remote_user}/downloads/manual/$1
+
+  <Location /var/www/rutorrent/downloads/>
+    Order Deny,Allow
+    Allow from all
+    Satisfy any
+    AuthDigestDomain /var/www/private
+  </Location>
+
+  <Directory /var/www/>
+    Options -Indexes FollowSymLinks MultiViews
+    AllowOverride None
+    Order allow,deny
+    allow from all
+  </Directory>
+
+  <Directory /var/www/share/>
+    Order Deny,Allow
+    Allow from all
+    Satisfy any
+  </Directory>
+
+  <Directory /var/www/rapidleech/>
+    Order Deny,Allow
+    Allow from all
+    Satisfy any
+  </Directory>
+
+  <Directory /var/www/stream/>
+    Order Deny,Allow
+    Allow from all
+    Satisfy any
+  </Directory>
+
+  ErrorLog /var/log/apache2/error.log
+
+  # Possible values include: debug, info, notice, warn, error, crit,
+  # alert, emerg.
+
+  LogLevel warn
+
+  #CustomLog /var/log/apache2/access.log combined
+
+  <Directory /var/www/rutorrent>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestDomain /var/www/rutorrent/ http://<servername>/rutorrent
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+    SetEnv R_ENV "/var/www/rutorrent"
+  </Directory>
+
+  SCGIMount /RPC2 127.0.0.1:51102
+  <location /RPC2>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC3 127.0.0.1:51107
+  <location /RPC3>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC4 127.0.0.1:51112
+  <location /RPC4>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC5 127.0.0.1:51117
+  <location /RPC5>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC6 127.0.0.1:51122
+  <location /RPC6>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC7 127.0.0.1:51127
+  <location /RPC7>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC8 127.0.0.1:51132
+  <location /RPC8>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC9 127.0.0.1:51137
+  <location /RPC9>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC10 127.0.0.1:51142
+  <location /RPC10>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC11 127.0.0.1:51147
+  <location /RPC11>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC12 127.0.0.1:51152
+  <location /RPC12>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC13 127.0.0.1:51157
+  <location /RPC13>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC14 127.0.0.1:51162
+  <location /RPC14>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC15 127.0.0.1:51167
+  <location /RPC15>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC16 127.0.0.1:51172
+  <location /RPC16>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC17 127.0.0.1:51177
+  <location /RPC17>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC18 127.0.0.1:51182
+  <location /RPC18>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC19 127.0.0.1:51187
+  <location /RPC19>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC20 127.0.0.1:51192
+  <location /RPC20>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC21 127.0.0.1:51197
+  <location /RPC21>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC22 127.0.0.1:51202
+  <location /RPC22>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC23 127.0.0.1:51207
+  <location /RPC23>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC24 127.0.0.1:51212
+  <location /RPC24>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC25 127.0.0.1:51217
+  <location /RPC25>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC26 127.0.0.1:51222
+  <location /RPC26>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC27 127.0.0.1:51227
+  <location /RPC27>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC28 127.0.0.1:51232
+  <location /RPC28>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC29 127.0.0.1:51237
+  <location /RPC29>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC30 127.0.0.1:51242
+  <location /RPC30>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC31 127.0.0.1:51247
+  <location /RPC31>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC32 127.0.0.1:51252
+  <location /RPC32>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC33 127.0.0.1:51257
+  <location /RPC33>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC34 127.0.0.1:51262
+  <location /RPC34>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC35 127.0.0.1:51267
+  <location /RPC35>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC36 127.0.0.1:51272
+  <location /RPC36>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC37 127.0.0.1:51277
+  <location /RPC37>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC38 127.0.0.1:51282
+  <location /RPC38>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC39 127.0.0.1:51287
+  <location /RPC39>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC40 127.0.0.1:51292
+  <location /RPC40>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC41 127.0.0.1:51297
+  <location /RPC41>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC42 127.0.0.1:51302
+  <location /RPC42>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC43 127.0.0.1:51307
+  <location /RPC43>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC44 127.0.0.1:51312
+  <location /RPC44>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC45 127.0.0.1:51317
+  <location /RPC45>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC46 127.0.0.1:51322
+  <location /RPC46>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC47 127.0.0.1:51327
+  <location /RPC47>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC48 127.0.0.1:51332
+  <location /RPC48>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC49 127.0.0.1:51337
+  <location /RPC49>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC50 127.0.0.1:51342
+  <location /RPC50>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC51 127.0.0.1:51347
+  <location /RPC51>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC52 127.0.0.1:51352
+  <location /RPC52>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC53 127.0.0.1:51357
+  <location /RPC53>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC54 127.0.0.1:51362
+  <location /RPC54>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC55 127.0.0.1:51367
+  <location /RPC55>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC56 127.0.0.1:51372
+  <location /RPC56>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC57 127.0.0.1:51377
+  <location /RPC57>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC58 127.0.0.1:51382
+  <location /RPC58>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC59 127.0.0.1:51387
+  <location /RPC59>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC60 127.0.0.1:51392
+  <location /RPC60>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC61 127.0.0.1:51397
+  <location /RPC61>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC62 127.0.0.1:51402
+  <location /RPC62>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC63 127.0.0.1:51407
+  <location /RPC63>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC64 127.0.0.1:51412
+  <location /RPC64>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC65 127.0.0.1:51417
+  <location /RPC65>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC66 127.0.0.1:51422
+  <location /RPC66>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC67 127.0.0.1:51427
+  <location /RPC67>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC68 127.0.0.1:51432
+  <location /RPC68>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC69 127.0.0.1:51437
+  <location /RPC69>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC70 127.0.0.1:51442
+  <location /RPC70>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC71 127.0.0.1:51447
+  <location /RPC71>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC72 127.0.0.1:51452
+  <location /RPC72>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC73 127.0.0.1:51457
+  <location /RPC73>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC74 127.0.0.1:51462
+  <location /RPC74>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC75 127.0.0.1:51467
+  <location /RPC75>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC76 127.0.0.1:51472
+  <location /RPC76>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC77 127.0.0.1:51477
+  <location /RPC77>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC78 127.0.0.1:51482
+  <location /RPC78>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC79 127.0.0.1:51487
+  <location /RPC79>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC80 127.0.0.1:51492
+  <location /RPC80>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC81 127.0.0.1:51497
+  <location /RPC81>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC82 127.0.0.1:51502
+  <location /RPC82>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC83 127.0.0.1:51507
+  <location /RPC83>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC84 127.0.0.1:51512
+  <location /RPC84>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC85 127.0.0.1:51517
+  <location /RPC85>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC86 127.0.0.1:51522
+  <location /RPC86>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC87 127.0.0.1:51527
+  <location /RPC87>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC88 127.0.0.1:51532
+  <location /RPC88>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC89 127.0.0.1:51537
+  <location /RPC89>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC90 127.0.0.1:51542
+  <location /RPC90>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC91 127.0.0.1:51547
+  <location /RPC91>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC92 127.0.0.1:51552
+  <location /RPC92>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC93 127.0.0.1:51557
+  <location /RPC93>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC94 127.0.0.1:51562
+  <location /RPC94>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC95 127.0.0.1:51567
+  <location /RPC95>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC96 127.0.0.1:51572
+  <location /RPC96>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC97 127.0.0.1:51577
+  <location /RPC97>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC98 127.0.0.1:51582
+  <location /RPC98>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC99 127.0.0.1:51587
+  <location /RPC99>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC100 127.0.0.1:51592
+  <location /RPC100>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+
+</VirtualHost>
+
+<VirtualHost *:443>
+  ServerAdmin webmaster@localhost
+  ServerName <servername>
+  NameVirtualHost *:443
+  SSLEngine on
+  SSLCertificateFile /etc/hostdz/ssl/cert.pem
+  SSLCertificateKeyFile /etc/hostdz/ssl/key.pem
+  RewriteEngine On
+  RewriteCond %{LA-U:remote_user} !^$
+  RewriteRule ^/rutorrent/downloads(.*) /home/%{LA-U:remote_user}/downloads/manual/$1
+
+  <Location /var/www/rutorrent/downloads/>
+    Order Deny,Allow
+    Allow from all
+    Satisfy any
+    AuthDigestDomain /var/www/private
+  </Location>
+  DocumentRoot /var/www/
+
+#  <Directory />
+#    Options FollowSymLinks
+#    AllowOverride All
+#    AuthType Digest
+#    AuthName "documentroot"
+#    AuthDigestProvider file
+#    AuthUserFile /etc/apache2/htpasswd
+#    Require user <username>
+#  </Directory>
+
+  <Directory /var/www/>
+    Options -Indexes FollowSymLinks MultiViews
+    AllowOverride None
+    Order allow,deny
+    allow from all
+  </Directory>
+
+  <Directory /var/www/share/>
+    Order Deny,Allow
+    Allow from all
+    Satisfy any
+  </Directory>
+
+  <Directory /var/www/rapidleech/>
+    Order Deny,Allow
+    Allow from all
+    Satisfy any
+  </Directory>
+
+  <Directory /var/www/stream/>
+    Order Deny,Allow
+    Allow from all
+    Satisfy any
+  </Directory>
+
+  ErrorLog /var/log/apache2/error.log
+  # Possible values include: debug, info, notice, warn, error, crit,
+  # alert, emerg.
+  LogLevel warn
+
+  # CustomLog /var/log/apache2/access.log combined
+  <Directory /var/www/rutorrent>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestDomain /var/www/rutorrent/ https://<servername>/rutorrent
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+    SetEnv R_ENV "/var/www/rutorrent"
+  </Directory>
+
+  SCGIMount /RPC2 127.0.0.1:51102
+  <location /RPC2>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC3 127.0.0.1:51107
+  <location /RPC3>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC4 127.0.0.1:51112
+  <location /RPC4>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC5 127.0.0.1:51117
+  <location /RPC5>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC6 127.0.0.1:51122
+  <location /RPC6>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC7 127.0.0.1:51127
+  <location /RPC7>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC8 127.0.0.1:51132
+  <location /RPC8>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC9 127.0.0.1:51137
+  <location /RPC9>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC10 127.0.0.1:51142
+  <location /RPC10>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC11 127.0.0.1:51147
+  <location /RPC11>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC12 127.0.0.1:51152
+  <location /RPC12>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC13 127.0.0.1:51157
+  <location /RPC13>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC14 127.0.0.1:51162
+  <location /RPC14>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC15 127.0.0.1:51167
+  <location /RPC15>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC16 127.0.0.1:51172
+  <location /RPC16>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC17 127.0.0.1:51177
+  <location /RPC17>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC18 127.0.0.1:51182
+  <location /RPC18>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC19 127.0.0.1:51187
+  <location /RPC19>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC20 127.0.0.1:51192
+  <location /RPC20>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC21 127.0.0.1:51197
+  <location /RPC21>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC22 127.0.0.1:51202
+  <location /RPC22>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC23 127.0.0.1:51207
+  <location /RPC23>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC24 127.0.0.1:51212
+  <location /RPC24>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC25 127.0.0.1:51217
+  <location /RPC25>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC26 127.0.0.1:51222
+  <location /RPC26>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC27 127.0.0.1:51227
+  <location /RPC27>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC28 127.0.0.1:51232
+  <location /RPC28>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC29 127.0.0.1:51237
+  <location /RPC29>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC30 127.0.0.1:51242
+  <location /RPC30>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC31 127.0.0.1:51247
+  <location /RPC31>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC32 127.0.0.1:51252
+  <location /RPC32>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC33 127.0.0.1:51257
+  <location /RPC33>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC34 127.0.0.1:51262
+  <location /RPC34>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC35 127.0.0.1:51267
+  <location /RPC35>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC36 127.0.0.1:51272
+  <location /RPC36>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC37 127.0.0.1:51277
+  <location /RPC37>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC38 127.0.0.1:51282
+  <location /RPC38>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC39 127.0.0.1:51287
+  <location /RPC39>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC40 127.0.0.1:51292
+  <location /RPC40>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC41 127.0.0.1:51297
+  <location /RPC41>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC42 127.0.0.1:51302
+  <location /RPC42>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC43 127.0.0.1:51307
+  <location /RPC43>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC44 127.0.0.1:51312
+  <location /RPC44>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC45 127.0.0.1:51317
+  <location /RPC45>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC46 127.0.0.1:51322
+  <location /RPC46>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC47 127.0.0.1:51327
+  <location /RPC47>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC48 127.0.0.1:51332
+  <location /RPC48>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC49 127.0.0.1:51337
+  <location /RPC49>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC50 127.0.0.1:51342
+  <location /RPC50>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC51 127.0.0.1:51347
+  <location /RPC51>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC52 127.0.0.1:51352
+  <location /RPC52>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC53 127.0.0.1:51357
+  <location /RPC53>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC54 127.0.0.1:51362
+  <location /RPC54>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC55 127.0.0.1:51367
+  <location /RPC55>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC56 127.0.0.1:51372
+  <location /RPC56>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC57 127.0.0.1:51377
+  <location /RPC57>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC58 127.0.0.1:51382
+  <location /RPC58>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC59 127.0.0.1:51387
+  <location /RPC59>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC60 127.0.0.1:51392
+  <location /RPC60>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC61 127.0.0.1:51397
+  <location /RPC61>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC62 127.0.0.1:51402
+  <location /RPC62>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC63 127.0.0.1:51407
+  <location /RPC63>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC64 127.0.0.1:51412
+  <location /RPC64>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC65 127.0.0.1:51417
+  <location /RPC65>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC66 127.0.0.1:51422
+  <location /RPC66>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC67 127.0.0.1:51427
+  <location /RPC67>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC68 127.0.0.1:51432
+  <location /RPC68>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC69 127.0.0.1:51437
+  <location /RPC69>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC70 127.0.0.1:51442
+  <location /RPC70>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC71 127.0.0.1:51447
+  <location /RPC71>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC72 127.0.0.1:51452
+  <location /RPC72>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC73 127.0.0.1:51457
+  <location /RPC73>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC74 127.0.0.1:51462
+  <location /RPC74>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC75 127.0.0.1:51467
+  <location /RPC75>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC76 127.0.0.1:51472
+  <location /RPC76>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC77 127.0.0.1:51477
+  <location /RPC77>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC78 127.0.0.1:51482
+  <location /RPC78>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC79 127.0.0.1:51487
+  <location /RPC79>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC80 127.0.0.1:51492
+  <location /RPC80>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC81 127.0.0.1:51497
+  <location /RPC81>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC82 127.0.0.1:51502
+  <location /RPC82>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC83 127.0.0.1:51507
+  <location /RPC83>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC84 127.0.0.1:51512
+  <location /RPC84>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC85 127.0.0.1:51517
+  <location /RPC85>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC86 127.0.0.1:51522
+  <location /RPC86>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC87 127.0.0.1:51527
+  <location /RPC87>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC88 127.0.0.1:51532
+  <location /RPC88>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC89 127.0.0.1:51537
+  <location /RPC89>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC90 127.0.0.1:51542
+  <location /RPC90>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC91 127.0.0.1:51547
+  <location /RPC91>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC92 127.0.0.1:51552
+  <location /RPC92>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC93 127.0.0.1:51557
+  <location /RPC93>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC94 127.0.0.1:51562
+  <location /RPC94>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC95 127.0.0.1:51567
+  <location /RPC95>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC96 127.0.0.1:51572
+  <location /RPC96>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC97 127.0.0.1:51577
+  <location /RPC97>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC98 127.0.0.1:51582
+  <location /RPC98>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC99 127.0.0.1:51587
+  <location /RPC99>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+  SCGIMount /RPC100 127.0.0.1:51592
+  <location /RPC100>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+  </location>
+
+</VirtualHost>
