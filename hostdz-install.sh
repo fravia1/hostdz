@@ -340,10 +340,6 @@ if [ "$INSTALLFAIL2BAN1" = "YES" ]; then
 fi
 
 # 9.
-a2enmod ssl
-a2enmod auth_digest
-a2enmod reqtimeout
-a2enmod rewrite
 
 #a2enmod scgi ############### if we cant make python-scgi works
 
@@ -361,6 +357,10 @@ echo "ServerTokens Prod" | tee -a /etc/apache2/apache2.conf > /dev/null
 echo "Timeout 30" | tee -a /etc/apache2/apache2.conf > /dev/null
 #########BELESZERK
 apt-get --yes install libapache2-mod-scgi
+a2enmod ssl
+a2enmod auth_digest
+a2enmod reqtimeout
+a2enmod rewrite
 a2enmod scgi
 
 service apache2 restart
