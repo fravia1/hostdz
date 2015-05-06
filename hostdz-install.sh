@@ -193,6 +193,7 @@ if [ ! -f /etc/hostdz/hostdz-install.sh ]; then
   exit 1
 fi
 
+chmod -R 755 /etc/hostdz/
 # 3.1
 
 cp /etc/apt/sources.list /root/old_sources.list
@@ -492,7 +493,6 @@ cp /etc/hostdz/action.php.template /var/www/rutorrent/plugins/diskspace/action.p
 
 chown -R www-data:www-data /var/www/rutorrent/
 chmod -R 755 /var/www/rutorrent/
-
 ##cp /etc/hostdz/action.php.template /var/www/rutorrent/plugins/diskspace/action.php
 
 groupadd admin
