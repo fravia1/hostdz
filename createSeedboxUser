@@ -573,7 +573,8 @@ fi
 sudo rm -R $HOMEJAILED1/.irssi
 mkdir -p $HOMEJAILED1/.irssi/scripts/autorun
 cd $HOMEJAILED1/.irssi/scripts
-wget -O autodl-irssi.zip http://update.autodl-community.com/autodl-irssi-community.zip
+###wget -O autodl-irssi.zip http://update.autodl-community.com/autodl-irssi-community.zip  ### rosz ipt config, v1.53 működik rendesen
+wget -O autodl-irssi.zip http://update.autodl-community.com/autodl-irssi-community-v1.53.zip
 unzip -o autodl-irssi.zip
 sudo rm -R autodl-irssi.zip
 sudo cp autodl-irssi.pl autorun/
