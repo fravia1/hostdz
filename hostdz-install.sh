@@ -45,13 +45,13 @@ function getString
   while [ ! $NEWVAR1 = $NEWVAR2 ] || [ -z "$NEWVAR1" ];
   do
     clear
-    echo -e "${txtylw}#${txtrst}"
-	echo -e "${txtylw}# |--------------------------------------------------------------|${txtrst}"
-	echo -e "${txtylw}# | The script thank you for Notos (notos.korsan@gmail.com)      |${txtrst}"
-	echo -e "${txtylw}# |--------------------------------------------------------------|${txtrst}"
-	echo -e "${txtylw}# | The script was further developed Tiby08 (tiby0108@gmail.com) |${txtrst}"
-	echo -e "${txtylw}# |--------------------------------------------------------------|${txtrst}"
-    echo -e "${txtylw}#${txtrst}"
+    echo -e "${bldgrn}#${txtrst}"
+	echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
+	echo -e "${bldgrn}# | The script thank you for Notos (notos.korsan@gmail.com)      |${txtrst}"
+	echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
+	echo -e "${bldgrn}# | The script was further developed Tiby08 (tiby0108@gmail.com) |${txtrst}"
+	echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
+    echo -e "${bldgrn}#${txtrst}"
     echo
 
     if [ "$ISPASSWORD" == "YES" ]; then
@@ -133,7 +133,7 @@ CHROOTJAIL1=NO
 PASSWORD1=a
 PASSWORD2=b
 
-echo -e "${txtylw}"
+echo -e "${bldgrn}"
 getString NO  "SeedBox username: " NEWUSER1
 getString NO "SeedBox user($NEWUSER1) password: " PASSWORD1
 getString NO  "IP or host: " IPADDRESS1 $IPADDRESS1
