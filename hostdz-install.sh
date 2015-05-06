@@ -140,14 +140,14 @@ getString NO  "IP or host: " IPADDRESS1 $IPADDRESS1
 #getString NO  "SSH port: " NEWSSHPORT1 22
 #getString NO  "vsftp port (alap 21): " NEWFTPPORT1 21
 #getString NO  "Do you want to have some of your users in a chroot jail? " CHROOTJAIL1 YES
-getString YES  "Webmin install? " INSTALLWEBMIN1 YES
-getString YES  "Fail2ban install? " INSTALLFAIL2BAN1 YES
+getString NO  "Webmin install? " INSTALLWEBMIN1 YES
+getString NO  "Fail2ban install? " INSTALLFAIL2BAN1 YES
 ##getString NO  "OpenVPN install? " INSTALLOPENVPN1 NO
 ##if [ "$INSTALLOPENVPN1" = "YES" ]; then
 ##getString NO  "OpenVPN port: " OPENVPNPORT1 31195
 ##fi
-getString YES  "SABnzbd install? " INSTALLSABNZBD1 YES
-getString YES  "Rapidleech install? " INSTALLRAPIDLEECH1 YES
+getString NO  "SABnzbd install? " INSTALLSABNZBD1 YES
+getString NO  "Rapidleech install? " INSTALLRAPIDLEECH1 YES
 getString NO  "You need install deluge? " INSTALLDELUGE1 NO
 getString NO  "You need install utorrent? " INSTALLUTORRENT1 NO
 getString NO  "You need install transmission? " INSTALLTRANSMISSION1 NO
