@@ -140,14 +140,14 @@ getString NO  "IP or host: " IPADDRESS1 $IPADDRESS1
 #getString NO  "SSH port: " NEWSSHPORT1 22
 #getString NO  "vsftp port (alap 21): " NEWFTPPORT1 21
 #getString NO  "Do you want to have some of your users in a chroot jail? " CHROOTJAIL1 YES
-getString NO  "Webmin install? " INSTALLWEBMIN1 yes
-getString NO  "Fail2ban install? " INSTALLFAIL2BAN1 yes
+getString NO  "Webmin install? " INSTALLWEBMIN1 YES
+getString NO  "Fail2ban install? " INSTALLFAIL2BAN1 YES
 ##getString NO  "OpenVPN install? " INSTALLOPENVPN1 NO
 ##if [ "$INSTALLOPENVPN1" = "YES" ]; then
 ##getString NO  "OpenVPN port: " OPENVPNPORT1 31195
 ##fi
-getString NO  "SABnzbd install? " INSTALLSABNZBD1 yes
-getString NO  "Rapidleech install? " INSTALLRAPIDLEECH1 yes
+getString NO  "SABnzbd install? " INSTALLSABNZBD1 YES
+getString NO  "Rapidleech install? " INSTALLRAPIDLEECH1 YES
 getString NO  "You need install deluge? " INSTALLDELUGE1 no
 getString NO  "You need install utorrent? " INSTALLUTORRENT1 no
 getString NO  "You need install transmission? " INSTALLTRANSMISSION1 no
@@ -665,27 +665,27 @@ c_rehash
 
 # 96.
 
-if [ "$INSTALLOPENVPN1" = "yes" ]; then
+if [ "$INSTALLOPENVPN1" = "YES" ]; then
   bash /etc/hostdz/installOpenVPN
 fi
 
-if [ "$INSTALLSABNZBD1" = "yes" ]; then
+if [ "$INSTALLSABNZBD1" = "YES" ]; then
   bash /etc/hostdz/installSABnzbd
 fi
 
-if [ "$INSTALLUTORRENT1" = "yes" ]; then
+if [ "$INSTALLUTORRENT1" = "YES" ]; then
   bash /etc/hostdz/InstallUtorrent $NEWUSER1
 fi
 
-if [ "$INSTALLTRANSMISSION1" = "yes" ]; then
+if [ "$INSTALLTRANSMISSION1" = "YES" ]; then
   bash /etc/hostdz/InstallTransmission $NEWUSER1
 fi
 
-if [ "$INSTALLRAPIDLEECH1" = "yes" ]; then
+if [ "$INSTALLRAPIDLEECH1" = "YES" ]; then
   bash /etc/hostdz/installRapidleech
 fi
 
-if [ "$INSTALLDELUGE1" = "yes" ]; then
+if [ "$INSTALLDELUGE1" = "YES" ]; then
   bash /etc/seedbox-from-scratch/installDeluge
 fi
 
