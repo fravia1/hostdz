@@ -133,30 +133,33 @@ CHROOTJAIL1=NO
 PASSWORD1=a
 PASSWORD2=b
 
+echo -e "${txtylw}"
 getString NO  "SeedBox username: " NEWUSER1
-getString YES "SeedBox user($NEWUSER1) password: " PASSWORD1
+getString NO "SeedBox user($NEWUSER1) password: " PASSWORD1
 getString NO  "IP or host: " IPADDRESS1 $IPADDRESS1
 #getString NO  "SSH port: " NEWSSHPORT1 22
 #getString NO  "vsftp port (alap 21): " NEWFTPPORT1 21
 #getString NO  "Do you want to have some of your users in a chroot jail? " CHROOTJAIL1 YES
-#getString NO  "Webmin install? " INSTALLWEBMIN1 YES
-#getString NO  "Fail2ban install? " INSTALLFAIL2BAN1 NO
+getString NO  "Webmin install? " INSTALLWEBMIN1 yes
+getString NO  "Fail2ban install? " INSTALLFAIL2BAN1 yes
 ##getString NO  "OpenVPN install? " INSTALLOPENVPN1 NO
 ##if [ "$INSTALLOPENVPN1" = "YES" ]; then
 ##getString NO  "OpenVPN port: " OPENVPNPORT1 31195
 ##fi
-#getString NO  "SABnzbd install? " INSTALLSABNZBD1 NO
-#getString NO  "Rapidleech install? " INSTALLRAPIDLEECH1 NO
-#getString NO  "Deluge install? " INSTALLDELUGE1 NO
+getString NO  "SABnzbd install? " INSTALLSABNZBD1 yes
+getString NO  "Rapidleech install? " INSTALLRAPIDLEECH1 yes
+getString NO  "You need install deluge? " INSTALLDELUGE1 no
+getString NO  "You need install utorrent? " INSTALLUTORRENT1 no
+getString NO  "You need install transmission? " INSTALLTRANSMISSION1 no
 ###getString NO  "Wich RTorrent version would you like to install, '0.9.2' or '0.9.3' or '0.9.4'? " RTORRENT1 0.9.4
-
+echo -e "${txtrst}"
 NEWFTPPORT1=21
 NEWSSHPORT1=22
-INSTALLWEBMIN1=YES
-INSTALLFAIL2BAN1=NO
-INSTALLSABNZBD1=NO
-INSTALLRAPIDLEECH1=NO
-INSTALLDELUGE1=NO
+##INSTALLWEBMIN1=YES
+##INSTALLFAIL2BAN1=NO
+##INSTALLSABNZBD1=NO
+##INSTALLRAPIDLEECH1=NO
+###INSTALLDELUGE1=NO
 INSTALLOPENVPN1=NO
 #getString NO  "Wich rTorrent would you like to use, '0.8.9' (older stable) or '0.9.2' (newer but banned in some trackers)? " RTORRENT1 0.9.2
 RTORRENT1=0.9.4
@@ -191,6 +194,10 @@ if [ ! -f /etc/hostdz/hostdz-install.sh ]; then
 fi
 
 # 3.1
+
+cp /etc/apt/sources.list /root/old_sources.list
+rm -f /etc/apt/sources.list
+cp /etc/hostdz/ubuntu.1204-precise.etc.apt.sources.list.template /etc/apt/sources.list
 
 #show all commands
 set -x verbose
@@ -658,16 +665,28 @@ c_rehash
 
 # 96.
 
-if [ "$INSTALLOPENVPN1" = "YES" ]; then
+if [ "$INSTALLOPENVPN1" = "yes" ]; then
   bash /etc/hostdz/installOpenVPN
 fi
 
-if [ "$INSTALLSABNZBD1" = "YES" ]; then
+if [ "$INSTALLSABNZBD1" = "yes" ]; then
   bash /etc/hostdz/installSABnzbd
 fi
 
-if [ "$INSTALLRAPIDLEECH1" = "YES" ]; then
+if [ "$INSTALLUTORRENT1" = "yes" ]; then
+  bash /etc/hostdz/InstallUtorrent $NEWUSER1
+fi
+
+if [ "$INSTALLTRANSMISSION1" = "yes" ]; then
+  bash /etc/hostdz/InstallTransmission $NEWUSER1
+fi
+
+if [ "$INSTALLRAPIDLEECH1" = "yes" ]; then
   bash /etc/hostdz/installRapidleech
+fi
+
+if [ "$INSTALLDELUGE1" = "yes" ]; then
+  bash /etc/seedbox-from-scratch/installDeluge
 fi
 
 
