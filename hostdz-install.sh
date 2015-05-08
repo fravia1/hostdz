@@ -44,20 +44,15 @@ function getString
 
   while [ ! $NEWVAR1 = $NEWVAR2 ] || [ -z "$NEWVAR1" ];
   do
-    clear
-    echo -e "${bldgrn}#${txtrst}"
-	echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
-	echo -e "${bldgrn}# | The script thank you for Notos (notos.korsan@gmail.com)      |${txtrst}"
-	echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
-	echo -e "${bldgrn}# | The script was further developed Tiby08 (tiby0108@gmail.com) |${txtrst}"
-	echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
-    echo -e "${bldgrn}#${txtrst}"
-    echo
 
     if [ "$ISPASSWORD" == "YES" ]; then
-      read -s -p "$DEFAULT" -p "$LABEL" NEWVAR1
+      echo -e -n "${bldgrn}$LABEL${bldpur}"
+      read -s -p "$DEFAULT" -p "" NEWVAR1
+      echo -e "${txtrst}"
     else
-      read -e -i "$DEFAULT" -p "$LABEL" NEWVAR1
+      echo -e -n "${bldgrn}$LABEL${bldpur}"
+      read -e -i "$DEFAULT" -p "" NEWVAR1
+      echo -e -n "${txtrst}"
     fi
     if [ -z "$NEWVAR1" ]; then
       NEWVAR1=a
@@ -82,10 +77,13 @@ function getString
       NEWVAR2=$NEWVAR1
     else
       if [ "$ISPASSWORD" == "YES" ]; then
-        echo
-        read -s -p "Retype: " NEWVAR2
+         echo -e -n "${bldgrn}Please again: ${bldpur}"
+        read NEWVAR2
+         echo -e "${txtrst}"
       else
-        read -p "Retype: " NEWVAR2
+         echo -e -n "${bldgrn}Please again: ${bldpur}"
+        read NEWVAR2
+         echo -e -n "${txtrst}"
       fi
       if [ -z "$NEWVAR2" ]; then
         NEWVAR2=b
@@ -107,15 +105,24 @@ function getString
         fi
       fi
     fi
-    echo "---> $NEWVAR2"
+   ## echo "---> $NEWVAR2"
 
   done
   eval $RETURN=\$NEWVAR1
 }
 # 0.
-
+echo -e -n "${txtrst}"
 if [[ $EUID -ne 0 ]]; then
-  echo "This script must be run as root" 1>&2
+  clear
+  echo -e "${bldgrn}#${txtrst}"
+  echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
+  echo -e "${bldgrn}# | The script thank you for Notos (notos.korsan@gmail.com)      |${txtrst}"
+  echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
+  echo -e "${bldgrn}# | The script was further developed Tiby08 (tiby0108@gmail.com) |${txtrst}"
+  echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
+  echo -e "${bldgrn}#${txtrst}"
+  echo
+  echo -e "${bldred}This script must be run as root${txtrst}" 1>&2
   exit 1
 fi
 
@@ -133,26 +140,41 @@ CHROOTJAIL1=NO
 PASSWORD1=a
 PASSWORD2=b
 
-echo -e "${bldgrn}"
+
+clear
+echo -e "${bldgrn}#${txtrst}"
+echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
+echo -e "${bldgrn}# | The script thank you for Notos (notos.korsan@gmail.com)      |${txtrst}"
+echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
+echo -e "${bldgrn}# | The script was further developed Tiby08 (tiby0108@gmail.com) |${txtrst}"
+echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
+echo -e "${bldgrn}#${txtrst}"
+echo
+
 getString NO  "SeedBox username: " NEWUSER1
 getString NO "SeedBox user($NEWUSER1) password: " PASSWORD1
 getString NO  "IP or host: " IPADDRESS1 $IPADDRESS1
 #getString NO  "SSH port: " NEWSSHPORT1 22
 #getString NO  "vsftp port (alap 21): " NEWFTPPORT1 21
 #getString NO  "Do you want to have some of your users in a chroot jail? " CHROOTJAIL1 YES
-getString NO  "Webmin install? " INSTALLWEBMIN1 YES
-getString NO  "Fail2ban install? " INSTALLFAIL2BAN1 YES
+getString NO  "You need install Webmin? " INSTALLWEBMIN1 YES
+getString NO  "You need install Fail2ban? " INSTALLFAIL2BAN1 YES
+getString NO  "You need install VNC? " INSTALLVNC1 YES
+getString NO  "You need install Bitorrentsync? " INSTALLBITORRENTSYNC1 YES
+getString NO  "You need install NZBGet? " INSTALLNZBGET1 YES
+getString NO  "You need install Subsonic? " INSTALLSUBSONIC1 YES
 ##getString NO  "OpenVPN install? " INSTALLOPENVPN1 NO
 ##if [ "$INSTALLOPENVPN1" = "YES" ]; then
 ##getString NO  "OpenVPN port: " OPENVPNPORT1 31195
 ##fi
-getString NO  "SABnzbd install? " INSTALLSABNZBD1 YES
-getString NO  "Rapidleech install? " INSTALLRAPIDLEECH1 YES
-getString NO  "You need install deluge? " INSTALLDELUGE1 NO
-getString NO  "You need install utorrent? " INSTALLUTORRENT1 NO
-getString NO  "You need install transmission? " INSTALLTRANSMISSION1 NO
+getString NO  "You need install SABnzbd? " INSTALLSABNZBD1 YES
+getString NO  "You need install Rapidleech? " INSTALLRAPIDLEECH1 YES
+getString NO  "You need install Deluge? " INSTALLDELUGE1 NO
+getString NO  "You need install uTorrent? " INSTALLUTORRENT1 NO
+getString NO  "You need install Transmission? " INSTALLTRANSMISSION1 NO
 ###getString NO  "Wich RTorrent version would you like to install, '0.9.2' or '0.9.3' or '0.9.4'? " RTORRENT1 0.9.4
-echo -e "${txtrst}"
+
+
 NEWFTPPORT1=21
 NEWSSHPORT1=22
 ##INSTALLWEBMIN1=YES
