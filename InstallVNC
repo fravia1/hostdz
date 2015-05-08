@@ -14,6 +14,7 @@ bldgrn='\e[1;32m' # Green
 bldylw='\e[1;33m' # Yellow
 txtrst='\e[0m'    # Text Reset
 VNCUser=$1
+VNCPasswd=$2
 IPADDRESS1=`ifconfig | sed -n 's/.*inet addr:\([0-9.]\+\)\s.*/\1/p' | grep -v 127 | head -n 1`
 
  if [ ! $VNCUser ]; then
@@ -21,7 +22,16 @@ IPADDRESS1=`ifconfig | sed -n 's/.*inet addr:\([0-9.]\+\)\s.*/\1/p' | grep -v 12
       read VNCUser
     fi
  if [ ! $VNCUser ]; then
-     echo "Error no Username!"
+     echo "Error empty username!"
+       exit 0
+    fi
+
+ if [ ! $VNCPasswd ]; then
+    echo -n "Password: "
+      read VNCPasswd
+    fi
+ if [ ! $VNCPasswd ]; then
+     echo "Error empty password!"
        exit 0
     fi
 
@@ -29,15 +39,24 @@ apt-get --yes update
 apt-get --yes install ubuntu-desktop vnc4server
 
 mkdir -p /home/$VNCUser/.vnc/
+echo -e "$VNCPasswd\\n$VNCPasswd" | sudo su --login --command "vncpasswd" $VNCUser
+
 cp ~/.vnc/xstartup /home/$VNCUser/.vnc/xstartup
 chown -R $VNCUser:$VNCUser /home/$VNCUser/.vnc/
 chmod -R 755 /home/$VNCUser/.vnc/
+
+rm -f /tmp/.X1-lock
+rm -f /tmp/.X11-unix
 
 sudo su --login --command "vncserver :1" $VNCUser
 sudo su --login --command "vncserver -kill :1" $VNCUser
 
 perl -pi -e "s/x-window-manager &/gnome-session &/g" ~/.vnc/xstartup
 perl -pi -e "s/x-window-manager &/gnome-session &/g" /home/$VNCUser/.vnc/xstartup
+
+rm -f /tmp/.X1-lock
+rm -f /tmp/.X11-unix
+
 sudo su --login --command "vncserver :1" $VNCUser
 (crontab -u "$VNCUser" -l; echo "@reboot /usr/bin/vncserver :1" ) | crontab -u "$VNCUser" -
 
