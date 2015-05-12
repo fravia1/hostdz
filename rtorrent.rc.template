@@ -95,7 +95,8 @@ network.http.max_open.set = 32
 # 
 # dht.mode.set = disable
 dht = disable 
- 
+dht_port = 6881
+
 # UDP port to use for DHT. 
 # 
 # dht_port = 6881 
@@ -225,7 +226,7 @@ system.file.split_suffix.set = .part
 
 # set whether the client should try to connect to UDP trackers
 # use_udp_trackers = yes
-trackers.use_udp.set = no
+#trackers.use_udp.set = no
 use_udp_trackers = yes
 
 # use a http proxy. [url] ;an empty string disables this setting
@@ -273,6 +274,8 @@ trackers.enable = 1
 system.file.allocate.set = yes
 network.tos.set = throughput
 trackers.numwant.set = 400
+# Disable SSL verification
 network.http.ssl_verify_peer.set=0
+system.file_allocate.set = yes
 
 execute = {sh,-c,/usr/bin/php /var/www/rutorrent/php/initplugins.php <username> &}
