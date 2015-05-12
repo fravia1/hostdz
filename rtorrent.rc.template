@@ -273,5 +273,6 @@ trackers.enable = 1
 system.file.allocate.set = yes
 network.tos.set = throughput
 trackers.numwant.set = 400
+network.http.ssl_verify_peer.set=0
 
 execute = {sh,-c,/usr/bin/php /var/www/rutorrent/php/initplugins.php <username> &}
