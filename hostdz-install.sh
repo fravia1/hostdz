@@ -160,7 +160,7 @@ getString NO  "IP or host: " IPADDRESS1 $IPADDRESS1
 #getString NO  "vsftp port (alap 21): " NEWFTPPORT1 21
 #getString NO  "Do you want to have some of your users in a chroot jail? " CHROOTJAIL1 YES
 getString NO  "You need install Webmin? " INSTALLWEBMIN1 YES
-getString NO  "You need install Fail2ban? " INSTALLFAIL2BAN1 YES
+##getString NO  "You need install Fail2ban? " INSTALLFAIL2BAN1 YES
 getString NO  "You need install VNC? " INSTALLVNC1 YES
 getString NO  "You need install Bitorrentsync? " INSTALLBITORRENTSYNC1 YES
 getString NO  "You need install NZBGet? " INSTALLNZBGET1 YES
@@ -713,14 +713,25 @@ if [ "$INSTALLDELUGE1" = "YES" ]; then
   bash /etc/seedbox-from-scratch/installDeluge
 fi
 
+if [ "$INSTALLVNC1" = "YES" ]; then
+  bash /etc/seedbox-from-scratch/InstallVNC $NEWUSER1 $PASSWORD1
+fi
+
+if [ "$INSTALLBITORRENTSYNC1" = "YES" ]; then
+  bash /etc/seedbox-from-scratch/InstallBitorrentsync $NEWUSER1
+fi
+
+if [ "$INSTALLNZBGET1" = "YES" ]; then
+  bash /etc/seedbox-from-scratch/InstallNZBGet $NEWUSER1
+fi
+
+if [ "$INSTALLSUBSONIC1" = "YES" ]; then
+  bash /etc/seedbox-from-scratch/InstallSubsonic $NEWUSER1
+fi
+
 
 # 99.
-apt-get --yes install proftpd
-apt-get --yes install iotop
-apt-get --yes install htop
-apt-get --yes install irssi mediainfo
-apt-get --yes install mc
-apt-get --yes install nano
+apt-get --yes install proftpd iotop htop irssi mediainfo mc nano
 clear
 
 cp /etc/hostdz/createSeedboxUser /usr/bin/createSeedboxUser
