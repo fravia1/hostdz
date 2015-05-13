@@ -25,7 +25,6 @@ IPADDRESS1=`ifconfig | sed -n 's/.*inet addr:\([0-9.]\+\)\s.*/\1/p' | grep -v 12
        exit 0
     fi
 
-apt-get --yes update
 apt-get --yes install openjdk-7-jre
 wget -N http://cznic.dl.sourceforge.net/project/subsonic/subsonic/5.2.1/subsonic-5.2.1.deb
 dpkg -i subsonic-5.2.1.deb

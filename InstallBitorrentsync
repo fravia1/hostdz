@@ -13,14 +13,14 @@ clear
 bldgrn='\e[1;32m' # Green
 bldylw='\e[1;33m' # Yellow
 txtrst='\e[0m'    # Text Reset
-UtorrentUser=$1
+BitorrentSyncUser=$1
 IPADDRESS1=`ifconfig | sed -n 's/.*inet addr:\([0-9.]\+\)\s.*/\1/p' | grep -v 127 | head -n 1`
 
- if [ ! $UtorrentUser ]; then
+ if [ ! $BitorrentSyncUser ]; then
     echo -n "Username: "
-      read UtorrentUser
+      read BitorrentSyncUser
     fi
- if [ ! $UtorrentUser ]; then
+ if [ ! $BitorrentSyncUser ]; then
      echo "Error no Username!"
        exit 0
     fi
@@ -32,7 +32,9 @@ apt-get --yes update
 mkdir -p /etc/btsync
 wget -N https://download-cdn.getsyncapp.com/stable/linux-i386/BitTorrent-Sync_i386.tar.gz
 tar xvfz BitTorrent-Sync_i386.tar.gz -C /etc/btsync
-./btsync
+sudo su --login --command "/etc/btsync/btsync" $BitorrentSyncUser
+
+
 ##apt-get --yes install btsync
 ##dpkg-reconfigure btsync
 
