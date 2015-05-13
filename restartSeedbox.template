@@ -46,3 +46,21 @@ if [[ -a $HOME/.config/deluge/web.conf ]]; then
   deluged
   screen -d -m -S deluge-web deluge-web
 fi
+
+if [[ -a /etc/transmission-daemon/ ]]; then
+  sleep 3
+  echo "Starting Transmission..."
+  /etc/init.d/transmission-daemon start
+fi
+
+if [[ -a /etc/transmission-daemon/ ]]; then
+  sleep 3
+  echo "Starting uTorrent..."
+  utserver -settingspath /home/<username>/.utserver/ -configfile /home/<username>/.utserver/utserver.conf -logfile /home/<username>/.utserver/utserver.log -pidfile /home/<username>/.utserver/utserver.pid -daemon
+fi
+
+if [[ -a $HOME/.utserver/ ]]; then
+  sleep 3
+  echo "Starting uTorrent..."
+  utserver -settingspath /home/<username>/.utserver/ -configfile /home/<username>/.utserver/utserver.conf -logfile /home/<username>/.utserver/utserver.log -pidfile /home/<username>/.utserver/utserver.pid -daemon
+fi

@@ -172,8 +172,8 @@ getString NO  "You need install Subsonic?" INSTALLSUBSONIC1 YES
 getString NO  "You need install SABnzbd?" INSTALLSABNZBD1 YES
 getString NO  "You need install Rapidleech?" INSTALLRAPIDLEECH1 YES
 getString NO  "You need install Deluge?" INSTALLDELUGE1 YES
-getString NO  "You need install uTorrent?" INSTALLUTORRENT1 NO
-getString NO  "You need install Transmission?" INSTALLTRANSMISSION1 NO
+getString NO  "You need install uTorrent?" INSTALLUTORRENT1 YES
+getString NO  "You need install Transmission?" INSTALLTRANSMISSION1 YES
 ###getString NO  "Wich RTorrent version would you like to install, '0.9.2' or '0.9.3' or '0.9.4'? " RTORRENT1 0.9.4
 
 
@@ -349,13 +349,6 @@ if [ "$INSTALLWEBMIN1" = "YES" ]; then
     if [ $? = 0 ] ; then
       WEBMINDOWN=NO
     fi
-  fi
-
-  if [ "$WEBMINDOWN"="NO" ] ; then
-    #add webmin source
-    echo "" | tee -a /etc/apt/sources.list > /dev/null
-    echo "deb http://download.webmin.com/download/repository sarge contrib" | tee -a /etc/apt/sources.list > /dev/null
-    cd /tmp
   fi
 
   if [ "$WEBMINDOWN" = "NO" ]; then
