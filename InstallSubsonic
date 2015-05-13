@@ -29,8 +29,9 @@ apt-get --yes update
 apt-get --yes install openjdk-7-jre
 wget -N http://cznic.dl.sourceforge.net/project/subsonic/subsonic/5.2.1/subsonic-5.2.1.deb
 dpkg -i subsonic-5.2.1.deb
+sudo chmod -R 755 /etc/default/subsonic
 perl -pi -e "s/SUBSONIC_USER=root/SUBSONIC_USER=$SubsonicUser/g" /etc/default/subsonic
-service subsonic restart
+sudo su --login --command "service subsonic restart" $SubsonicUser
 
 
 echo

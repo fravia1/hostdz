@@ -33,6 +33,7 @@ apt-get --yes install transmission-cli transmission-common transmission-daemon
 usermod -a -G debian-transmission $TransUser
 sudo chown -R $TransUser:$TransUser /etc/transmission-daemon/
 sudo chmod -R 755 /etc/transmission-daemon/
+sudo chmod -R 755 /etc/init.d/transmission-daemon
 
 /etc/init.d/transmission-daemon stop
 
@@ -40,7 +41,8 @@ perl -pi -e "s/\"rpc-authentication-required\": true/\"rpc-authentication-requir
 perl -pi -e "s/\"rpc-whitelist-enabled\": true,/\"rpc-whitelist-enabled\": false,/g" /etc/transmission-daemon/settings.json
 perl -pi -e "s/USER=debian-transmission/USER=$TransUser/g" /etc/init.d/transmission-daemon
 
-/etc/init.d/transmission-daemon start
+sudo su --login --command "/etc/init.d/transmission-daemon start" $TransUser
+
 echo
 echo "${bldgrn}Transmission installed! ${bldylw}Web: http://$IPADDRESS1:9091/transmission/web/${txtrst}"
 echo

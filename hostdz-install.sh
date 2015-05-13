@@ -49,11 +49,11 @@ function getString
 
     if [ "$ISPASSWORD" == "YES" ]; then
       echo -e -n "${bldgrn}$LABEL${bldpur}"
-      read -s -p "$DEFAULT" -p "" NEWVAR1
+      read -s -p "$DEFAULT" -p " " NEWVAR1
       echo -e "${txtrst}"
     else
       echo -e -n "${bldgrn}$LABEL${bldpur}"
-      read -e -i "$DEFAULT" -p "" NEWVAR1
+      read -e -i "$DEFAULT" -p " " NEWVAR1
       echo -e -n "${txtrst}"
     fi
     if [ -z "$NEWVAR1" ]; then
@@ -153,27 +153,27 @@ echo -e "${bldgrn}# |-----------------------------------------------------------
 echo -e "${bldgrn}#${txtrst}"
 echo
 
-getString NO  "SeedBox username: " NEWUSER1
-getString NO "SeedBox user($NEWUSER1) password: " PASSWORD1
-getString NO  "IP or host: " IPADDRESS1 $IPADDRESS1
+getString NO  "SeedBox username:" NEWUSER1
+getString NO "SeedBox user($NEWUSER1) password:" PASSWORD1
+getString NO  "IP or host:" IPADDRESS1 $IPADDRESS1
 #getString NO  "SSH port: " NEWSSHPORT1 22
 #getString NO  "vsftp port (alap 21): " NEWFTPPORT1 21
 #getString NO  "Do you want to have some of your users in a chroot jail? " CHROOTJAIL1 YES
-getString NO  "You need install Webmin? " INSTALLWEBMIN1 YES
-##getString NO  "You need install Fail2ban? " INSTALLFAIL2BAN1 YES
-getString NO  "You need install VNC? " INSTALLVNC1 YES
-getString NO  "You need install Bitorrentsync? " INSTALLBITORRENTSYNC1 YES
-getString NO  "You need install NZBGet? " INSTALLNZBGET1 YES
-getString NO  "You need install Subsonic? " INSTALLSUBSONIC1 YES
-##getString NO  "OpenVPN install? " INSTALLOPENVPN1 NO
+getString NO  "You need install Webmin?" INSTALLWEBMIN1 YES
+##getString NO  "You need install Fail2ban?" INSTALLFAIL2BAN1 YES
+getString NO  "You need install VNC?" INSTALLVNC1 YES
+getString NO  "You need install Bitorrentsync?" INSTALLBITORRENTSYNC1 YES
+getString NO  "You need install NZBGet?" INSTALLNZBGET1 YES
+getString NO  "You need install Subsonic?" INSTALLSUBSONIC1 YES
+##getString NO  "OpenVPN install?" INSTALLOPENVPN1 NO
 ##if [ "$INSTALLOPENVPN1" = "YES" ]; then
-##getString NO  "OpenVPN port: " OPENVPNPORT1 31195
+##getString NO  "OpenVPN port:" OPENVPNPORT1 31195
 ##fi
-getString NO  "You need install SABnzbd? " INSTALLSABNZBD1 YES
-getString NO  "You need install Rapidleech? " INSTALLRAPIDLEECH1 YES
-getString NO  "You need install Deluge? " INSTALLDELUGE1 YES
-getString NO  "You need install uTorrent? " INSTALLUTORRENT1 NO
-getString NO  "You need install Transmission? " INSTALLTRANSMISSION1 NO
+getString NO  "You need install SABnzbd?" INSTALLSABNZBD1 YES
+getString NO  "You need install Rapidleech?" INSTALLRAPIDLEECH1 YES
+getString NO  "You need install Deluge?" INSTALLDELUGE1 YES
+getString NO  "You need install uTorrent?" INSTALLUTORRENT1 NO
+getString NO  "You need install Transmission?" INSTALLTRANSMISSION1 NO
 ###getString NO  "Wich RTorrent version would you like to install, '0.9.2' or '0.9.3' or '0.9.4'? " RTORRENT1 0.9.4
 
 
