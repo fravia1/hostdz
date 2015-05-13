@@ -218,6 +218,14 @@ SBFSCURRENTVERSION=`cat /etc/hostdz/version.info`
 NEWFTPPORT1=`cat /etc/hostdz/ftp.info`
 NEWSSHPORT1=`cat /etc/hostdz/ssh.info`
 DELUGEINSTALLED1=`cat /etc/hostdz/deluge.info`
+
+UTORRENTINSTALLED1=`cat /etc/hostdz/utorrent.info`
+TRANSMISSIONINSTALLED1=`cat /etc/hostdz/transmission.info`
+VNCINSTALLED1=`cat /etc/hostdz/vnc.info`
+SUBSONICINSTALLED1=`cat /etc/hostdz/subsonic.info`
+NZBGETINSTALLED1=`cat /etc/hostdz/nzbget.info`
+BITORRENTSYNCINSTALLED1=`cat /etc/hostdz/bittorrentsync.info`
+
 MAINUSER1=`cat /etc/hostdz/mainuser.info`
 
 # 3.2
@@ -673,6 +681,19 @@ echo "Restarting seedbox as any other user: sudo su --login --command \"$HOMEJAI
 echo "Starting RTorrent: screen -d -m -S rtorrent rtorrent" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 echo "Starting IRSSI: screen -d -m -S irssi irssi" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 echo "Starting sabnzbdplus: screen -dmS sabnzbd sabnzbdplus" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
+echo "---------------------------------------------------------------------------" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
+echo "---------------------------------------------------------------------------" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
+echo "Subsonic Web: http://$IPADDRESS1:4040" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
+echo "Username: admin" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
+echo "Password: admin" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
+echo "---------------------------------------------------------------------------" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
+echo "Utorrent Web: http://$IPADDRESS1:8080/gui" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
+echo "Username: admin" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
+echo "Password: none password, empty" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
+echo "---------------------------------------------------------------------------" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
+echo "Transmission Web: http://$IPADDRESS1:9091/transmission/web/" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
+echo "---------------------------------------------------------------------------" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
+echo "VNC: $IPADDRESS1:5901" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 
 set +x verbose
 clear

@@ -64,5 +64,5 @@ sudo su --login --command "vncserver :1" $VNCUser
 
 
 echo
-echo -e "${bldgrn}VNC installed! ${bldylw}Login: https://$IPADDRESS1:5901${txtrst}"
+echo -e "${bldgrn}VNC installed! ${bldylw}Login: $IPADDRESS1:5901${txtrst}"
 echo
