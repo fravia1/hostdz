@@ -26,21 +26,21 @@ IPADDRESS1=`ifconfig | sed -n 's/.*inet addr:\([0-9.]\+\)\s.*/\1/p' | grep -v 12
        exit 0
     fi
 
-add-apt-repository --yes ppa:transmissionbt/ppa
-apt-get --yes install python-software-properties
-apt-get --yes update
-apt-get --yes install transmission-cli transmission-common transmission-daemon
-/etc/init.d/transmission-daemon stop
+sudo add-apt-repository --yes ppa:transmissionbt/ppa
+sudo apt-get --yes install python-software-properties
+sudo apt-get --yes update
+sudo apt-get --yes install transmission-cli transmission-common transmission-daemon
+sudo /etc/init.d/transmission-daemon stop
 
-usermod -a -G debian-transmission $TransUser
+sudo usermod -a -G debian-transmission $TransUser
 sudo chown -R $TransUser:$TransUser /etc/transmission-daemon/
 sudo chmod -R 755 /etc/transmission-daemon/
 sudo chmod -R 755 /etc/init.d/transmission-daemon
 
-perl -pi -e "s/\"rpc-authentication-required\": true/\"rpc-authentication-required\": false/g" /etc/transmission-daemon/settings.json
-perl -pi -e "s/\"rpc-whitelist-enabled\": true,/\"rpc-whitelist-enabled\": false,/g" /etc/transmission-daemon/settings.json
-perl -pi -e "s/root/$TransUser/g" /etc/transmission-daemon/settings.json
-perl -pi -e "s/USER=debian-transmission/USER=$TransUser/g" /etc/init.d/transmission-daemon
+sudo perl -pi -e "s/\"rpc-authentication-required\": true/\"rpc-authentication-required\": false/g" /etc/transmission-daemon/settings.json
+sudo perl -pi -e "s/\"rpc-whitelist-enabled\": true,/\"rpc-whitelist-enabled\": false,/g" /etc/transmission-daemon/settings.json
+sudo perl -pi -e "s/root/$TransUser/g" /etc/transmission-daemon/settings.json
+sudo perl -pi -e "s/USER=debian-transmission/USER=$TransUser/g" /etc/init.d/transmission-daemon
 
 sudo su --login --command "/etc/init.d/transmission-daemon start" $TransUser
 

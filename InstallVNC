@@ -35,34 +35,34 @@ IPADDRESS1=`ifconfig | sed -n 's/.*inet addr:\([0-9.]\+\)\s.*/\1/p' | grep -v 12
        exit 0
     fi
 
-apt-get --yes update
-apt-get --yes install ubuntu-desktop vnc4server
+sudo apt-get --yes update
+sudo apt-get --yes install ubuntu-desktop vnc4server
 
-mkdir -p /home/$VNCUser/.vnc/
-cp /etc/hostdz/vnc_passwd /home/$VNCUser/.vnc/passwd
-cp /etc/hostdz/vnc_xstartup /home/$VNCUser/.vnc/xstartup
-chown -R $VNCUser:$VNCUser /home/$VNCUser/.vnc/
-chmod -R 755 /home/$VNCUser/.vnc/
+sudo mkdir -p /home/$VNCUser/.vnc/
+sudo cp /etc/hostdz/vnc_passwd /home/$VNCUser/.vnc/passwd
+sudo cp /etc/hostdz/vnc_xstartup /home/$VNCUser/.vnc/xstartup
+sudo chown -R $VNCUser:$VNCUser /home/$VNCUser/.vnc/
+sudo chmod -R 755 /home/$VNCUser/.vnc/
 echo -e "$VNCPasswd\\n$VNCPasswd" | sudo su --login --command "vncpasswd" $VNCUser
 
 ##cp ~/.vnc/xstartup /home/$VNCUser/.vnc/xstartup
 ##chown -R $VNCUser:$VNCUser /home/$VNCUser/.vnc/
 ##chmod -R 755 /home/$VNCUser/.vnc/
 
-rm -f /tmp/.X1-lock
-rm -f /tmp/.X11-unix
+sudo rm -f /tmp/.X1-lock
+sudo rm -f /tmp/.X11-unix
 
 sudo su --login --command "vncserver :1" $VNCUser
 sudo su --login --command "vncserver -kill :1" $VNCUser
 
-perl -pi -e "s/x-window-manager &/gnome-session &/g" ~/.vnc/xstartup
-perl -pi -e "s/x-window-manager &/gnome-session &/g" /home/$VNCUser/.vnc/xstartup
+sudo perl -pi -e "s/x-window-manager &/gnome-session &/g" ~/.vnc/xstartup
+sudo perl -pi -e "s/x-window-manager &/gnome-session &/g" /home/$VNCUser/.vnc/xstartup
 
-rm -f /tmp/.X1-lock
-rm -f /tmp/.X11-unix
+sudo rm -f /tmp/.X1-lock
+sudo rm -f /tmp/.X11-unix
 
 sudo su --login --command "vncserver :1" $VNCUser
-(crontab -u "$VNCUser" -l; echo "@reboot /usr/bin/vncserver :1" ) | crontab -u "$VNCUser" -
+sudo (crontab -u "$VNCUser" -l; echo "@reboot /usr/bin/vncserver :1" ) | crontab -u "$VNCUser" -
 
 
 echo

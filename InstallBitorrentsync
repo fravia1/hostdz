@@ -25,15 +25,15 @@ IPADDRESS1=`ifconfig | sed -n 's/.*inet addr:\([0-9.]\+\)\s.*/\1/p' | grep -v 12
        exit 0
     fi
 
-apt-get --yes update
-apt-get --yes install python-software-properties
-add-apt-repository --yes ppa:tuxpoldo/btsync
-apt-get --yes update
+sudo apt-get --yes update
+sudo apt-get --yes install python-software-properties
+sudo add-apt-repository --yes ppa:tuxpoldo/btsync
+sudo apt-get --yes update
 sudo chown -R $BitorrentSyncUser:$BitorrentSyncUser /home/$BitorrentSyncUser/btsync
 sudo chmod -R 755 /home/$BitorrentSyncUser/btsync
-mkdir -p /home/$BitorrentSyncUser/btsync
-wget -N https://download-cdn.getsyncapp.com/stable/linux-i386/BitTorrent-Sync_i386.tar.gz
-tar xvfz BitTorrent-Sync_i386.tar.gz -C /home/$BitorrentSyncUser/btsync
+sudo mkdir -p /home/$BitorrentSyncUser/btsync
+sudo wget -N https://download-cdn.getsyncapp.com/stable/linux-i386/BitTorrent-Sync_i386.tar.gz
+sudo tar xvfz BitTorrent-Sync_i386.tar.gz -C /home/$BitorrentSyncUser/btsync
 sudo su --login --command "/home/$BitorrentSyncUser/btsync/btsync --webui.listen 0.0.0.0:8888" $BitorrentSyncUser
 
 

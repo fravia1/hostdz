@@ -23,19 +23,19 @@ IPADDRESS1=`ifconfig | sed -n 's/.*inet addr:\([0-9.]\+\)\s.*/\1/p' | grep -v 12
        exit 0
     fi
 
-apt-get --yes install libssl0.9.8:i386
-cd /home/$UtorrentUser/
-wget http://download.utorrent.com/linux/utorrent-server-3.0-25053.tar.gz
-tar -xvf utorrent-server-3.0-25053.tar.gz
-rm -rf utorrent-server-3.0-25053.tar.gz
-chmod 777 -R utorrent-server-v3_0/
-chown -R $UtorrentUser:$UtorrentUser /home/$UtorrentUser/
-mv utorrent-server-v3_0 .utserver
+sudo apt-get --yes install libssl0.9.8:i386
+sudo cd /home/$UtorrentUser/
+sudo wget http://download.utorrent.com/linux/utorrent-server-3.0-25053.tar.gz
+sudo tar -xvf utorrent-server-3.0-25053.tar.gz
+sudo rm -rf utorrent-server-3.0-25053.tar.gz
+sudo chmod 777 -R utorrent-server-v3_0/
+sudo chown -R $UtorrentUser:$UtorrentUser /home/$UtorrentUser/
+sudo mv utorrent-server-v3_0 .utserver
 
-ln -s /home/$UtorrentUser/.utserver/utserver /usr/bin/utserver
+sudo ln -s /home/$UtorrentUser/.utserver/utserver /usr/bin/utserver
 
 sudo cp /etc/hostdz/utserver.conf /home/$UtorrentUser/.utserver/utserver.conf
-perl -pi -e "s/<username>/$UtorrentUser/g" /home/$UtorrentUser/.utserver/utserver.conf
+sudo perl -pi -e "s/<username>/$UtorrentUser/g" /home/$UtorrentUser/.utserver/utserver.conf
 
 sudo su --login --command "utserver -settingspath /home/$UtorrentUser/.utserver/ -configfile /home/$UtorrentUser/.utserver/utserver.conf -logfile /home/$UtorrentUser/.utserver/utserver.log -pidfile /home/$UtorrentUser/.utserver/utserver.pid -daemon" $UtorrentUser
 
