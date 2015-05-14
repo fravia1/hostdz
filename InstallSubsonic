@@ -30,8 +30,7 @@ wget -N http://cznic.dl.sourceforge.net/project/subsonic/subsonic/5.2.1/subsonic
 dpkg -i subsonic-5.2.1.deb
 sudo chmod -R 755 /etc/default/subsonic
 perl -pi -e "s/SUBSONIC_USER=root/SUBSONIC_USER=$SubsonicUser/g" /etc/default/subsonic
-sudo su --login --command "service subsonic restart" $SubsonicUser
-
+service subsonic restart
 
 echo
 echo -e "${bldgrn}Subsonic installed! ${bldylw}Web: http://$IPADDRESS1:4040${txtrst}"

@@ -39,13 +39,15 @@ apt-get --yes update
 apt-get --yes install ubuntu-desktop vnc4server
 
 mkdir -p /home/$VNCUser/.vnc/
+cp /etc/hostdz/vnc_passwd /home/$VNCUser/.vnc/passwd
+cp /etc/hostdz/vnc_xstartup /home/$VNCUser/.vnc/xstartup
 chown -R $VNCUser:$VNCUser /home/$VNCUser/.vnc/
 chmod -R 755 /home/$VNCUser/.vnc/
 echo -e "$VNCPasswd\\n$VNCPasswd" | sudo su --login --command "vncpasswd" $VNCUser
 
-cp ~/.vnc/xstartup /home/$VNCUser/.vnc/xstartup
-chown -R $VNCUser:$VNCUser /home/$VNCUser/.vnc/
-chmod -R 755 /home/$VNCUser/.vnc/
+##cp ~/.vnc/xstartup /home/$VNCUser/.vnc/xstartup
+##chown -R $VNCUser:$VNCUser /home/$VNCUser/.vnc/
+##chmod -R 755 /home/$VNCUser/.vnc/
 
 rm -f /tmp/.X1-lock
 rm -f /tmp/.X11-unix

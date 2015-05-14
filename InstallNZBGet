@@ -33,6 +33,8 @@ apt-get --yes install unrar
 apt-get --yes libncurses5-dev libsigc++-dev sigc++ libpar2-0-dev libssl-dev libgnutls-dev libxml2-dev build-essential unrar unzip p7zip-full
 
 cd /home/$NZBGetUser/
+
+apt-get --yes libncurses5-dev libsigc++-dev sigc++ libpar2-0-dev libssl-dev libgnutls-dev libxml2-dev build-essential unrar unzip p7zip-full
 wget http://sourceforge.net/projects/nzbget/files/nzbget-12.0.tar.gz
 tar -xvf nzbget-12.0.tar.gz && cd nzbget-12.0
 wget http://sourceforge.net/projects/parchive/files/libpar2/0.2/libpar2-0.2.tar.gz
@@ -47,18 +49,10 @@ cd ..
 make
 sudo make install
 sudo make install-conf
-mv ppscripts /home/$NZBGetUser/downloads/
+mv ppscripts ~/downloads/
 wget http://sourceforge.net/projects/nzbget/files/ppscripts/videosort/videosort-ppscript-4.0.zip
-unzip videosort-ppscript-4.0.zip -d /home/$NZBGetUser/downloads/ppscripts/
-nzbget -D
-
-
-
-cp /usr/share/nzbget/nzbget.conf /home/$NZBGetUser/.nzbget
-chown -R $NZBGetUser:$NZBGetUser /home/$NZBGetUser/.nzbget
-cp /etc/hostdz/nzbget.conf /etc/init/nzbget.conf
-perl -pi -e "s/setuid username/setuid $NZBGetUser/g" /etc/init/nzbget.conf
-perl -pi -e "s/setgid username/setgid $NZBGetUser/g" /etc/init/nzbget.conf
+unzip videosort-ppscript-4.0.zip -d ~/downloads/ppscripts/
+sudo su --login --command "nzbget -D" $NZBGetUser
 
 echo
 echo "${bldgrn}NZBGet installed! ${bldylw}Web: http://$IPADDRESS1:6789${txtrst}"
