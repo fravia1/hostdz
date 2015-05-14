@@ -158,9 +158,9 @@ getString NO "SeedBox user($NEWUSER1) password:" PASSWORD1
 getString NO  "IP or host:" IPADDRESS1 $IPADDRESS1
 getString NO  "The config shared?" SHARED1 YES
 if [ "$SHARED1" = "YES" ]; then
-	SHAREDSEEDBOX1=YES
-else
 	SHAREDSEEDBOX1=NO
+else
+	SHAREDSEEDBOX1=YES
 fi
 #getString NO  "SSH port: " NEWSSHPORT1 22
 #getString NO  "vsftp port (alap 21): " NEWFTPPORT1 21
