@@ -814,7 +814,7 @@ echo -e "${bldgrn}# |-----------------------------------------------------------
 echo -e "${bldgrn}#"
 echo ""
 echo "System will reboot now, but don't close this window until you take note of the port number: $NEWSSHPORT1"
-echo "${txtrst}"
+echo -e  "${txtrst}"
 
 rm -f -r ~/hostdz-install.sh
 reboot
