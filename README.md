@@ -4,8 +4,9 @@ Installation
 -
 wget -N https://raw.githubusercontent.com/fjdhgjaf/hostdz/v0.2/hostdz-install.sh
 time bash ~/hostdz-install.sh
+
+vps based
 --------
-vps based:
 apt-get update --yes
 wget -N https://raw.githubusercontent.com/fjdhgjaf/hostdz/v0.2/hostdz-install.sh
 time bash ~/hostdz-install.sh
