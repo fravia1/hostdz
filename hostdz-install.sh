@@ -107,13 +107,6 @@ function getString
 echo -e -n "${txtrst}"
 if [[ $EUID -ne 0 ]]; then
   clear
-  echo -e "${bldgrn}#${txtrst}"
-  echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
-  echo -e "${bldgrn}# | The script thank you for Notos (notos.korsan@gmail.com)      |${txtrst}"
-  echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
-  echo -e "${bldgrn}# | The script was further developed Tiby08 (tiby0108@gmail.com) |${txtrst}"
-  echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
-  echo -e "${bldgrn}#${txtrst}"
   echo
   echo -e "${bldred}This script must be run as root${txtrst}" 1>&2
   exit 1
@@ -135,14 +128,6 @@ PASSWORD2=b
 
 
 clear
-echo -e "${bldgrn}#${txtrst}"
-echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
-echo -e "${bldgrn}# | The script thank you for Notos (notos.korsan@gmail.com)      |${txtrst}"
-echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
-echo -e "${bldgrn}# | The script was further developed Tiby08 (tiby0108@gmail.com) |${txtrst}"
-echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
-echo -e "${bldgrn}#${txtrst}"
-echo
 
 getString NO  "SeedBox username:" NEWUSER1
 getString NO "SeedBox user($NEWUSER1) password:" PASSWORD1
@@ -687,14 +672,6 @@ if [ "$INSTALLSABNZBD1" = "YES" ]; then
   bash /etc/hostdz/installSABnzbd
 fi
 
-if [ "$INSTALLUTORRENT1" = "YES" ]; then
-  bash /etc/hostdz/InstallUtorrent $NEWUSER1
-fi
-
-if [ "$INSTALLTRANSMISSION1" = "YES" ]; then
-  bash /etc/hostdz/InstallTransmission $NEWUSER1
-fi
-
 if [ "$INSTALLRAPIDLEECH1" = "YES" ]; then
   bash /etc/hostdz/installRapidleech
 fi
@@ -702,23 +679,6 @@ fi
 if [ "$INSTALLDELUGE1" = "YES" ]; then
   bash /etc/seedbox-from-scratch/installDeluge
 fi
-
-if [ "$INSTALLVNC1" = "YES" ]; then
-  bash /etc/seedbox-from-scratch/InstallVNC $NEWUSER1 $PASSWORD1
-fi
-
-if [ "$INSTALLBITORRENTSYNC1" = "YES" ]; then
-  bash /etc/seedbox-from-scratch/InstallBitorrentsync $NEWUSER1
-fi
-
-if [ "$INSTALLNZBGET1" = "YES" ]; then
-  bash /etc/seedbox-from-scratch/InstallNZBGet $NEWUSER1
-fi
-
-if [ "$INSTALLSUBSONIC1" = "YES" ]; then
-  bash /etc/seedbox-from-scratch/InstallSubsonic $NEWUSER1
-fi
-
 
 # 99.
 apt-get --yes install proftpd iotop htop irssi mediainfo mc nano
@@ -751,7 +711,7 @@ sudo svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c
 tar xf libtorrent-0.13.2.tar.gz
 ##sudo wget http://libtorrent.rakshasa.no/downloads/rtorrent-0.9.4.tar.gz
 tar xvf rtorrent-0.9.2.tar.gz
-cd xmlrpc-c
+cd /etc/hostdz/source/xmlrpc-c
 ./configure --libdir=/usr/local/lib --disable-cplusplus --disable-libwww-client --disable-wininet-client --disable-cgi-server --enable-libxml2-backend 
 make -j 8 && make install
 updatedb
@@ -795,19 +755,32 @@ perl -pi -e "s/USERINSUDOERS1=YES/USERINSUDOERS1=NO/g" /usr/bin/createSeedboxUse
 createSeedboxUser $NEWUSER1 $PASSWORD1
 clear
 
-bldgrn='\e[1;32m' # Green
-txtrst='\e[0m'    # Text Reset
+if [ "$INSTALLVNC1" = "YES" ]; then
+  bash /etc/seedbox-from-scratch/InstallVNC $NEWUSER1 $PASSWORD1
+fi
 
-echo -e "${bldgrn}#${txtrst}"
-echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
-echo -e "${bldgrn}# | The script thank you for Notos (notos.korsan@gmail.com)      |${txtrst}"
-echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
-echo -e "${bldgrn}# | The script was further developed Tiby08 (tiby0108@gmail.com) |${txtrst}"
-echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
-echo -e "${bldgrn}#"
+if [ "$INSTALLBITORRENTSYNC1" = "YES" ]; then
+  bash /etc/seedbox-from-scratch/InstallBitorrentsync $NEWUSER1
+fi
+
+if [ "$INSTALLNZBGET1" = "YES" ]; then
+  bash /etc/seedbox-from-scratch/InstallNZBGet $NEWUSER1
+fi
+
+if [ "$INSTALLSUBSONIC1" = "YES" ]; then
+  bash /etc/seedbox-from-scratch/InstallSubsonic $NEWUSER1
+fi
+
+if [ "$INSTALLUTORRENT1" = "YES" ]; then
+  bash /etc/hostdz/InstallUtorrent $NEWUSER1
+fi
+
+if [ "$INSTALLTRANSMISSION1" = "YES" ]; then
+  bash /etc/hostdz/InstallTransmission $NEWUSER1
+fi
+
 echo ""
 echo "System will reboot now, but don't close this window until you take note of the port number: $NEWSSHPORT1"
-echo -e  "${txtrst}"
 
 rm -f -r ~/hostdz-install.sh
 reboot
