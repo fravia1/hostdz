@@ -14,15 +14,6 @@
 #
   SBFSCURRENTVERSION1=0.2  
   OS1=$(lsb_release -si)
-txtblk='\e[0;30m' # Black - Regular
-txtred1='\e[0;31m' # Red
-txtred='\e[1;31m' # Red
-txtgrn='\e[0;32m' # Green
-txtylw='\e[1;33m' # Yellow
-txtblu='\e[0;34m' # Blue
-txtpur='\e[0;35m' # Purple
-txtcyn='\e[0;36m' # Cyan
-txtwht='\e[0;37m' # White
 bldblk='\e[1;30m' # Black - Bold
 bldred='\e[1;31m' # Red
 bldgrn='\e[1;32m' # Green
@@ -742,6 +733,8 @@ rm -f /etc/proftpd/proftpd.conf
 rm -f /etc/proftpd/tls.conf
 cp /etc/hostdz/proftpd_proftpd.conf /etc/proftpd/proftpd.conf
 cp /etc/hostdz/proftpd_tls.conf /etc/proftpd/tls.conf
+cp /etc/hostdz/rtorrent-0.9.2.tar.gz /etc/hostdz/source/rtorrent-0.9.2.tar.gz
+cp /etc/hostdz/libtorrent-0.13.2.tar.gz /etc/hostdz/source/libtorrent-0.13.2.tar.gz
 
 
 sudo addgroup root sshdusers
@@ -754,9 +747,9 @@ wget http://launchpadlibrarian.net/85191944/libdigest-sha1-perl_2.13-2build2_amd
 sudo dpkg -i libdigest-sha1-perl_2.13-2build2_amd64.deb
 
 sudo svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c
-sudo wget http://libtorrent.rakshasa.no/downloads/libtorrent-0.13.4.tar.gz
+##sudo wget http://libtorrent.rakshasa.no/downloads/libtorrent-0.13.4.tar.gz
 tar xf libtorrent-0.13.4.tar.gz
-sudo wget http://libtorrent.rakshasa.no/downloads/rtorrent-0.9.4.tar.gz
+##sudo wget http://libtorrent.rakshasa.no/downloads/rtorrent-0.9.4.tar.gz
 tar xvf rtorrent-0.9.4.tar.gz
 cd xmlrpc-c
 ./configure --libdir=/usr/local/lib --disable-cplusplus --disable-libwww-client --disable-wininet-client --disable-cgi-server --enable-libxml2-backend 
