@@ -2,11 +2,11 @@ Host Dzire seedbox install script
 ==========
 Installation
 -
-wget -N https://raw.githubusercontent.com/fjdhgjaf/hostdz/v0.2/hostdz-install.sh
+wget -N https://raw.githubusercontent.com/fjdhgjaf/hostdz/v0.2/hostdz-install.sh <br>
 time bash ~/hostdz-install.sh
 
 vps based
 --------
-apt-get update --yes
-wget -N https://raw.githubusercontent.com/fjdhgjaf/hostdz/v0.2/hostdz-install.sh
+apt-get update --yes<br>
+wget -N https://raw.githubusercontent.com/fjdhgjaf/hostdz/v0.2/hostdz-install.sh <br>
 time bash ~/hostdz-install.sh
