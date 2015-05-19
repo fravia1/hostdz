@@ -53,12 +53,6 @@ if [[ -a /etc/transmission-daemon/ ]]; then
   /etc/init.d/transmission-daemon start
 fi
 
-if [[ -a /etc/transmission-daemon/ ]]; then
-  sleep 3
-  echo "Starting uTorrent..."
-  utserver -settingspath /home/<username>/.utserver/ -configfile /home/<username>/.utserver/utserver.conf -logfile /home/<username>/.utserver/utserver.log -pidfile /home/<username>/.utserver/utserver.pid -daemon
-fi
-
 if [[ -a $HOME/.utserver/ ]]; then
   sleep 3
   echo "Starting uTorrent..."

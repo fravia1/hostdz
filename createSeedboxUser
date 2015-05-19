@@ -609,7 +609,7 @@ fi
 sudo chown -R $NEWUSER1:$NEWUSER1  $HOMEJAILED1/.autodl
 sudo chown -R $NEWUSER1:$NEWUSER1  $HOMEJAILED1/.irssi
 
-echo "https://$IPADDRESS1/seedboxInfo.php" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
+sudo rm -f /etc/hostdz/users/$NEWUSER1.info
 
 echo "" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 echo "User personal info" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
