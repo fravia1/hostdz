@@ -693,8 +693,8 @@ rm -f /etc/proftpd/proftpd.conf
 rm -f /etc/proftpd/tls.conf
 cp /etc/hostdz/proftpd_proftpd.conf /etc/proftpd/proftpd.conf
 cp /etc/hostdz/proftpd_tls.conf /etc/proftpd/tls.conf
-cp /etc/hostdz/rtorrent-0.9.2.tar.gz /etc/hostdz/source/rtorrent-0.9.2.tar.gz
-cp /etc/hostdz/libtorrent-0.13.2.tar.gz /etc/hostdz/source/libtorrent-0.13.2.tar.gz
+cp /etc/hostdz/rtorrent-0.9.4.tar.gz /etc/hostdz/source/rtorrent-0.9.4.tar.gz
+cp /etc/hostdz/libtorrent-0.13.4.tar.gz /etc/hostdz/source/libtorrent-0.13.4.tar.gz
 
 
 sudo addgroup root sshdusers
@@ -708,20 +708,20 @@ sudo dpkg -i libdigest-sha1-perl_2.13-2build2_amd64.deb
 
 sudo svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c
 ##sudo wget http://libtorrent.rakshasa.no/downloads/libtorrent-0.13.4.tar.gz
-tar xf libtorrent-0.13.2.tar.gz
+tar xf libtorrent-0.13.4.tar.gz
 ##sudo wget http://libtorrent.rakshasa.no/downloads/rtorrent-0.9.4.tar.gz
-tar xvf rtorrent-0.9.2.tar.gz
+tar xvf rtorrent-0.9.4.tar.gz
 cd /etc/hostdz/source/xmlrpc-c
 ./configure --libdir=/usr/local/lib --disable-cplusplus --disable-libwww-client --disable-wininet-client --disable-cgi-server --enable-libxml2-backend 
 make -j 8 && make install
 updatedb
 
-cd /etc/hostdz/source/libtorrent-0.13.2
+cd /etc/hostdz/source/libtorrent-0.13.4
 sudo ./autogen.sh
 ./configure --libdir=/usr/local/lib --disable-debug --with-posix-fallocate --enable-ipv6 --enable-arch=native --with-address-space=4096
 make -j 8 && make install
 
-cd /etc/hostdz/source/rtorrent-0.9.2
+cd /etc/hostdz/source/rtorrent-0.9.4
 sudo ./autogen.sh
 ./configure --libdir=/usr/local/lib --disable-debug --with-xmlrpc-c --with-ncurses --enable-ipv6 --enable-arch=native
 make -j 8 && make install
