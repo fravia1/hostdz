@@ -732,29 +732,6 @@ updatedb
 ##Új config rész vége
 ################################################x
 
-
-# 97.
-
-#first user will not be jailed
-#  createSeedboxUser <username> <password> <user jailed?> <ssh access?> <?>
-
-
-# 98.
-
-clear
-cd ~
-echo " * soft nofile 999999" | tee -a /etc/security/limits.conf > /dev/null
-echo " * hard nofile 999999" | tee -a /etc/security/limits.conf > /dev/null
-echo "session required pam_limits.so" | tee -a /etc/pam.d/common-session* > /dev/null
-echo "session required pam_limits.so" | tee -a /etc/pam.d/common-session > /dev/null
-
-
-perl -pi -e "s/USERHASSSHACCESS1=YES/USERHASSSHACCESS1=NO/g" /usr/bin/createSeedboxUser
-perl -pi -e "s/USERINSUDOERS1=YES/USERINSUDOERS1=NO/g" /usr/bin/createSeedboxUser
-
-createSeedboxUser $NEWUSER1 $PASSWORD1
-clear
-
 if [ "$INSTALLVNC1" = "YES" ]; then
   bash /etc/seedbox-from-scratch/InstallVNC $NEWUSER1 $PASSWORD1
 fi
@@ -778,6 +755,29 @@ fi
 if [ "$INSTALLTRANSMISSION1" = "YES" ]; then
   bash /etc/hostdz/InstallTransmission $NEWUSER1
 fi
+
+
+# 97.
+
+#first user will not be jailed
+#  createSeedboxUser <username> <password> <user jailed?> <ssh access?> <?>
+
+
+# 98.
+
+clear
+cd ~
+echo " * soft nofile 999999" | tee -a /etc/security/limits.conf > /dev/null
+echo " * hard nofile 999999" | tee -a /etc/security/limits.conf > /dev/null
+echo "session required pam_limits.so" | tee -a /etc/pam.d/common-session* > /dev/null
+echo "session required pam_limits.so" | tee -a /etc/pam.d/common-session > /dev/null
+
+
+perl -pi -e "s/USERHASSSHACCESS1=YES/USERHASSSHACCESS1=NO/g" /usr/bin/createSeedboxUser
+perl -pi -e "s/USERINSUDOERS1=YES/USERINSUDOERS1=NO/g" /usr/bin/createSeedboxUser
+
+createSeedboxUser $NEWUSER1 $PASSWORD1
+clear
 
 echo ""
 echo "System will reboot now, but don't close this window until you take note of the port number: $NEWSSHPORT1"
