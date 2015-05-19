@@ -2,6 +2,7 @@
 <?php
 ignore_user_abort(true);
 set_time_limit(0);
+
 	function addUnitss($bytes) {
 		$units = array('B','kB','MB','GB','TB','PB','EB');
 		for($i = 0; $bytes >= 1024 && $i < count($units) - 1; $i++ ) {
@@ -9,7 +10,7 @@ set_time_limit(0);
 		}
 		return round($bytes, 1).' '.$units[$i];
 	}
-	if ($_GET["fhnev"]){
+	if ($argv[1]){
 		function myGetDirs($username, $homeUser, $homeBase) {
 			$passwd = file('/etc/passwd');
 			$path = false;
@@ -44,7 +45,7 @@ set_time_limit(0);
 		}
 
 		$topDirectory = "/home";
-		$quotaUser = $_GET["fhnev"];
+		$quotaUser = $argv[1];
 		$homeUser = $topDirectory.'/'.$quotaUser;
 		$homeBase = $topDirectory;
 		$quotaEnabled = true;
@@ -68,21 +69,13 @@ set_time_limit(0);
 			$SzabadTerulet = disk_free_space($topDirectory);
 			$FelhasznaltTerulet = $TeljesMeret - $SzabadTerulet;
 		}
-
-		if(!isset($quotaUser)) {
-			$quotaUser = '';
+		if ($argv[2] == "yes"){
+			$TeljesMeret = disk_total_space($topDirectory);
+			$SzabadTerulet = disk_free_space($topDirectory);
+			$FelhasznaltTerulet = $TeljesMeret - $SzabadTerulet;
 		}
-
-		$homeUser= $topDirectory.'/'.$quotaUser;
-		$homeBase= $topDirectory;
-		$quotaEnabled = FALSE;
-
-		if (isset($quotaUser) and !Empty($quotaUser) and file_exists($homeBase.'/aquota.user')) {
-			$quotaEnabled = myGetDirs($quotaUser, &$homeUser, &$homeBase); /// get the real home dir
-		}
-
-		if ($_GET["mit"] == "teljeshdd")
-			echo addUnitss($TeljesMeret)."=|=".addUnitss($SzabadTerulet)."=|=".
+			echo "=|=".addUnitss($TeljesMeret)."=|=".addUnitss($SzabadTerulet)."=|=".
 					round((100 - ($SzabadTerulet / $TeljesMeret) * 100), 1)."=|=".
 					addUnitss($FelhasznaltTerulet);
-		}
+	}
+?>
