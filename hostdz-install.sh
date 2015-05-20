@@ -676,7 +676,7 @@ if [ "$INSTALLRAPIDLEECH1" = "YES" ]; then
 fi
 
 if [ "$INSTALLDELUGE1" = "YES" ]; then
-  bash /etc/seedbox-from-scratch/installDeluge
+  bash /etc/hostdz/installDeluge
 fi
 
 # 99.
@@ -732,19 +732,19 @@ updatedb
 ################################################x
 
 if [ "$INSTALLVNC1" = "YES" ]; then
-  bash /etc/seedbox-from-scratch/InstallVNC $NEWUSER1 $PASSWORD1
+  bash /etc/hostdz/InstallVNC $NEWUSER1 $PASSWORD1
 fi
 
 if [ "$INSTALLBITORRENTSYNC1" = "YES" ]; then
-  bash /etc/seedbox-from-scratch/InstallBitorrentsync $NEWUSER1
+  bash /etc/hostdz/InstallBitorrentsync $NEWUSER1
 fi
 
 if [ "$INSTALLNZBGET1" = "YES" ]; then
-  bash /etc/seedbox-from-scratch/InstallNZBGet $NEWUSER1
+  bash /etc/hostdz/InstallNZBGet $NEWUSER1
 fi
 
 if [ "$INSTALLSUBSONIC1" = "YES" ]; then
-  bash /etc/seedbox-from-scratch/InstallSubsonic $NEWUSER1
+  bash /etc/hostdz/InstallSubsonic $NEWUSER1
 fi
 
 if [ "$INSTALLUTORRENT1" = "YES" ]; then
