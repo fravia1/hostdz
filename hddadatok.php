@@ -2,6 +2,7 @@
 <?php
 ignore_user_abort(true);
 set_time_limit(0);
+ini_set('display_errors', '0');
 
 	function addUnitss($bytes) {
 		$units = array('B','kB','MB','GB','TB','PB','EB');
