@@ -675,18 +675,26 @@ echo "Starting RTorrent: screen -d -m -S rtorrent rtorrent" | sudo tee -a /etc/h
 echo "Starting IRSSI: screen -d -m -S irssi irssi" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 echo "Starting sabnzbdplus: screen -dmS sabnzbd sabnzbdplus" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 echo "---------------------------------------------------------------------------" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
+if [ "$SUBSONICINSTALLED1" == "YES" ]; then
 echo "---------------------------------------------------------------------------" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 echo "Subsonic Web: http://$IPADDRESS1:4040" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 echo "Username: admin" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 echo "Password: admin" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
+
+if [ "$UTORRENTINSTALLED1" == "YES" ]; then
 echo "---------------------------------------------------------------------------" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 echo "Utorrent Web: http://$IPADDRESS1:8080/gui" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 echo "Username: admin" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 echo "Password: none password, empty" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
+
+if [ "$TRANSMISSIONINSTALLED1" == "YES" ]; then
 echo "---------------------------------------------------------------------------" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 echo "Transmission Web: http://$IPADDRESS1:9091/transmission/web/" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
+fi
+if [ "$VNCINSTALLED1" == "YES" ]; then
 echo "---------------------------------------------------------------------------" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 echo "VNC: $IPADDRESS1:5901" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
+fi
 
 set +x verbose
 clear
