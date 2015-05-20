@@ -39,7 +39,7 @@ sudo su --login --command "/home/$BitorrentSyncUser/btsync/btsync --webui.listen
 
 ##apt-get --yes install btsync
 ##dpkg-reconfigure btsync
-
+echo "YES" | sudo tee /etc/hostdz/bittorrentsync.info
 
 echo
 echo -e "${bldgrn}BitTorrent-Sync installed! ${bldylw}Web: https://$IPADDRESS1:8888/gui/${txtrst}"

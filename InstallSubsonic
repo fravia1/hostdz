@@ -31,6 +31,7 @@ sudo dpkg -i subsonic-5.2.1.deb
 sudo chmod -R 755 /etc/default/subsonic
 sudo perl -pi -e "s/SUBSONIC_USER=root/SUBSONIC_USER=$SubsonicUser/g" /etc/default/subsonic
 sudo service subsonic restart
+echo "YES" | sudo tee /etc/hostdz/subsonic.info
 
 echo
 echo -e "${bldgrn}Subsonic installed! ${bldylw}Web: http://$IPADDRESS1:4040${txtrst}"

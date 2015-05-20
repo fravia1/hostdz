@@ -64,6 +64,8 @@ sudo rm -f /tmp/.X11-unix
 sudo su --login --command "vncserver :1" $VNCUser
 sudo (crontab -u "$VNCUser" -l; echo "@reboot /usr/bin/vncserver :1" ) | crontab -u "$VNCUser" -
 
+echo "YES" | sudo tee /etc/hostdz/vnc.info
+
 
 echo
 echo -e "${bldgrn}VNC installed! ${bldylw}Login: $IPADDRESS1:5901${txtrst}"

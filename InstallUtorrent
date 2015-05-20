@@ -38,6 +38,7 @@ sudo cp /etc/hostdz/utserver.conf /home/$UtorrentUser/.utserver/utserver.conf
 sudo perl -pi -e "s/<username>/$UtorrentUser/g" /home/$UtorrentUser/.utserver/utserver.conf
 
 sudo su --login --command "utserver -settingspath /home/$UtorrentUser/.utserver/ -configfile /home/$UtorrentUser/.utserver/utserver.conf -logfile /home/$UtorrentUser/.utserver/utserver.log -pidfile /home/$UtorrentUser/.utserver/utserver.pid -daemon" $UtorrentUser
+echo "YES" | sudo tee /etc/hostdz/utorrent.info
 
 echo
 echo "Utorrent installed! Web: http://$IPADDRESS1:8080/gui"
