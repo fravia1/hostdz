@@ -3,7 +3,7 @@
 ignore_user_abort(true);
 set_time_limit(0);
 ini_set('display_errors', '0');
-
+error_reporting(0);
 if (file_exists("/etc/hostdz/users/".$argv[1].".info")){
 	function addUnitss($bytes) {
 		$units = array('B','kB','MB','GB','TB','PB','EB');
