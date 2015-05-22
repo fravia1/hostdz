@@ -15,8 +15,8 @@
 #Required -- To be changed!
 USER=<username>        #Set Username here.
 PORT=8112            #Set port number for web interface (default 8112)
-PIDFileDeluge=/var/run/deluged.pid
-PIDFileWeb=/var/run/deluge-web.pid
+PIDFileDeluge=/home/$USER/.config/deluge/deluged.pid
+PIDFileWeb=/home/$USER/.config/deluge/deluge-web.pid
 
 case "$1" in
   start)
