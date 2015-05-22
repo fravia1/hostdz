@@ -129,8 +129,8 @@ PASSWORD2=b
 
 clear
 
-getString NO  "SeedBox username:" NEWUSER1
-getString NO "SeedBox user($NEWUSER1) password:" PASSWORD1
+getString NO  "SeedBox username:" NEWUSER1 $1
+getString NO "SeedBox user($NEWUSER1) password:" PASSWORD1 $2
 getString NO  "IP or host:" IPADDRESS1 $IPADDRESS1
 ###getString NO  "The config shared?" SHARED1 YES
 if [ "$SHARED1" = "YES" ]; then
@@ -141,7 +141,7 @@ fi
 #getString NO  "SSH port: " NEWSSHPORT1 22
 #getString NO  "vsftp port (alap 21): " NEWFTPPORT1 21
 #getString NO  "Do you want to have some of your users in a chroot jail? " CHROOTJAIL1 YES
-getString NO  "You need install Webmin?" INSTALLWEBMIN1 YES
+##getString NO  "You need install Webmin?" INSTALLWEBMIN1 YES
 ##getString NO  "You need install Fail2ban?" INSTALLFAIL2BAN1 YES
 ##getString NO  "You need install VNC?" INSTALLVNC1 $SHAREDSEEDBOX1
 ##getString NO  "You need install Bitorrentsync?" INSTALLBITORRENTSYNC1 $SHAREDSEEDBOX1
@@ -161,7 +161,7 @@ getString NO  "You need install Webmin?" INSTALLWEBMIN1 YES
 
 NEWFTPPORT1=21
 NEWSSHPORT1=22
-##INSTALLWEBMIN1=YES
+INSTALLWEBMIN1=YES
 INSTALLFAIL2BAN1=NO
 ##INSTALLSABNZBD1=NO
 ##INSTALLRAPIDLEECH1=NO
