@@ -166,7 +166,8 @@ INSTALLFAIL2BAN1=NO
 ##INSTALLSABNZBD1=NO
 ##INSTALLRAPIDLEECH1=NO
 ###INSTALLDELUGE1=NO
-INSTALLOPENVPN1=NO
+INSTALLOPENVPN1=YES
+OPENVPNPORT1 31195
 #getString NO  "Wich rTorrent would you like to use, '0.8.9' (older stable) or '0.9.2' (newer but banned in some trackers)? " RTORRENT1 0.9.2
 RTORRENT1=0.9.4
 
