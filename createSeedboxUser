@@ -645,7 +645,7 @@ if [ -f /etc/hostdz/sabnzbd/SABnzbd.py ]; then
 fi
 if [ "$DELUGEINSTALLED1" == "YES" ]; then
   echo "Deluge daemon port: $DEAMONPORT1" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
-  echo "Deluge web port: $WEBPORT1" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
+  echo "Deluge web port: 8112" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 fi
 
 echo "" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
@@ -662,9 +662,9 @@ if [ -f /etc/hostdz/rapidleech.info ]; then
   echo "Rapidleech: https://$IPADDRESS1/rapidleech" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 fi
 if [ "$DELUGEINSTALLED1" == "YES" ]; then
-  echo "Deluge: http://$IPADDRESS1:$WEBPORT1" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
+  echo "Deluge: http://$IPADDRESS1:8112" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 fi
-echo "OpenVPN config: https://$IPADDRESS1/rutorrent/vpn.zip" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
+echo "OpenVPN config: https://$IPADDRESS1/rutorrent/client.zip" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 
 echo "" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 echo "Starting and restartring commands" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
