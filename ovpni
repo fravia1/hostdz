@@ -131,7 +131,7 @@ echo "listening to."
 read -p "IP address: " -e -i $IP1 IP
 echo ""
 echo "What port do you want for OpenVPN?"
-read -p "Port: " -e -i $OPENVPNPORT1 PORT
+read -p "Port: " -e -i $OPENVPNPORT1 31195
 echo ""
 echo "Do you want OpenVPN to be available at port 53 too?"
 echo "This can be useful to connect under restrictive networks"
