@@ -654,6 +654,7 @@ echo "-----" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 if [ -f /etc/hostdz/sabnzbd/SABnzbd.py ]; then
   echo "SABnzbd: https://$IPADDRESS1:$SABNZBDHTTPSPORT1/sabnzbd/" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 fi
+
 echo "ruTorrent: http://$IPADDRESS1/rutorrent/" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 echo "ruTorrent: https://$IPADDRESS1/rutorrent/" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 echo "Webmin: https://$IPADDRESS1:10000" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
@@ -661,6 +662,7 @@ echo "FTP: ftp://$IPADDRESS1:$NEWFTPPORT1/" | sudo tee -a /etc/hostdz/users/$NEW
 if [ -f /etc/hostdz/rapidleech.info ]; then
   echo "Rapidleech: https://$IPADDRESS1/rapidleech" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 fi
+
 if [ "$DELUGEINSTALLED1" == "YES" ]; then
   echo "Deluge: http://$IPADDRESS1:8112" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 fi
@@ -680,17 +682,20 @@ echo "--------------------------------------------------------------------------
 echo "Subsonic Web: http://$IPADDRESS1:4040" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 echo "Username: admin" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 echo "Password: admin" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
+fi
 
 if [ "$UTORRENTINSTALLED1" == "YES" ]; then
 echo "---------------------------------------------------------------------------" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 echo "Utorrent Web: http://$IPADDRESS1:8080/gui" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 echo "Username: admin" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 echo "Password: none password, empty" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
+fi
 
 if [ "$TRANSMISSIONINSTALLED1" == "YES" ]; then
 echo "---------------------------------------------------------------------------" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 echo "Transmission Web: http://$IPADDRESS1:9091/transmission/web/" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 fi
+
 if [ "$VNCINSTALLED1" == "YES" ]; then
 echo "---------------------------------------------------------------------------" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
 echo "VNC: $IPADDRESS1:5901" | sudo tee -a /etc/hostdz/users/$NEWUSER1.info
