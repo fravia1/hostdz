@@ -542,8 +542,8 @@ rm -f /etc/proftpd/proftpd.conf
 rm -f /etc/proftpd/tls.conf
 cp /etc/hostdz/proftpd_proftpd.conf /etc/proftpd/proftpd.conf
 cp /etc/hostdz/proftpd_tls.conf /etc/proftpd/tls.conf
-cp /etc/hostdz/rtorrent-0.9.4.tar.gz /etc/hostdz/source/rtorrent-0.9.4.tar.gz
-cp /etc/hostdz/libtorrent-0.13.4.tar.gz /etc/hostdz/source/libtorrent-0.13.4.tar.gz
+cp /etc/hostdz/rtorrent-0.9.2.tar.gz /etc/hostdz/source/rtorrent-0.9.2.tar.gz
+cp /etc/hostdz/libtorrent-0.13.2.tar.gz /etc/hostdz/source/libtorrent-0.13.2.tar.gz
 
 
 sudo addgroup root sshdusers
@@ -557,20 +557,20 @@ sudo dpkg -i libdigest-sha1-perl_2.13-2build2_amd64.deb
 
 sudo svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c
 ##sudo wget http://libtorrent.rakshasa.no/downloads/libtorrent-0.13.4.tar.gz
-tar xf libtorrent-0.13.4.tar.gz
+tar xf libtorrent-0.13.2.tar.gz
 ##sudo wget http://libtorrent.rakshasa.no/downloads/rtorrent-0.9.4.tar.gz
-tar xvf rtorrent-0.9.4.tar.gz
+tar xvf rtorrent-0.9.2.tar.gz
 cd /etc/hostdz/source/xmlrpc-c
 sudo ./configure --disable-cplusplus
 make -j 8 && make install
 updatedb
 
-cd /etc/hostdz/source/libtorrent-0.13.4
+cd /etc/hostdz/source/libtorrent-0.13.2
 sudo ./autogen.sh
 sudo ./configure --disable-cplusplus
 make -j 8 && make install
 
-cd /etc/hostdz/source/rtorrent-0.9.4
+cd /etc/hostdz/source/rtorrent-0.9.2
 sudo ./autogen.sh
 sudo ./configure --with-posix-fallocate
 make -j 8 && make install
