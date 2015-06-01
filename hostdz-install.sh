@@ -390,32 +390,6 @@ bash /etc/hostdz/createOpenSSLCACertificate
 mkdir -p /etc/ssl/private/
 openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout /etc/ssl/private/vsftpd.pem -out /etc/ssl/private/vsftpd.pem -config /etc/hostdz/ssl/CA/caconfig.cnf
 
-######if [ "$OS1" = "Debian" ]; then
-######  apt-get --yes install vsftpd
-######else
-######  apt-get --yes install libcap-dev libpam0g-dev libwrap0-dev
-######  dpkg -i /etc/hostdz/vsftpd_2.3.2-3ubuntu5.1_`uname -m`.deb
-######fi
-
-######perl -pi -e "s/anonymous_enable\=YES/\#anonymous_enable\=YES/g" /etc/vsftpd.conf
-######perl -pi -e "s/connect_from_port_20\=YES/#connect_from_port_20\=YES/g" /etc/vsftpd.conf
-######echo "listen_port=$NEWFTPPORT1" | tee -a /etc/vsftpd.conf >> /dev/null
-######echo "ssl_enable=YES" | tee -a /etc/vsftpd.conf >> /dev/null
-######echo "allow_anon_ssl=YES" | tee -a /etc/vsftpd.conf >> /dev/null
-######echo "force_local_data_ssl=YES" | tee -a /etc/vsftpd.conf >> /dev/null
-######echo "force_local_logins_ssl=YES" | tee -a /etc/vsftpd.conf >> /dev/null
-######echo "ssl_tlsv1=YES" | tee -a /etc/vsftpd.conf >> /dev/null
-######echo "ssl_sslv2=NO" | tee -a /etc/vsftpd.conf >> /dev/null
-######echo "ssl_sslv3=NO" | tee -a /etc/vsftpd.conf >> /dev/null
-######echo "require_ssl_reuse=NO" | tee -a /etc/vsftpd.conf >> /dev/null
-######echo "ssl_ciphers=HIGH" | tee -a /etc/vsftpd.conf >> /dev/null
-######echo "rsa_cert_file=/etc/ssl/private/vsftpd.pem" | tee -a /etc/vsftpd.conf >> /dev/null
-######echo "local_enable=YES" | tee -a /etc/vsftpd.conf >> /dev/null
-############echo "write_enable=YES" | tee -a /etc/vsftpd.conf >> /dev/null
-############echo "local_umask=022" | tee -a /etc/vsftpd.conf >> /dev/null
-######echo "chroot_local_user=YES" | tee -a /etc/vsftpd.conf >> /dev/null
-######echo "chroot_list_file=/etc/vsftpd.chroot_list" | tee -a /etc/vsftpd.conf >> /dev/null
-
 # 13.
 mv /etc/apache2/sites-available/default /etc/apache2/sites-available/default.ORI
 rm -f /etc/apache2/sites-available/default
@@ -430,64 +404,10 @@ echo "ServerName $IPADDRESS1" | tee -a /etc/apache2/apache2.conf > /dev/null
 # 14.
 a2ensite default-ssl
 
-#14.1
-#ln -s /etc/apache2/mods-available/scgi.load /etc/apache2/mods-enabled/scgi.load
-#service apache2 restart
-#apt-get --yes install libxmlrpc-core-c3-dev
-
-# 15.
-#############tar xvfz /etc/hostdz/rtorrent-0.8.9.tar.gz -C /etc/hostdz/source/
-#############tar xvfz /etc/hostdz/rtorrent-0.9.2.tar.gz -C /etc/hostdz/source/
-#############tar xvfz /etc/hostdz/libtorrent-0.12.9.tar.gz -C /etc/hostdz/source/
-#############tar xvfz /etc/hostdz/libtorrent-0.13.2.tar.gz -C /etc/hostdz/source/
-#############tar xvfz /etc/hostdz/xmlrpc-c-1.16.42.tgz -C /etc/hostdz/source/
-#############cd /etc/hostdz/source/
-#############unzip ../xmlrpc-c-1.31.06.zip
-cd /etc/hostdz/source/
-
-##tar xvfz /etc/hostdz/rtorrent-0.9.4.tar.gz -C /etc/hostdz/source/
-###tar xvfz /etc/hostdz/libtorrent-0.13.4.tar.gz -C /etc/hostdz/source/
-
-# 16.
-#cd xmlrpc-c-1.16.42 ### old, but stable, version, needs a missing old types.h file
-#ln -s /usr/include/curl/curl.h /usr/include/curl/types.h
-########### cd xmlrpc-c-1.31.06
-##./configure --prefix=/usr --enable-libxml2-backend --disable-libwww-client --disable-wininet-client --disable-abyss-server --disable-cgi-server
-###########./configure --libdir=/usr/local/lib --disable-cplusplus --disable-libwww-client --disable-wininet-client --disable-cgi-server --enable-libxml2-backend 
-########### make -j 8 && make install
-#############sudo svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c
-#############./configure --libdir=/usr/local/lib --disable-cplusplus --disable-libwww-client --disable-wininet-client --disable-cgi-server --enable-libxml2-backend 
-#############make -j 8 && make install
-#############updatedb
-
-# 17.
-#############cd ../libtorrent-$LIBTORRENT1
-#############./autogen.sh
-##./configure --prefix=/usr
-#############./configure --libdir=/usr/local/lib --disable-debug --with-posix-fallocate --enable-ipv6 --enable-arch=native --with-address-space=4096
-#############make -j 8 && make install
-
-#############cd ../rtorrent-$RTORRENT1
-#############./autogen.sh
-##./configure --prefix=/usr --with-xmlrpc-c
-#############/configure --libdir=/usr/local/lib --disable-debug --with-xmlrpc-c --with-ncurses --enable-ipv6 --enable-arch=native
-#############make -j 8 && make install
-#############ldconfig
-
-# 22. rutorrent csere
-###cd /var/www
-###rm -f -r rutorrent
-###rm -r -f rutorrent/plugins
-###wget -N http://bestbox.be/motor/konfig/rutorrent.tar.gz --no-check-certificate
-###tar xvfz rutorrent.tar.gz -C /var/www/
 
 cd /var/www/
 rm -f -r rutorrent
 svn checkout https://github.com/Novik/ruTorrent/trunk rutorrent
-#svn checkout http://rutorrent.googlecode.com/svn/trunk/plugins
-#rm -r -f rutorrent/plugins
-#mv plugins rutorrent/
-
 cp /etc/hostdz/action.php.template /var/www/rutorrent/plugins/diskspace/action.php
 
 
@@ -497,7 +417,6 @@ chmod -R 755 /var/www/rutorrent/
 
 groupadd admin
 
-##########echo "www-data ALL=(ALL:ALL) NOPASSWD: ALL" | tee -a /etc/sudoers > /dev/null
 echo "www-data ALL=(root) NOPASSWD: /usr/sbin/repquota" | tee -a /etc/sudoers > /dev/null
 
 ##cp /etc/hostdz/favicon.ico /var/www/
@@ -533,15 +452,6 @@ cp /etc/hostdz/rutorrent.plugins.filemanager.conf.php.template /var/www/rutorren
 cd /var/www/rutorrent/plugins/
 git clone https://github.com/xombiemp/rutorrentMobile.git mobile
 
-# 32.2 # FILEUPLOAD
-##cd /var/www/rutorrent/plugins/
-##svn co http://svn.rutorrent.org/svn/filemanager/trunk/fileupload
-##chmod 775 /var/www/rutorrent/plugins/fileupload/scripts/upload
-##wget -O /tmp/plowshare.deb http://plowshare.googlecode.com/files/plowshare_1~git20120930-1_all.deb
-##dpkg -i /tmp/plowshare.deb
-##apt-get --yes -f install
-
-
 perl -pi -e "s/\\\$topDirectory\, \\\$fm/\\\$homeDirectory\, \\\$topDirectory\, \\\$fm/g" /var/www/rutorrent/plugins/filemanager/flm.class.php
 perl -pi -e "s/\\\$this\-\>userdir \= addslash\(\\\$topDirectory\)\;/\\\$this\-\>userdir \= \\\$homeDirectory \? addslash\(\\\$homeDirectory\) \: addslash\(\\\$topDirectory\)\;/g" /var/www/rutorrent/plugins/filemanager/flm.class.php
 perl -pi -e "s/\\\$topDirectory/\\\$homeDirectory/g" /var/www/rutorrent/plugins/filemanager/settings.js.php
@@ -565,36 +475,6 @@ bash /etc/hostdz/updatejkinit
 
 # 31.
 
-#clear
-#echo "ZNC Configuration"
-#echo ""
-#znc --makeconf
-#/home/antoniocarlos/.znc/configs/znc.conf
-
-# 32.
-
-# Installing poweroff button on ruTorrent
-
-### cd /var/www/rutorrent/plugins/
-### wget http://rutorrent-logoff.googlecode.com/files/logoff-1.0.tar.gz
-### tar -zxf logoff-1.0.tar.gz
-### rm -f logoff-1.0.tar.gz
-
-# Installing Filemanager and MediaStream
-
-##rm -f -R /var/www/rutorrent/plugins/filemanager
-####rm -f -R /var/www/rutorrent/plugins/fileupload
-##rm -f -R /var/www/rutorrent/plugins/mediastream
-##rm -f -R /var/www/stream
-
-##cd /var/www/rutorrent/plugins/
-##svn co http://svn.rutorrent.org/svn/filemanager/trunk/mediastream
-
-##cd /var/www/rutorrent/plugins/
-###svn co http://svn.rutorrent.org/svn/filemanager/trunk/filemanager
-
-##cp /etc/hostdz/rutorrent.plugins.filemanager.conf.php.template /var/www/rutorrent/plugins/filemanager/conf.php
-
 mkdir -p /var/www/stream/
 mkdir -p /var/www/private/
 ln -s /var/www/rutorrent/plugins/mediastream/view.php /var/www/stream/view.php
@@ -603,26 +483,10 @@ chown www-data: /var/www/stream/view.php
 
 echo "<?php \$streampath = 'http://$IPADDRESS1/stream/view.php'; ?>" | tee /var/www/rutorrent/plugins/mediastream/conf.php > /dev/null
 
-# 32.2 # FILEUPLOAD
-##cd /var/www/rutorrent/plugins/
-##svn co http://svn.rutorrent.org/svn/filemanager/trunk/fileupload
-##chmod 775 /var/www/rutorrent/plugins/fileupload/scripts/upload
-###wget -O /tmp/plowshare.deb http://plowshare.googlecode.com/files/plowshare_1~git20120930-1_all.deb
-###dpkg -i /tmp/plowshare.deb
-###apt-get --yes -f install
-
 # 32.2
 chown -R www-data:www-data /var/www/
 chmod -R 755 /var/www/
 
-#32.3
-
-##perl -pi -e "s/\\\$topDirectory\, \\\$fm/\\\$homeDirectory\, \\\$topDirectory\, \\\$fm/g" /var/www/rutorrent/plugins/filemanager/flm.class.php
-##perl -pi -e "s/\\\$this\-\>userdir \= addslash\(\\\$topDirectory\)\;/\\\$this\-\>userdir \= \\\$homeDirectory \? addslash\(\\\$homeDirectory\) \: addslash\(\\\$topDirectory\)\;/g" /var/www/rutorrent/plugins/filemanager/flm.class.php
-##perl -pi -e "s/\\\$topDirectory/\\\$homeDirectory/g" /var/www/rutorrent/plugins/filemanager/settings.js.php
-
-#32.4
-### unzip /etc/hostdz/rutorrent-oblivion.zip -d /var/www/rutorrent/plugins/
 echo "" | tee -a /var/www/rutorrent/css/style.css > /dev/null
 echo "/* for Oblivion */" | tee -a /var/www/rutorrent/css/style.css > /dev/null
 echo ".meter-value-start-color { background-color: #E05400 }" | tee -a /var/www/rutorrent/css/style.css > /dev/null
@@ -630,22 +494,7 @@ echo ".meter-value-end-color { background-color: #8FBC00 }" | tee -a /var/www/ru
 echo "::-webkit-scrollbar {width:12px;height:12px;padding:0px;margin:0px;}" | tee -a /var/www/rutorrent/css/style.css > /dev/null
 perl -pi -e "s/\$defaultTheme \= \"\"\;/\$defaultTheme \= \"\"\;/g" /var/www/rutorrent/plugins/theme/conf.php
 
-#ln -s /etc/hostdz/seedboxInfo.php.template /var/www/seedboxInfo.php
 
-# 32.5
-
-##cd /var/www/rutorrent/plugins/
-##rm -r /var/www/rutorrent/plugins/fileshare
-##rm -r /var/www/share
-##svn co http://svn.rutorrent.org/svn/filemanager/trunk/fileshare
-##mkdir /var/www/share
-###ln -s /var/www/rutorrent/plugins/fileshare/share.php /var/www/share/share.php
-###ln -s /var/www/rutorrent/plugins/fileshare/share.php /var/www/share/index.php
-######chown -R www-data:www-data /var/www/share
-###cp /etc/hostdz/rutorrent.plugins.fileshare.conf.php.template /var/www/rutorrent/plugins/fileshare/conf.php
-###perl -pi -e "s/<servername>/$IPADDRESS1/g" /var/www/rutorrent/plugins/fileshare/conf.php
-
-# 33.
 
 bash /etc/hostdz/updateExecutables
 
@@ -712,18 +561,18 @@ tar xf libtorrent-0.13.4.tar.gz
 ##sudo wget http://libtorrent.rakshasa.no/downloads/rtorrent-0.9.4.tar.gz
 tar xvf rtorrent-0.9.4.tar.gz
 cd /etc/hostdz/source/xmlrpc-c
-./configure --libdir=/usr/local/lib --disable-cplusplus --disable-libwww-client --disable-wininet-client --disable-cgi-server --enable-libxml2-backend 
+sudo ./configure --disable-cplusplus
 make -j 8 && make install
 updatedb
 
 cd /etc/hostdz/source/libtorrent-0.13.4
 sudo ./autogen.sh
-./configure --libdir=/usr/local/lib --disable-debug --with-posix-fallocate --enable-ipv6 --enable-arch=native --with-address-space=4096
+sudo ./configure --disable-cplusplus
 make -j 8 && make install
 
 cd /etc/hostdz/source/rtorrent-0.9.4
 sudo ./autogen.sh
-./configure --libdir=/usr/local/lib --disable-debug --with-xmlrpc-c --with-ncurses --enable-ipv6 --enable-arch=native
+sudo ./configure --with-posix-fallocate
 make -j 8 && make install
 sudo ldconfig
 apt-get install locate --yes
