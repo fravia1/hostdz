@@ -135,14 +135,14 @@ if [ $1 ]; then
   NEWUSER1=$1
   NEWUSER2=$1
 else
-  getString NO  "SeedBox felhasználónév: " NEWUSER1
+  getString NO  "SeedBox username: " NEWUSER1
 fi
 
 if [ $2 ]; then
   PASSWORD1=$2
   PASSWORD2=$2
 else
-  getString YES "ruTorrent felhasználó($NEWUSER1) jelszava: " PASSWORD1
+  getString YES "ruTorrent username($NEWUSER1) password: " PASSWORD1
 fi
 
 #####Csere NO-ra
