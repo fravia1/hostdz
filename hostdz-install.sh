@@ -404,12 +404,10 @@ echo "ServerName $IPADDRESS1" | tee -a /etc/apache2/apache2.conf > /dev/null
 # 14.
 a2ensite default-ssl
 
-
 cd /var/www/
 rm -f -r rutorrent
 svn checkout https://github.com/Novik/ruTorrent/trunk rutorrent
 cp /etc/hostdz/action.php.template /var/www/rutorrent/plugins/diskspace/action.php
-
 
 chown -R www-data:www-data /var/www/rutorrent/
 chmod -R 755 /var/www/rutorrent/
@@ -544,6 +542,8 @@ cp /etc/hostdz/proftpd_proftpd.conf /etc/proftpd/proftpd.conf
 cp /etc/hostdz/proftpd_tls.conf /etc/proftpd/tls.conf
 cp /etc/hostdz/rtorrent-0.9.2.tar.gz /etc/hostdz/source/rtorrent-0.9.2.tar.gz
 cp /etc/hostdz/libtorrent-0.13.2.tar.gz /etc/hostdz/source/libtorrent-0.13.2.tar.gz
+cp /etc/hostdz/rtorrent-0.9.4.tar.gz /etc/hostdz/source/rtorrent-0.9.4.tar.gz
+cp /etc/hostdz/libtorrent-0.13.4.tar.gz /etc/hostdz/source/libtorrent-0.13.4.tar.gz
 
 
 sudo addgroup root sshdusers
@@ -557,22 +557,22 @@ sudo dpkg -i libdigest-sha1-perl_2.13-2build2_amd64.deb
 
 sudo svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c
 ##sudo wget http://libtorrent.rakshasa.no/downloads/libtorrent-0.13.4.tar.gz
-tar xf libtorrent-0.13.2.tar.gz
+tar xf libtorrent-0.13.4.tar.gz
 ##sudo wget http://libtorrent.rakshasa.no/downloads/rtorrent-0.9.4.tar.gz
-tar xvf rtorrent-0.9.2.tar.gz
+tar xvf rtorrent-0.9.4.tar.gz
 cd /etc/hostdz/source/xmlrpc-c
-sudo ./configure --disable-cplusplus
+./configure --prefix=/usr --enable-libxml2-backend --disable-libwww-client --disable-wininet-client --disable-abyss-server --disable-cgi-server
 make -j 8 && make install
 updatedb
 
-cd /etc/hostdz/source/libtorrent-0.13.2
+cd /etc/hostdz/source/libtorrent-0.13.4
 sudo ./autogen.sh
-sudo ./configure --disable-cplusplus
+sudo ./configure --prefix=/usr
 make -j 8 && make install
 
-cd /etc/hostdz/source/rtorrent-0.9.2
+cd /etc/hostdz/source/rtorrent-0.9.4
 sudo ./autogen.sh
-sudo ./configure --with-posix-fallocate
+sudo ./configure --prefix=/usr --with-xmlrpc-c
 make -j 8 && make install
 sudo ldconfig
 apt-get install locate --yes
@@ -621,14 +621,13 @@ echo " * hard nofile 999999" | tee -a /etc/security/limits.conf > /dev/null
 echo "session required pam_limits.so" | tee -a /etc/pam.d/common-session* > /dev/null
 echo "session required pam_limits.so" | tee -a /etc/pam.d/common-session > /dev/null
 
+createSeedboxUser $NEWUSER1 $PASSWORD1
 
 perl -pi -e "s/USERHASSSHACCESS1=YES/USERHASSSHACCESS1=NO/g" /etc/hostdz/createSeedboxUser
 perl -pi -e "s/USERINSUDOERS1=YES/USERINSUDOERS1=NO/g" /etc/hostdz/createSeedboxUser
 
 perl -pi -e "s/USERHASSSHACCESS1=YES/USERHASSSHACCESS1=NO/g" /usr/bin/createSeedboxUser
 perl -pi -e "s/USERINSUDOERS1=YES/USERINSUDOERS1=NO/g" /usr/bin/createSeedboxUser
-
-createSeedboxUser $NEWUSER1 $PASSWORD1
 clear
 
 echo ""
