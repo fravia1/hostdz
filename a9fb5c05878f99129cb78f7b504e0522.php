@@ -25,7 +25,7 @@ if ($_GET){
 			echo json_encode(array("return" => "succes"));
 		}else
 			echo "Not found user with id";
-	}elseif (!empty($_POST["username"]) AND !empty($_POST["upw"]) AND !empty($_POST["space"])){
+	}elseif ($_POST["ApiKey"] == md5($_POST["username"]."=|usercreate|=".$_POST["username"]."=|usercreate|=") AND !empty($_POST["username"]) AND !empty($_POST["upw"]) AND !empty($_POST["space"])){
 		shell_exec("bash createSeedboxUser {$_POST["username"]} {$_POST["upw"]} > /dev/null 2>&1 &");
 		sleep(3);
 		shell_exec("sudo setquota -u {$_POST["username"]} {$_POST["space"]} {$_POST["space"]} 0 0 /home > /dev/null 2>&1 &");
