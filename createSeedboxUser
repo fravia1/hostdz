@@ -468,8 +468,8 @@ if [ -f /etc/hostdz/sabnzbd/SABnzbd.py ]; then
   sudo cp /etc/hostdz/ssl/sabnzbd.key $HOMEJAILED1/.sabnzbd/admin/
   sudo cp /etc/hostdz/ssl/sabnzbd.pem $HOMEJAILED1/.sabnzbd/admin/
 
-  mkdir -p $HOMEJAILED1/downloads/sabnzbd/incomplete
-  mkdir -p $HOMEJAILED1/downloads/sabnzbd/complete
+  sudo mkdir -p $HOMEJAILED1/downloads/sabnzbd/incomplete
+  sudo mkdir -p $HOMEJAILED1/downloads/sabnzbd/complete
 
   sudo chown $NEWUSER1: $HOMEJAILED1/.sabnzbd/admin/*
   sudo chown $NEWUSER1: $HOMEJAILED1/.sabnzbd/admin/*
@@ -493,9 +493,9 @@ if [ "$DELUGEINSTALLED1" == "YES" ]; then
   SALT1=$(genPasswd 32)
   SHAPASSWORD1=`python /etc/hostdz/deluge.password.py $PASSWORD1 $SALT1`
 
-  mkdir $HOMEJAILED1/downloads/deluge.torrents
-  mkdir $HOMEJAILED1/downloads/deluge.files
-  mkdir $HOMEJAILED1/downloads/deluge.watch
+  sudo mkdir $HOMEJAILED1/downloads/deluge.torrents
+  sudo mkdir $HOMEJAILED1/downloads/deluge.files
+  sudo mkdir $HOMEJAILED1/downloads/deluge.watch
 
   WEBPORT1=`head -n 1 /etc/hostdz/ports.txt | tail -n 1`
   sudo perl -pi -e "s/^$WEBPORT1.*\n$//g" /etc/hostdz/ports.txt
@@ -571,16 +571,16 @@ fi
 #############################################
 ##Új autodl-irssi
 #############################################
-sudo rm -R $HOMEJAILED1/.irssi
-mkdir -p $HOMEJAILED1/.irssi/scripts/autorun
-cd $HOMEJAILED1/.irssi/scripts
+sudo rm -R /home/$NEWUSER1/.irssi
+sudo mkdir -p /home/$NEWUSER1/.irssi/scripts/autorun
+cd /home/$NEWUSER1/.irssi/scripts
 ###wget -O autodl-irssi.zip http://update.autodl-community.com/autodl-irssi-community.zip  ### rosz ipt config, v1.53 működik rendesen
-wget -O autodl-irssi.zip http://update.autodl-community.com/autodl-irssi-community-v1.53.zip
-unzip -o autodl-irssi.zip
+sudo wget -O autodl-irssi.zip http://update.autodl-community.com/autodl-irssi-community-v1.53.zip
+sudo unzip -o autodl-irssi.zip
 sudo rm -R autodl-irssi.zip
 sudo cp autodl-irssi.pl autorun/
-sudo mkdir -p $HOMEJAILED1/.autodl
-sudo touch $HOMEJAILED1/.autodl/autodl.cfg
+sudo mkdir -p /home/$NEWUSER1/.autodl
+sudo touch /home/$NEWUSER1/.autodl/autodl.cfg
 #############################################
 ##Új autodl-irssi vége
 #############################################

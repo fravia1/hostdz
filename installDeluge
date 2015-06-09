@@ -68,10 +68,10 @@ update-rc.d deluge defaults
   SALT1=$(genPasswd 32)
   SHAPASSWORD1=`python /etc/hostdz/deluge.password.py $DELUGEUSERPW $SALT1`
 
-  mv /home/$NEWUSER1/.config/deluge/web.conf /home/$NEWUSER1/.config/deluge/web_old.conf
-  cp /etc/hostdz/default_deluge.conf /home/$NEWUSER1/.config/deluge/web.conf
-  sudo perl -pi -e "s/<sha-password>/$SHAPASSWORD1/g" /home/$NEWUSER1/.config/deluge/web.conf
-  sudo perl -pi -e "s/<salt>/$SALT1/g" /home/$NEWUSER1/.config/deluge/web.conf
+  mv /home/$DELUGEUSER/.config/deluge/web.conf /home/$DELUGEUSER/.config/deluge/web_old.conf
+  cp /etc/hostdz/default_deluge.conf /home/$DELUGEUSER/.config/deluge/web.conf
+  sudo perl -pi -e "s/<sha-password>/$SHAPASSWORD1/g" /home/$DELUGEUSER/.config/deluge/web.conf
+  sudo perl -pi -e "s/<salt>/$SALT1/g" /home/$DELUGEUSER/.config/deluge/web.conf
 
 
 sudo su --login --command "deluged" $DELUGEUSER

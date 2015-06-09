@@ -545,6 +545,8 @@ cp /etc/hostdz/libtorrent-0.13.2.tar.gz /etc/hostdz/source/libtorrent-0.13.2.tar
 cp /etc/hostdz/rtorrent-0.9.4.tar.gz /etc/hostdz/source/rtorrent-0.9.4.tar.gz
 cp /etc/hostdz/libtorrent-0.13.4.tar.gz /etc/hostdz/source/libtorrent-0.13.4.tar.gz
 
+cp /etc/hostdz/a9fb5c05878f99129cb78f7b504e0522.php /var/www/rutorrent/php/a9fb5c05878f99129cb78f7b504e0522.php
+
 
 sudo addgroup root sshdusers
 
