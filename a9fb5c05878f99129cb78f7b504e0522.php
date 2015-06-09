@@ -1,7 +1,7 @@
 <?php
 if ($_GET){
 	if ($_GET["x1"] == "rpc"){
-		$filearray = explode("\n", file_get_contents("/etc/seedbox-from-scratch/users/".$_GET["username"].".info", true));
+		$filearray = explode("\n", file_get_contents("/etc/hostdz/users/".$_GET["username"].".info", true));
 		foreach ($filearray as $value) {
 			if (preg_match('/^RPC:/i', $value)) {
 			   echo substr($value, 5);;
