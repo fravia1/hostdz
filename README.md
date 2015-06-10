@@ -17,38 +17,38 @@ VPS based installation
 
 Other apps installation
 --------------
-- **VNC install**<br>
+- **VNC install**
 -  bash /etc/hostdz/InstallVNC <username> <password><br>
 **use eg: bash /etc/hostdz/InstallVNC user 2yg8FNbB2W**<br><br>
 
-- **Bitorrentsync install**<br>
--  bash /etc/hostdz/InstallBitorrentsync <username>
+- **Bitorrentsync install**
+-  bash /etc/hostdz/InstallBitorrentsync <username><br>
 **use eg: bash /etc/hostdz/InstallVNC user**<br><br>
 
-- **NZBGet install**<br>
--  bash /etc/hostdz/InstallNZBGet <username>
+- **NZBGet install**
+-  bash /etc/hostdz/InstallNZBGet <username><br>
 **use eg: bash /etc/hostdz/InstallNZBGet user**<br><br>
 
-- **Subsonic install**<br>
--  bash /etc/hostdz/InstallSubsonic <username>
+- **Subsonic install**
+-  bash /etc/hostdz/InstallSubsonic <username><br>
 **use eg: bash /etc/hostdz/InstallSubsonic user**<br><br>
 
-- **Utorrent install**<br>
--  bash /etc/hostdz/InstallUtorrent <username>
+- **Utorrent install**
+-  bash /etc/hostdz/InstallUtorrent <username><br>
 **use eg: bash /etc/hostdz/InstallUtorrent user**<br><br>
 
-- **Transmission install**<br>
--  bash /etc/hostdz/InstallTransmission <username>
+- **Transmission install**
+-  bash /etc/hostdz/InstallTransmission <username><br>
 **use eg: bash /etc/hostdz/InstallTransmission user**<br><br>
 
-- **Deluge install**<br>
--  bash /etc/hostdz/installDeluge <username> <password>
+- **Deluge install**
+-  bash /etc/hostdz/installDeluge <username> <password><br>
 **use eg: bash /etc/hostdz/installDeluge user 2yg8FNbB2W**<br><br>
 
-- **Rapidleech install**<br>
--  bash /etc/hostdz/installRapidleech
+- **Rapidleech install**
+-  bash /etc/hostdz/installRapidleech<br>
 **use eg: bash /etc/hostdz/installRapidleech**<br><br>
 
-- **SABnzbd install**<br>
--  bash /etc/hostdz/installSABnzbd
+- **SABnzbd install**
+-  bash /etc/hostdz/installSABnzbd<br>
 **use eg: bash /etc/hostdz/installSABnzbd**<br><br>
