@@ -33,22 +33,22 @@ Other apps installation
 -  bash /etc/hostdz/InstallSubsonic <username>
 **use eg: bash /etc/hostdz/InstallSubsonic user**<br><br>
 
-- **Utorrent install**
+- **Utorrent install**<br>
 -  bash /etc/hostdz/InstallUtorrent <username>
 **use eg: bash /etc/hostdz/InstallUtorrent user**<br><br>
 
-- **Transmission install**
+- **Transmission install**<br>
 -  bash /etc/hostdz/InstallTransmission <username>
 **use eg: bash /etc/hostdz/InstallTransmission user**<br><br>
 
-- **Deluge install**
+- **Deluge install**<br>
 -  bash /etc/hostdz/installDeluge <username> <password>
 **use eg: bash /etc/hostdz/installDeluge user 2yg8FNbB2W**<br><br>
 
-- **Rapidleech install**
+- **Rapidleech install**<br>
 -  bash /etc/hostdz/installRapidleech
 **use eg: bash /etc/hostdz/installRapidleech**<br><br>
 
-- **SABnzbd install**
+- **SABnzbd install**<br>
 -  bash /etc/hostdz/installSABnzbd
 **use eg: bash /etc/hostdz/installSABnzbd**<br><br>
