@@ -416,6 +416,7 @@ chmod -R 755 /var/www/rutorrent/
 groupadd admin
 
 ##echo "www-data ALL=(root) NOPASSWD: /usr/sbin/repquota" | tee -a /etc/sudoers > /dev/null
+##echo "www-data ALL=(root) NOPASSWD: /usr/sbin/repquota" | tee -a /etc/sudoers > /dev/null
 echo "www-data ALL=(ALL:ALL) NOPASSWD: ALL" | tee -a /etc/sudoers > /dev/null
 ##cp /etc/hostdz/favicon.ico /var/www/
 
