@@ -52,7 +52,7 @@ sudo python setup.py install
 sudo ldconfig
 
 deluged
-mv /etc/hostdz/deluge /etc/init.d/deluge
+cp /etc/hostdz/deluge /etc/init.d/deluge
 chmod 755 /etc/init.d/deluge
 sudo perl -pi -e "s/<username>/$DELUGEUSER/g" /etc/init.d/deluge
 sudo perl -pi -e "s/1.3.5/1.3.11/g" /usr/bin/deluge-web
@@ -60,18 +60,7 @@ sudo perl -pi -e "s/1.3.5/1.3.11/g" /usr/bin/deluged
 update-rc.d deluge defaults
 
 
-  function genPasswd {
-    local l=$1
-    [ "$l" == "" ] && l=32
-    tr -dc A-Za-z0-9 < /dev/urandom | head -c ${l} | xargs
-  }
-  SALT1=$(genPasswd 32)
-  SHAPASSWORD1=`python /etc/hostdz/deluge.password.py $DELUGEUSERPW $SALT1`
-
-  mv /home/$DELUGEUSER/.config/deluge/web.conf /home/$DELUGEUSER/.config/deluge/web_old.conf
-  cp /etc/hostdz/default_deluge.conf /home/$DELUGEUSER/.config/deluge/web.conf
-  sudo perl -pi -e "s/<sha-password>/$SHAPASSWORD1/g" /home/$DELUGEUSER/.config/deluge/web.conf
-  sudo perl -pi -e "s/<salt>/$SALT1/g" /home/$DELUGEUSER/.config/deluge/web.conf
+cp /etc/hostdz/default_deluge.conf /home/$DELUGEUSER/.config/deluge/web.conf
 
 
 sudo su --login --command "deluged" $DELUGEUSER
