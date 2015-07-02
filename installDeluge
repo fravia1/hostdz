@@ -51,7 +51,6 @@ sudo python setup.py build
 sudo python setup.py install
 sudo ldconfig
 
-deluged
 cp /etc/hostdz/deluge /etc/init.d/deluge
 chmod 755 /etc/init.d/deluge
 sudo perl -pi -e "s/<username>/$DELUGEUSER/g" /etc/init.d/deluge
