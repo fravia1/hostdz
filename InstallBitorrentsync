@@ -32,8 +32,8 @@ sudo apt-get --yes update
 sudo chown -R $BitorrentSyncUser:$BitorrentSyncUser /home/$BitorrentSyncUser/btsync
 sudo chmod -R 755 /home/$BitorrentSyncUser/btsync
 sudo mkdir -p /home/$BitorrentSyncUser/btsync
-sudo wget -N https://download-cdn.getsyncapp.com/stable/linux-i386/BitTorrent-Sync_i386.tar.gz
-sudo tar xvfz BitTorrent-Sync_i386.tar.gz -C /home/$BitorrentSyncUser/btsync
+sudo wget -N https://download-cdn.getsyncapp.com/stable/linux-x64/BitTorrent-Sync_x64.tar.gz
+sudo tar xvfz BitTorrent-Sync_x64.tar.gz -C /home/$BitorrentSyncUser/btsync
 sudo su --login --command "/home/$BitorrentSyncUser/btsync/btsync --webui.listen 0.0.0.0:8888" $BitorrentSyncUser
 
 
