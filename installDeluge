@@ -61,6 +61,8 @@ update-rc.d deluge defaults
 
 cp /etc/hostdz/default_deluge.conf /home/$DELUGEUSER/.config/deluge/web.conf
 
+killall deluged
+killall deluge-web
 
 sudo su --login --command "deluged" $DELUGEUSER
 sudo su --login --command "screen -d -m -S deluge-web deluge-web" $DELUGEUSER
