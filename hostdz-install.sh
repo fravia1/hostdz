@@ -189,7 +189,7 @@ if [ "$RTORRENT1" = "0.9.2" ]; then
 else
   LIBTORRENT1=0.12.9
 fi
-
+apt-get --yes update
 apt-get --yes install whois sudo makepasswd git
 
 rm -f -r /etc/hostdz
