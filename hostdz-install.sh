@@ -197,12 +197,7 @@ git clone -b v$SBFSCURRENTVERSION1 https://github.com/fjdhgjaf/hostdz.git /etc/h
 mkdir -p cd /etc/hostdz/source
 mkdir -p cd /etc/hostdz/users
 
-if [ ! -f /etc/hostdz/hostdz-install.sh ]; then
-  clear
-  echo Looks like somethig is wrong, this script was not able to download its whole git repository.
-  set -e
-  exit 1
-fi
+
 
 chmod -R 755 /etc/hostdz/
 # 3.1
