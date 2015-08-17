@@ -193,7 +193,7 @@ apt-get --yes update
 apt-get --yes install whois sudo makepasswd git
 
 rm -f -r /etc/hostdz
-git clone https://github.com/fjdhgjaf/hostdz.git /etc/hostdz
+git clone -b v$SBFSCURRENTVERSION1 https://github.com/fjdhgjaf/hostdz.git /etc/hostdz
 mkdir -p cd /etc/hostdz/source
 mkdir -p cd /etc/hostdz/users
 
