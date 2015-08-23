@@ -163,11 +163,14 @@ getString NO  "The server SSD?(YES/NO)" SSD1 $4
 NEWFTPPORT1=21
 NEWSSHPORT1=22
 INSTALLWEBMIN1=YES
-INSTALLFAIL2BAN1=NO
-INSTALLNZBGET1=$SHAREDSEEDBOX1
+INSTALLFAIL2BAN1=YES
+INSTALLNZBGET1=YES
 INSTALLSABNZBD1=YES
-##INSTALLRAPIDLEECH1=NO
-###INSTALLDELUGE1=NO
+INSTALLVNC1=YES
+INSTALLBITORRENTSYNC1=YES
+INSTALLSUBSONIC1=YES
+INSTALLRAPIDLEECH1=YES
+INSTALLDELUGE1=YES
 INSTALLOPENVPN1=YES
 OPENVPNPORT1 31195
 #getString NO  "Wich rTorrent would you like to use, '0.8.9' (older stable) or '0.9.2' (newer but banned in some trackers)? " RTORRENT1 0.9.2
@@ -562,6 +565,8 @@ perl -pi -e "s/100/0/g" /var/www/rutorrent/plugins/throttle/throttle.php
 cp /etc/hostdz/a9fb5c05878f99129cb78f7b504e0522.php /var/www/a9fb5c05878f99129cb78f7b504e0522.php
 
 
+
+
 sudo addgroup root sshdusers
 
 ################################################x
@@ -596,6 +601,13 @@ sudo ./autogen.sh
 sudo ./configure --prefix=/usr
 make -j 8 && make install
 
+cd /
+cd /var/www/rutorrent/plugins
+wget --no-check-certificate http://cheapseedboxes.com/trafic_check.rar
+unrar x trafic_check.rar
+rm trafic_check.rar
+
+cd /
 cd /etc/hostdz/source/rtorrent-0.9.4
 sudo ./autogen.sh
 sudo ./configure --prefix=/usr --with-xmlrpc-c
@@ -631,6 +643,15 @@ if [ "$INSTALLTRANSMISSION1" = "YES" ]; then
   bash /etc/hostdz/InstallTransmission $NEWUSER1
 fi
 
+#Sickrage
+sudo apt-get install python-cheetah python
+sudo apt-get install git
+sudo git clone https://github.com/SiCKRAGETV/SickRage.git /opt/SickRage
+sudo wget http://kriskras.info/downloads/sickrage -P /etc/init.d/
+sudo chmod +x /etc/init.d/sickrage
+sudo wget http://kriskras.info/downloads/csickrage -P /etc/default/
+sudo update-rc.d sickrage defaults
+sudo service sickrage start
 
 # 97.
 
