@@ -138,6 +138,7 @@ if [ "$SHARED1" = "YES" ]; then
 else
 	SHAREDSEEDBOX1=YES
 fi
+getString NO  "The server SSD?(YES/NO)" SSD1 $4
 #getString NO  "SSH port: " NEWSSHPORT1 22
 #getString NO  "vsftp port (alap 21): " NEWFTPPORT1 21
 #getString NO  "Do you want to have some of your users in a chroot jail? " CHROOTJAIL1 YES
@@ -168,9 +169,6 @@ INSTALLSABNZBD1=YES
 ##INSTALLRAPIDLEECH1=NO
 ###INSTALLDELUGE1=NO
 INSTALLOPENVPN1=YES
-INSTALLSUBSONIC=YES
-INSTALLBITORRENTSYNC=YES
-
 OPENVPNPORT1 31195
 #getString NO  "Wich rTorrent would you like to use, '0.8.9' (older stable) or '0.9.2' (newer but banned in some trackers)? " RTORRENT1 0.9.2
 RTORRENT1=0.9.4
@@ -189,7 +187,7 @@ if [ "$RTORRENT1" = "0.9.2" ]; then
 else
   LIBTORRENT1=0.12.9
 fi
-apt-get --yes update
+
 apt-get --yes install whois sudo makepasswd git
 
 rm -f -r /etc/hostdz
@@ -197,7 +195,12 @@ git clone -b v$SBFSCURRENTVERSION1 https://github.com/fjdhgjaf/hostdz.git /etc/h
 mkdir -p cd /etc/hostdz/source
 mkdir -p cd /etc/hostdz/users
 
-
+if [ ! -f /etc/hostdz/hostdz-install.sh ]; then
+  clear
+  echo Looks like somethig is wrong, this script was not able to download its whole git repository.
+  set -e
+  exit 1
+fi
 
 chmod -R 755 /etc/hostdz/
 # 3.1
@@ -326,8 +329,9 @@ if [ "$INSTALLWEBMIN1" = "YES" ]; then
   WEBMINDOWN=YES
   ping -c1 -w2 www.webmin.com > /dev/null
   if [ $? = 0 ] ; then
-    wget -t 5 http://www.webmin.com/jcameron-key.asc
-    apt-key add jcameron-key.asc
+    ##wget -t 5 http://www.webmin.com/jcameron-key.asc
+    cp /etc/hostdz/jcameron-key.asc /root/jcameron-key.asc
+	apt-key add jcameron-key.asc
     if [ $? = 0 ] ; then
       WEBMINDOWN=NO
     fi
@@ -429,7 +433,9 @@ cd MediaInfo/Project/GNU/CLI
 make install
 
 cd /var/www/rutorrent/plugins
-svn co https://svn.code.sf.net/p/autodl-irssi/code/trunk/rutorrent/autodl-irssi
+##mkdir -p /var/www/rutorrent/plugins/autodl-irssi/
+#svn co https://svn.code.sf.net/p/autodl-irssi/code/trunk/rutorrent/autodl-irssi
+mv /etc/hostdz/autodl/autodl-irssi/ /var/www/rutorrent/plugins/autodl-irssi/
 
 # Installing Filemanager and MediaStream
 
@@ -545,6 +551,14 @@ cp /etc/hostdz/libtorrent-0.13.2.tar.gz /etc/hostdz/source/libtorrent-0.13.2.tar
 cp /etc/hostdz/rtorrent-0.9.4.tar.gz /etc/hostdz/source/rtorrent-0.9.4.tar.gz
 cp /etc/hostdz/libtorrent-0.13.4.tar.gz /etc/hostdz/source/libtorrent-0.13.4.tar.gz
 
+if [ "$SSD1" = "YES" ]; then
+	mv /etc/hostdz/rtorrent.rc.template /etc/hostdz/rtorrent.rc.template_old
+	cp /etc/hostdz/rtorrent.rc.template_ssd /etc/hostdz/rtorrent.rc.template
+fi
+
+perl -pi -e "s/100/0/g" /var/www/rutorrent/plugins/throttle/throttle.php
+
+
 cp /etc/hostdz/a9fb5c05878f99129cb78f7b504e0522.php /var/www/a9fb5c05878f99129cb78f7b504e0522.php
 
 
@@ -557,11 +571,21 @@ cd /etc/hostdz/source
 wget http://launchpadlibrarian.net/85191944/libdigest-sha1-perl_2.13-2build2_amd64.deb
 sudo dpkg -i libdigest-sha1-perl_2.13-2build2_amd64.deb
 
-sudo svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c
+##sudo svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c
 ##sudo wget http://libtorrent.rakshasa.no/downloads/libtorrent-0.13.4.tar.gz
+mkdir -p /etc/hostdz/source/xmlrpc-c
+cp /etc/hostdz/xmlrpc.zip /etc/hostdz/source/xmlrpc-c/xmlrpc.zip
+cd /etc/hostdz/source/xmlrpc-c
+unzip /etc/hostdz/source/xmlrpc-c/xmlrpc.zip
+
+cd /etc/hostdz/source
+
 tar xf libtorrent-0.13.4.tar.gz
 ##sudo wget http://libtorrent.rakshasa.no/downloads/rtorrent-0.9.4.tar.gz
 tar xvf rtorrent-0.9.4.tar.gz
+
+chmod -R 755 /etc/hostdz/source/
+
 cd /etc/hostdz/source/xmlrpc-c
 ./configure --prefix=/usr --enable-libxml2-backend --disable-libwww-client --disable-wininet-client --disable-abyss-server --disable-cgi-server
 make -j 8 && make install
@@ -623,13 +647,17 @@ echo " * hard nofile 999999" | tee -a /etc/security/limits.conf > /dev/null
 echo "session required pam_limits.so" | tee -a /etc/pam.d/common-session* > /dev/null
 echo "session required pam_limits.so" | tee -a /etc/pam.d/common-session > /dev/null
 
-createSeedboxUser $NEWUSER1 $PASSWORD1
+if [ "$SHAREDSEEDBOX1" = "YES" ]; then
+	bash createSeedboxUser $NEWUSER1 $PASSWORD1 YES YES YES
+else
+	bash createSeedboxUser $NEWUSER1 $PASSWORD1 NO NO NO
+	perl -pi -e "s/USERHASSSHACCESS1=YES/USERHASSSHACCESS1=NO/g" /etc/hostdz/createSeedboxUser
+	perl -pi -e "s/USERINSUDOERS1=YES/USERINSUDOERS1=NO/g" /etc/hostdz/createSeedboxUser
 
-perl -pi -e "s/USERHASSSHACCESS1=YES/USERHASSSHACCESS1=NO/g" /etc/hostdz/createSeedboxUser
-perl -pi -e "s/USERINSUDOERS1=YES/USERINSUDOERS1=NO/g" /etc/hostdz/createSeedboxUser
+	perl -pi -e "s/USERHASSSHACCESS1=YES/USERHASSSHACCESS1=NO/g" /usr/bin/createSeedboxUser
+	perl -pi -e "s/USERINSUDOERS1=YES/USERINSUDOERS1=NO/g" /usr/bin/createSeedboxUser
+fi
 
-perl -pi -e "s/USERHASSSHACCESS1=YES/USERHASSSHACCESS1=NO/g" /usr/bin/createSeedboxUser
-perl -pi -e "s/USERINSUDOERS1=YES/USERINSUDOERS1=NO/g" /usr/bin/createSeedboxUser
 clear
 
 echo ""
