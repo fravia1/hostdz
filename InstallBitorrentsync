@@ -37,8 +37,8 @@ sudo tar xvfz BitTorrent-Sync_x64.tar.gz -C /home/$BitorrentSyncUser/btsync
 sudo su --login --command "/home/$BitorrentSyncUser/btsync/btsync --webui.listen 0.0.0.0:8888" $BitorrentSyncUser
 
 
-##apt-get --yes install btsync
-##dpkg-reconfigure btsync
+#apt-get --yes install btsync
+dpkg-reconfigure btsync
 echo "YES" | sudo tee /etc/hostdz/bittorrentsync.info
 
 echo
