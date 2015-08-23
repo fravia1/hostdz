@@ -631,17 +631,36 @@ if [ "$INSTALLNZBGET1" = "YES" ]; then
   bash /etc/hostdz/InstallNZBGet $NEWUSER1
 fi
 
-if [ "$INSTALLSUBSONIC1" = "YES" ]; then
-  bash /etc/hostdz/InstallSubsonic $NEWUSER1
-fi
+#Subsonic
+clear
+bldgrn='\e[1;32m' # Green
+bldylw='\e[1;33m' # Yellow
+txtrst='\e[0m'    # Text Reset
+SubsonicUser=$1
+IPADDRESS1=`ifconfig | sed -n 's/.*inet addr:\([0-9.]\+\)\s.*/\1/p' | grep -v 127 | head -n 1`
 
-if [ "$INSTALLUTORRENT1" = "YES" ]; then
-  bash /etc/hostdz/InstallUtorrent $NEWUSER1
-fi
+ if [ ! $SubsonicUser ]; then
+    echo -n "Username: "
+      read SubsonicUser
+    fi
+ if [ ! $SubsonicUser ]; then
+     echo "Error no Username!"
+       exit 0
+    fi
 
-if [ "$INSTALLTRANSMISSION1" = "YES" ]; then
-  bash /etc/hostdz/InstallTransmission $NEWUSER1
-fi
+sudo apt-get --yes install openjdk-7-jre
+sudo wget -N http://subsonic.org/download/subsonic-5.2.1.deb
+sudo dpkg -i subsonic-5.2.1.deb
+sudo chmod -R 755 /etc/default/subsonic
+sudo perl -pi -e "s/SUBSONIC_USER=root/SUBSONIC_USER=$SubsonicUser/g" /etc/default/subsonic
+sudo service subsonic restart
+echo "YES" | sudo tee /etc/hostdz/subsonic.info
+
+echo
+echo -e "${bldgrn}Subsonic installed! ${bldylw}Web: http://$IPADDRESS1:4040${txtrst}"
+echo -e "${bldgrn}Username: ${bldylw}admin${txtrst}"
+echo -e "${bldgrn}Password: ${bldylw}admin${txtrst}"
+echo
 
 #Sickrage
 sudo apt-get install python-cheetah python
