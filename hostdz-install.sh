@@ -601,11 +601,7 @@ sudo ./autogen.sh
 sudo ./configure --prefix=/usr
 make -j 8 && make install
 
-cd /
-cd /var/www/rutorrent/plugins
-wget --no-check-certificate http://cheapseedboxes.com/trafic_check.rar
-unrar x trafic_check.rar
-rm trafic_check.rar
+
 
 cd /
 cd /etc/hostdz/source/rtorrent-0.9.4
