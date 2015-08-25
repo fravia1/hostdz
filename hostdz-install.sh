@@ -677,76 +677,8 @@ sudo apt-get install -f
 rm plexmediaserver_0.9.9.12.504-3e7f93c_amd64.deb
 
 # 99 Deluge
-##################### FIRST LINE
-# ---------------------------
-#!/bin/bash
-# ---------------------------
-#
-# |--------------------------------------------------------------|
-# | The script thank you for Notos (notos.korsan@gmail.com)      |
-# |--------------------------------------------------------------|
-# | The script was further developed Tiby08 (tiby0108@gmail.com) |
-# |--------------------------------------------------------------|
-#
-clear
-bldgrn='\e[1;32m' # Green
-bldylw='\e[1;33m' # Yellow
-txtrst='\e[0m'    # Text Reset
-DELUGEUSER=$1
-DELUGEUSERPW=$2
-IPADDRESS1=`ifconfig | sed -n 's/.*inet addr:\([0-9.]\+\)\s.*/\1/p' | grep -v 127 | head -n 1`
-
-DELUGE_VERSION=1.3.11
-
- if [ ! $DELUGEUSER ]; then
-    echo -n "Username: "
-      read $1
-    fi
- if [ ! $DELUGEUSER ]; then
-     echo "Error empty username!"
-       exit 0
-    fi
-
- if [ ! $DELUGEUSERPW ]; then
-    echo -n "Password: "
-      read $2
-    fi
- if [ ! $DELUGEUSERPW ]; then
-     echo "Error empty password!"
-       exit 0
-    fi
-
-sudo apt-get --yes install python python-geoip python-libtorrent python-notify python-pygame python-gtk2 python-gtk2-dev python-twisted python-twisted-web2 python-openssl python-simplejson python-setuptools gettext python-xdg python-chardet librsvg2-dev xdg-utils python-mako deluged deluge-webui
-
-sudo kill -9 `sudo ps aux | grep deluge | grep -v grep | awk '{print $2}' | cut -d. -f 1` &> /dev/null
-sudo rm -r /etc/hostdz/source/deluge
-sudo wget -N --no-check-certificate -O /etc/hostdz/source/deluge-$DELUGE_VERSION.tar.gz http://download.deluge-torrent.org/source/deluge-$DELUGE_VERSION.tar.gz
-cd /etc/hostdz/source
-sudo tar xvfz deluge-$DELUGE_VERSION.tar.gz
-sudo rm deluge-$DELUGE_VERSION.tar.gz
-cd deluge-$DELUGE_VERSION
-
-sudo python setup.py build
-sudo python setup.py install
-sudo ldconfig
-
-cp /etc/hostdz/deluge /etc/init.d/deluge
-chmod 755 /etc/init.d/deluge
-sudo perl -pi -e "s/<username>/$DELUGEUSER/g" /etc/init.d/deluge
-sudo perl -pi -e "s/1.3.5/1.3.11/g" /usr/bin/deluge-web
-sudo perl -pi -e "s/1.3.5/1.3.11/g" /usr/bin/deluged
-update-rc.d deluge defaults
-
-
-cp /etc/hostdz/default_deluge.conf /home/$DELUGEUSER/.config/deluge/web.conf
-
-killall deluged
-killall deluge-web
-
-sudo su --login --command "deluged" $DELUGEUSER
-sudo su --login --command "screen -d -m -S deluge-web deluge-web" $DELUGEUSER
-echo "Deluge: http://$IPADDRESS1:8112" | sudo tee -a /etc/hostdz/users/$DELUGEUSER.info
-echo "YES" | sudo tee /etc/hostdz/deluge.info
+cd /
+bash /etc/hostdz/installDeluge
 
 
 #first user will not be jailed
