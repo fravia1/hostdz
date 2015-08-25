@@ -668,7 +668,14 @@ sudo wget http://kriskras.info/downloads/csickrage -P /etc/default/
 sudo update-rc.d sickrage defaults
 sudo service sickrage start
 
-# 97.
+# 97.Plex
+
+cd ~/
+wget -c http://downloads.plexapp.com/plex-media-server/0.9.9.12.504-3e7f93c/plexmediaserver_0.9.9.12.504-3e7f93c_amd64.deb
+sudo dpkg -i plexmediaserver_0.9.9.12.504-3e7f93c_amd64.deb
+sudo apt-get install -f
+rm plexmediaserver_0.9.9.12.504-3e7f93c_amd64.deb
+
 
 #first user will not be jailed
 #  createSeedboxUser <username> <password> <user jailed?> <ssh access?> <?>
