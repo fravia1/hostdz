@@ -700,7 +700,7 @@ DELUGE_VERSION=1.3.11
 
  if [ ! $DELUGEUSER ]; then
     echo -n "Username: "
-      read DELUGEUSER
+      read $1
     fi
  if [ ! $DELUGEUSER ]; then
      echo "Error empty username!"
@@ -709,7 +709,7 @@ DELUGE_VERSION=1.3.11
 
  if [ ! $DELUGEUSERPW ]; then
     echo -n "Password: "
-      read DELUGEUSERPW
+      read $2
     fi
  if [ ! $DELUGEUSERPW ]; then
      echo "Error empty password!"
