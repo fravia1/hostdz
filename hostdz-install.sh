@@ -678,7 +678,7 @@ rm plexmediaserver_0.9.9.12.504-3e7f93c_amd64.deb
 
 # 99 Deluge
 cd /
-bash /etc/hostdz/installDeluge
+bash /etc/hostdz/installDeluge $1 $2
 
 
 #first user will not be jailed
